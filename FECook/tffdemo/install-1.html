@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta property="og:title" content="Pokio" />
+		<meta property="og:description" content="A Real Money Social Poker APP" />
+		<meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+		<title>Install Pokio</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			div {
+				font-size: 0;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				font-family: 'Source Han Sans', sans-serif;
+			}
+
+			@media screen and (min-width: 768px) {
+				.background_img {
+					width: 5.75rem !important;
+					margin: auto;
+				}
+
+				html {
+					font-size: 110.4px !important;
+					background: #000;
+				}
+			}
+
+			@media screen and (min-width: 1024px) {
+				.background_img {
+					width: 5.75rem !important;
+					margin: auto;
+				}
+
+				html {
+					font-size: 140.4px !important;
+					background: #000;
+				}
+
+				.support {
+					white-space: normal !important;
+				}
+			}
+
+			@media screen and (min-width: 1025px) {
+				.background_img {
+					width: 3.75rem !important;
+					height: 7.667rem !important;
+					transform: translateY(3%);
+					margin: auto;
+				}
+
+				html {
+					font-size: 78px !important;
+				}
+
+				.support {
+					white-space: normal !important;
+				}
+			}
+
+			@media screen and (min-width: 1400px) {
+				.background_img {
+					width: 3.75rem !important;
+					height: 7.667rem !important;
+					transform: translateY(-1%) scale(0.8);
+					margin: auto;
+				}
+
+				html {
+					font-size: 120.4px !important;
+				}
+			}
+
+			/* @media screen and (max-width: 414px) {
+        .clubContent {
+          min-height: 2.6rem;
+        }
+      } */
+			/* body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } */
+			.background_img {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background: url('./images/landing-page/617/bg@2x.png') no-repeat;
+				background-size: 100%;
+			}
+
+			.container {
+				width: 100%;
+				height: 100%;
+				padding: 1px 0.125rem 0;
+			}
+
+			.top-logo {
+				width: 100%;
+				margin-top: 0.37rem;
+			}
+
+			.top-logo img {
+				width: 100%;
+			}
+
+			.please-note {
+				width: 100%;
+				height: 1.754rem;
+				line-height: 0.24rem;
+				margin-top: 0.155rem;
+				background: url(./images/landing-page/617/note-bg.png) no-repeat;
+				background-size: cover;
+				font-size: 0.14rem;
+				color: #000;
+				padding-top: 0.21rem;
+				padding-left: 0.2rem;
+				padding-right: 0.1rem;
+				/* 0.3rem 0.315rem 0.2rem; */
+			}
+
+			.please-note .title {
+				font-size: 0.18rem;
+				font-weight: bold;
+			}
+
+			.note-body {
+				font-family: Helvetica;
+				font-size: 0.14rem;
+				list-style-type: decimal;
+				margin-left: 0.2rem;
+				margin-top: 0.16rem;
+				/* list-style-position: inside; */
+			}
+
+			.note-body li {
+				/* list-style-type: decimal !important;
+        list-style-position: inside !important; */
+			}
+
+			#installBtn {
+				width: 100%;
+				height: 0.44rem;
+				margin-top: 0.13rem;
+				background: url(./images/landing-page/617/installBtn@2x.png) no-repeat;
+				background-size: 100%;
+			}
+
+			.support {
+				font-size: 0.12rem;
+				color: #ebedf5;
+				opacity: 0.5;
+				margin-top: 0.285rem;
+				white-space: nowrap;
+				/* transform: scaleX(0.6); */
+			}
+
+			.declaration {
+				height: 0.2rem;
+				font-size: 0;
+				margin-top: 0.7rem;
+			}
+
+			.declaration img {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<script>
+		console.log(document.documentElement.clientWidth)
+	</script>
+	<script type="text/javascript">
+		// “()()”表示自执行函数
+		;
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				// 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+				resizeEvt =
+				'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					//clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+					var clientWidth = docEl.clientWidth
+					console.log(clientWidth)
+					if (!clientWidth) return
+					docEl.style.fontSize = 100 * (clientWidth / 375) + 'px'
+				}
+
+			recalc()
+			//判断是否支持监听事件 ，不支持则停止
+			if (!doc.addEventListener) return
+			//注册翻转事件
+			win.addEventListener(resizeEvt, recalc, false)
+		})(document, window)
+	</script>
+
+	<body>
+		<div class="background_img">
+			<div class="container">
+				<div class="top-logo">
+					<img src="./images/landing-page/617/top-logo.png" alt="" />
+				</div>
+				<div class="please-note">
+					<div class="title">PLEASE NOTE</div>
+					<ol class="note-body">
+						<li>
+							Uninstall the previous version before installing the new version.
+						</li>
+						<li>Use Safari browser to install the app.</li>
+						<li>Reinstall the app if it crashes.</li>
+					</ol>
+				</div>
+				<div id="installBtn"></div>
+
+				<div class="support">
+					If the link is not available, please contact support@pokio.com
+				</div>
+				<div class="declaration">
+					<img src="./images/landing-page/617/declaration.png" alt="" />
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript" charset="UTF-8" src="https://res.cdn.openinstall.io/openinstall.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="https://cdn.staticfile.org/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
+	<script src="../js/mobile-detect.min.js"></script>
+	<script src="../js/device.js"></script>
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../js/share.js"></script>
+	<script type="text/template">
+		// openinstall对应的appkey
+    var openinstall_appkey = ''
+    // 粘贴板数据
+    let clipbord_data = url_arguments_analysis(window.location.href)
+    // console.log('clipbord_data==>', clipbord_data) // 返回 浏览器查询参数解析 对象
+    clipbord_data.flag = 'pokio_diversion'
+    $('#install').attr('data-clipboard-text', JSON.stringify(clipbord_data))
+
+    let btn = document.getElementById('install')
+    let clipboard = new ClipboardJS(btn)
+
+    /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+
+    var u = navigator.userAgent
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 //android
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios
+    let isSafari = u.indexOf('Safari') != -1 && u.indexOf('Version') != -1
+    let isIphone = u.indexOf('iPhone') != -1 && u.indexOf('Version') != -1
+    let isIPad = isSafari && !isIphone && 'ontouchend' in document
+    var data = OpenInstall.parseUrlParams() //openinstall.js中提供的工具函数，解析url中的所有查询参数
+
+    new OpenInstall(
+      {
+        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+        // appKey : "c8rhfj",
+        appKey: 'xi0xsm',
+        /*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+        //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+        /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+        //preferWakeup:true,
+        /*自定义遮罩的html*/
+        //mask:function(){
+        //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+        //},
+        /*openinstall初始化完成的回调函数，可选*/
+        onready: function () {
+          var m = this,
+            button = document.getElementById('install')
+          // button.style.visibility = "visible";
+          /*在app已安装的情况尝试拉起app*/
+          m.schemeWakeup()
+          /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+          clipboard.on('success', function (e) {
+            if (isAndroid || isiOS || isIPad) {
+              data_tracking({
+                clipboard_id: 'install',
+                url_path: window.location.href,
+              })
+              m.wakeupOrInstall()
+              return false
+            } else {
+              const currentUrl = window.location.href
+              const locationUrl = currentUrl.includes('app.pokio')
+                ? 'https://web.pokio.com/web-mobile/index.html?clubid=' +
+                  getUrlParam('gid') +
+                  '&channelCode=' +
+                  getUrlParam('channelCode')
+                : 'https://app-test2.pokio.com/web-mobile/index.html?clubid=' +
+                  getUrlParam('gid') +
+                  '&channelCode=' +
+                  getUrlParam('channelCode')
+              location.href = locationUrl
+            }
+          })
+        },
+      },
+      data
+    )
+  </script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		p {
+			width: 200px;
+			background-color: #eee;
+		}
+	</style>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<body>
+		<p> Lorem ipsum doloraaaaaaaaa sitamet, consectetur adipisicing elit. Ab nam enim nostrum ducimus incidunt
+			adipisci
+			laborum iusto exercitationem aliquid labore! Qui ad repudiandae veritatis recusandae ex eos dignissimos
+			officiis ut? </p>
+		<div style="word-wrap:break-word;width:328px">AutoEventWireupaaaaaa AutoEventWireupaaaaaa AutoEventWireup
+			AutoEventWireup AutoEventWireup e e d d d d AutoEventWireup v d
+			Auto EventWireup AutoEventWireup</div>
+		word-wrap:break-word;
+
+		<div style="word-wrap:break-word;width:328px">AutoEventWireupaaaaaaaa e e d d d d AutoEventWireup v d
+			Auto EventWireup AutoEventWireup</div>
+		<input type="text" blur="console.log(123)" id="inp">
+		<select disabled="true">
+			<option value="123">123</option>
+		</select>
+	</body>
+	<script type="text/javascript">
+		//判断字符串中的字符 中文算两个字符
+		function chkstrlen(str) {
+			var strlen = 0;
+			for (var i = 0; i < str.length; i++) {
+				if (str.charCodeAt(i) > 255) //如果是汉字，则字符串长度加2
+					strlen += 2;
+				else
+					strlen++;
+			}
+			return strlen;
+		}
+		var str1 = 'Тымненравишься'
+		var str2 = 'Ichmagdich'
+		var str3 = 'あなたが好きです'
+		var str4 = '我喜欢 你'
+		console.log('russian', str1, str1.trim().length, chkstrlen(str1))
+		console.log('german', str2, str2.trim().length, chkstrlen(str2))
+		console.log('japanese', str3, str3.trim().length, chkstrlen(str3))
+		console.log('chinese', str4, str4.trim().length, chkstrlen(str4))
+
+		function test(str, maxLength) {
+			str = str.split('')
+			console.log(str)
+			let length = 0
+			let idx = 0
+			str.map((item, index) => {
+				console.log(1, length)
+
+				_item = item.charCodeAt()
+				//    length = _item > 255 ? length+2 : length+1
+				// if(length == maxLength) {
+				//   idx = index
+				//   str.splice()
+				//   return false
+				// }
+				if (length < maxLength) {
+					length = _item > 255 ? length + 2 : length + 1
+				} else {
+					console.log(length)
+				}
+				console.log(2, length)
+			})
+
+			return {
+				length,
+				idx
+			}
+		}
+
+		function show(str, maxLength) {
+			var res = test(str, maxLength)
+			console.log(res)
+		}
+		let inp = $('#inp')
+		inp.on('keyup', () => {
+			show(inp.val(), 5)
+		})
+	</script>
+	<script>
+		function test2(str, maxCodeLen) {
+			let stringLen = 0
+			let codeLen = 0
+			let finalStr = ''
+			let lastIndex = 0
+			let strLen = str.length
+			
+			for (let i = 0; i < strLen ; i++) {
+				if (codeLen <= maxCodeLen) {
+					console.log('a', codeLen,str[i])
+					codeLen = str[i].charCodeAt() > 255 ? codeLen + 2 : codeLen + 1
+					finalStr += str[i]
+					lastIndex = i
+				}else{
+					console.log('b',codeLen)
+					codeLen +=1
+					finalStr=str.slice(0, lastIndex)
+				}
+			}
+			return finalStr
+		}
+		let str = 'asdasd'
+		console.log(3,test2(str,2))
+	</script>
+</html>

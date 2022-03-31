@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <input type="radio" name="gender" value="0" onclick="show()">男
+  <input type="radio" name="gender" value="1" onclick="show()"> 女
+  <script>
+    function foo(obj) { return obj && obj.foo }
+    var a = foo({ a: 'jack', foo: 19 })
+    console.log(a)
+    function show() {
+      var val = $("input[name='gender']:checked").val()
+      console.log(this, this.value, val)
+      // if (val == 1) {
+      //   return false
+      // } else if (val == 0) {
+      //   console.log('first')
+      // }
+      if (val == 1) {
+        return false
+      }
+      if (val != 0) {
+        console.log('first')
+      }
+      if (1 < 2) { alert(1) }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta property="og:title" content="Pokio" />
+  <meta property="og:description" content="A Real Money Social Poker APP" />
+  <meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+  <title>MTT LEADERBOARD</title>
+  <style type="text/css" desc="公共样式">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Helvetica;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-family: Helvetica, 'Source Han Sans', sans-serif;
+    }
+
+    /* @media screen and (min-width: 525px) {
+        .page {
+          margin: 0 auto;
+        }
+
+        .test {
+          color: #1ab284;
+        }
+
+        html {
+          font-size: 50px !important;
+          background: #000;
+        }
+      }
+
+      @media screen and (min-width: 600px) {
+        .page {
+          margin: 0 auto;
+          width: 7.5rem !important;
+          height: 13.35rem !important;
+          margin: 2rem auto;
+        }
+
+        .test {
+          color: blueviolet;
+        }
+
+        html {
+          font-size: 50px !important;
+          background: #000;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        .page {
+          width: 7.5rem !important;
+          height: 13.35rem !important;
+          margin: 0 auto;
+        }
+
+        .test {
+          color: red;
+        }
+
+        html {
+          font-size: 50px !important;
+          background: #000;
+        }
+      } */
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-horizontal-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <style desc="自定义样式">
+    ul,
+    li {
+      list-style: none;
+    }
+
+    body {
+      overflow: auto;
+    }
+
+    .page {
+      width: 100%;
+      height: 100vh;
+      background: url('./images/pokio-anniversary/3-page-bg.png') no-repeat;
+      background-size: 100% 100%;
+      padding-bottom: 0.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 7.1rem;
+      font-size: 0.28rem;
+
+      margin: 0 auto;
+      margin-top: 280px;
+      font-family: PingFang SC;
+    }
+
+    .tabs-nav {
+      width: 100%;
+      height: 0.64rem;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgba(38, 9, 9, 0.6);
+      border-radius: 0.06rem;
+      font-size: 0.28rem;
+      font-weight: bold;
+      color: #fff0c4;
+      padding: 0.1rem;
+    }
+
+    .tab-label {
+      width: 100%;
+      height: 0.56rem;
+      line-height: 0.56rem;
+      text-align: center;
+    }
+
+    .tab-label.active {
+      /* background-color: #4ac9dd;
+        background-image: linear-gradient(to top left, #21bfdb, #55cce0); */
+      background: url('./images/hands_rank/activeBg.png') no-repeat;
+      background-size: 100% 100%;
+      /* 自右下向左上渐变 */
+      border-radius: 0.1rem;
+      color: #601807;
+    }
+
+    .tab-panel {
+      width: 100%;
+      min-height: 5rem;
+      background-color: rgba(146, 140, 140, 0.2);
+    }
+
+    .schema,
+    .position {
+      width: 100%;
+      height: 0.47rem;
+      line-height: 0.47rem;
+      background-color: rgba(38, 9, 9, 0.8);
+      border-radius: 0.06rem;
+    }
+
+    .position {
+      margin-top: 0.08rem;
+    }
+
+    .schema {
+      color: #fbd8bc;
+      justify-content: center;
+      font-weight: bold;
+      margin-top: 0.15rem;
+    }
+
+    .schema span,
+    .position span {
+      color: #ff6600;
+      margin: 0 0.2rem;
+    }
+
+    .text-color {
+      color: #fbd8bc;
+      font-weight: bold;
+    }
+
+    .position {
+      justify-content: space-around;
+    }
+
+    .table {
+      color: #fbd8bc;
+      font-weight: bold;
+    }
+
+    .th {
+      /* justify-content: space-around; */
+      height: 0.56rem;
+      line-height: 0.6rem;
+      padding: 0 0.32rem;
+      color: #ffd583;
+    }
+
+    .th .td:nth-of-type(odd) {
+      width: 20%;
+      /* background-color: red; */
+    }
+
+    .th .td:nth-of-type(2) {
+      width: 55%;
+    }
+
+    .th .td {
+      padding: 0 0.32rem;
+    }
+
+    .tbody {
+      height: 4.61rem;
+      padding: 0 0.32rem;
+      /* background-color: RGBA(221, 197, 147, 0.8); */
+      background-color: rgba(38, 9, 9, 0.8);
+      border-radius: 0.1rem;
+      overflow-y: scroll;
+    }
+
+    .tbody .tr {
+      padding-top: 0.12rem;
+      padding-bottom: 0.12rem;
+      align-items: center;
+      /* justify-content: space-around; */
+    }
+
+    .tbody .tr .td:nth-of-type(odd) {
+      width: 20%;
+      /* width: 0.82rem; */
+      /* background-color: red; */
+
+      text-align: center;
+    }
+
+    .tbody .tr .td:nth-of-type(2) {
+      padding: 0 0.32rem;
+    }
+
+    .tbody .tr .td:nth-of-type(2) {
+      width: 55%;
+      text-align: left;
+      color: #fbd8bc;
+    }
+
+    .tbody .tr .td:nth-of-type(3) {
+      color: #ff6600;
+    }
+
+    .tr+.tr {
+      border-top: 1px solid rgba(152, 105, 48, 0.5);
+    }
+
+    .tbody .td.r img {
+      /* width: 100%; */
+      width: 0.82rem;
+
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .rank1 {
+      width: 0.82rem;
+      height: 0.64rem;
+      background: url(./images/hands_rank/rank1.png) no-repeat;
+      /* background-size: 100% 100%; */
+    }
+
+    .rank2 {
+      width: 0.82rem;
+      height: 0.64rem;
+      background: url(./images/hands_rank/rank2.png) no-repeat;
+    }
+
+    .rank3 {
+      width: 0.82rem;
+      height: 0.64rem;
+      background: url(./images/hands_rank/rank3.png) no-repeat;
+    }
+
+    .icon-rank {
+      text-align: center;
+      margin: 0 auto;
+      background-size: 100% 100%;
+    }
+
+    .td2 .info {
+      margin-left: 0.2rem;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .td .avatar {
+      width: 0.8rem;
+      height: 0.8rem;
+      border: 2px solid #ff6600;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .td .avatar img {
+      /* width: 100%;
+              height: 100%; */
+      width: 0.8rem;
+      height: 0.8rem;
+      margin-left: -2px;
+    }
+
+    .next-hour {
+      width: 100%;
+      margin-top: 0.15rem;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      background: url('./images/hands_rank/bg0917.png') no-repeat;
+      background-size: 100% 100%;
+      border-radius: 0.1rem;
+      padding: 0.17rem 0;
+    }
+
+    .rank-text {
+      /* color: #1eb68a; */
+      display: inline-block;
+      width: 100%;
+      font-size: 0.38rem;
+      margin-left: -0.15rem;
+      font-style: italic;
+      font-weight: bold;
+      background: linear-gradient(to right, #49d3b4, #1ab284);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .start {
+      display: none;
+    }
+
+    .end {
+      display: none;
+    }
+
+    .more a {
+      /* text-decoration: underline; */
+      color: #fff;
+    }
+
+    .date {
+      padding: 0.1rem 0;
+    }
+
+    .rules {
+      width: 0.96rem;
+      height: 0.51rem;
+      line-height: 0.45rem;
+      position: absolute;
+      top: 2.5rem;
+      right: 0rem;
+      font-size: 0.28rem;
+      font-weight: bold;
+      text-align: center;
+      background: url('./images/hands_rank/rule.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .rules a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .promotion {
+      color: #ff3535;
+    }
+
+    /* .header .title1 {
+        margin: 0 auto;
+        margin-top: 0.88rem;
+        width: 6.29rem;
+        height: 2.1rem;
+      }
+      .header .title1 img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .header .title2 {
+        margin: 0 auto;
+        width: 6.47rem;
+        height: 0.67rem;
+        margin-top: 0.29rem;
+      }
+      .header .title2 img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      } */
+  </style>
+</head>
+
+<script src="../js/jquery.js"></script>
+<!-- 依赖jquery ，需要在 jquery 文件后引入 -->
+<script src="../js/ajax_jquery.js"></script>
+<script src="../js/moment.js"></script>
+<script src="../js/template-web.js"></script>
+
+<script type="text/javascript" desc="rem">
+  // “()()”表示自执行函数
+  ; (function (doc, win) {
+    var docEl = doc.documentElement,
+      // 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+      resizeEvt =
+        'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        //clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+        var clientWidth = docEl.clientWidth
+        console.log(clientWidth, 100 * (clientWidth / 750))
+        if (!clientWidth) return
+        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+      }
+
+    recalc()
+    //判断是否支持监听事件 ，不支持则停止
+    if (!doc.addEventListener) return
+    //注册翻转事件
+    win.addEventListener(resizeEvt, recalc, false)
+  })(document, window)
+</script>
+
+<body>
+  <div class="page">
+    <a href="./july_hands_rank_rule.html">
+      <div class="rules"></div>
+    </a>
+
+    <div class="container flex-horizontal-center">
+      <!-- 切换面板 -->
+      <div class="tab-panel">
+        <script id="TPL" type="text/html">
+            <div class=" tab-pane">
+              <div class="position flex text-color">
+                {{if QF.player_data.hands == 0}}
+                <div>Your Place:<span>--</span></div>
+                <div>Your Flop Hands:<span>--</span></div>
+                {{else if QF.player_data.hands!=0}}
+                <div>Your Place:<span>{{QF.player_data.rank}}</span></div>
+                <div>
+                  Your Ranked Hands:<span>{{QF.player_data.hands}}</span>
+                </div>
+                {{/if }}
+              </div>
+              <div class="table">
+                <div class="th flex">
+                  <div class="td">Rank</div>
+                  <div class="td">Player</div>
+                  <div class="td">Score</div>
+                  <div class="td">Prize</div>
+                </div>
+                <div class="tbody">
+                  {{ each QF.rank_data}}
+                  <div class="tr flex">
+                    <div class="td r">
+                      <div class="icon-rank">{{$index}}</div>
+                    </div>
+                    <div class="td td2 flex">
+                      {{if $value.name}}
+                      <div class="avatar">
+                        <img src="{{$value.icon}}" alt="" />
+                      </div>
+                      <div class="info flex">
+                        <p class="nickname">{{$value.name}}</p>
+                      </div>
+                      <div class="info flex">
+                        <p class="hands">
+                          <span>{{$value.hands}}</span>
+                        </p>
+                      </div>
+                      {{else if !$value.name }}
+                      <div class="avatar">
+                        <img src="./images/hands_rank/default.png" alt="" />
+                      </div>
+                      <div class="info flex">
+                        <p class="nickname">Competing</p>
+                      </div>
+                      {{/if}}
+                    </div>
+                    <div class="td">xxxx</div>
+                  </div>
+                  {{ /each }}
+                </div>
+              </div>
+            </div>
+          </script>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript" desc="业务">
+  $(function () {
+    let tabLabel = $('.tab-label')
+    let tabPanel = $('.tab-panel')
+
+    let tabs_data = {}
+
+    let mock_data = {
+      rank_data: [
+        {
+          icon: 'http://192.168.101.177:8109/static/img/default_men.png',
+          uid: 20442,
+          name: 'q11111111',
+          hands: 5
+        },
+        {
+          icon: 'http://192.168.101.177:8109/static/img/default_men.png',
+          uid: 20443,
+          name: 'nickname',
+          hands: 5
+        },
+        {
+          icon: 'http://192.168.101.177:8109/static/img/default_men.png',
+          uid: 20443,
+          name: 'q3',
+          hands: 5
+        },
+        {
+          icon: 'http://192.168.101.177:8109/static/img/default_men.png',
+          uid: 20443,
+          name: 'q4',
+          hands: 5
+        },
+        {}
+      ],
+      player_data: {
+        rank: 0,
+        hands: 0
+      }
+    }
+
+    initEvent()
+
+    /**
+     * 注册事件
+     */
+
+    // 初始化页面
+    function initEvent() {
+      let local_api = '/api/pybigshare/official_mtt/mtt_leaderbaord_rank/' // 本地调试地址
+      let api = '/pybigshare/official_mtt/mtt_leaderbaord_rank/' // 线上地址
+      let _page_data // 页面数据
+      // 获取页面数据
+      _ajax(local_api)
+        .then((data) => {
+          console.log('data1==>', data)
+
+          _page_data = {
+            rank_data: data.rank_data,
+            // rank_data,
+            player_data: {
+              rank: data.my_rank,
+              hands: data.my_score
+            }
+          }
+          console.log(123)
+          console.log({ _page_data })
+
+          // 不足约定人数的不足 展示默认信息
+          let _rank_data = _page_data.rank_data
+          let currentLen = _page_data.rank_data.length
+          let showTopCount = 100
+
+          if (currentLen < showTopCount) {
+            for (let i = 0; i < showTopCount - currentLen; i++) {
+              _rank_data.push({
+                name: ''
+              })
+            }
+          }
+
+          generateHtml(_page_data) // 初始化页面
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
+    // 生成 html
+    function generateHtml(data = {}) {
+      console.log('TPLdata', data)
+      let temlate = ''
+      let htmlStr = template('TPL', {
+        QF: data
+      })
+      tabPanel.html(htmlStr)
+    }
+
+    // 字符串补充2位
+    function strStartPad(str) {
+      return String(str).padStart(2, 0)
+    }
+    // 获取 url 参数 （uid）
+    function getUrlParam(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') //11构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg) //匹配目标参数
+      if (r != null) return unescape(r[2])
+      return '' //返回参数值
+    }
+  })
+</script>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.9.0/vconsole.min.js"></script>
+  <script>
+    // init vConsole
+    // var vConsole = new VConsole()
+    console.log('Hello world')
+  </script> -->
+test
+
+</html>

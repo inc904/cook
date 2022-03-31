@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta property="og:title" content="Pokio" />
+		<meta property="og:description" content="A Real Money Social Poker APP" />
+		<meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+		<meta name="facebook-domain-verification" content="y2ixgd1feary1nvtbz4fhqjrcdkeli" />
+		<title>Pokio Install</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				font-family: Helvetica, 'Source Han Sans', sans-serif;
+			}
+
+			.page {
+				width: 100vw;
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(to bottom,
+						#0f0708 0%,
+						#180000 50%,
+						#000 100%);
+			}
+
+			.bg {
+				position: relative;
+				width: 7.5rem;
+				height: 13.34rem;
+				background: url(./images/bg_black.png) no-repeat;
+				background-size: 100% 100%;
+				margin: 0 auto;
+			}
+
+			.downloadBtn {
+				width: 5.5rem;
+				height: 1.3rem;
+				/* background-color: red;
+				opacity: 0.5; */
+				position: absolute;
+				top: 70%;
+				left: 13.06%;
+			}
+
+			@media screen and (min-width: 650px) {
+				html {
+					font-size: 100px !important;
+				}
+
+				.bg {
+					display: block;
+					width: calc(100vh*375/667);
+					height: 100vh;
+					margin: 0 auto;
+				}
+
+				.downloadBtn {
+					width: 402px;
+					height: 100px;
+				}
+			}
+		</style>
+	</head>
+	<!-- <script src="https://cdn-app.pokio.com/static/js/jquery.js"></script> -->
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// “()()”表示自执行函数
+		;
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				// 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+				resizeEvt =
+				'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					//clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+					var clientWidth = docEl.clientWidth
+					console.log(clientWidth, 100 * (clientWidth / 750))
+					if (!clientWidth) return
+					// 设计图 尺寸 为 1125 * 2010 ，以 1125 为基准
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+				}
+
+			recalc()
+			//判断是否支持监听事件 ，不支持则停止
+			if (!doc.addEventListener) return
+			//注册翻转事件
+			win.addEventListener(resizeEvt, recalc, false)
+		})(document, window)
+	</script>
+
+	<!-- Facebook Pixel Code -->
+	<script>
+		!(function(f, b, e, v, n, t, s) {
+			if (f.fbq) return
+			n = f.fbq = function() {
+				n.callMethod ?
+					n.callMethod.apply(n, arguments) :
+					n.queue.push(arguments)
+			}
+			if (!f._fbq) f._fbq = n
+			n.push = n
+			n.loaded = !0
+			n.version = '2.0'
+			n.queue = []
+			t = b.createElement(e)
+			t.async = !0
+			t.src = v
+			s = b.getElementsByTagName(e)[0]
+			s.parentNode.insertBefore(t, s)
+		})(
+			window,
+			document,
+			'script',
+			'https://connect.facebook.net/en_US/fbevents.js'
+		)
+		fbq('init', '349327433240260')
+		fbq('track', 'PageView')
+	</script>
+	<noscript><img height="1" width="1" style="display: none"
+			src="https://www.facebook.com/tr?id=349327433240260&ev=PageView&noscript=1" /></noscript>
+	<!-- End Facebook Pixel Code -->
+
+	<body>
+		<div class="page">
+			<div class="bg">
+				<div class="downloadBtn" onclick="download()"></div>
+			</div>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+	<script>
+		let _visitorId = ''
+		let fpPromise = FingerprintJS.load();
+		(async () => {
+			// Get the visitor identifier when you need it.
+			const fp = await fpPromise
+			const result = await fp.get()
+
+			// This is the visitor identifier:
+			_visitorId = result.visitorId
+
+			buryData('LP1_page_view')
+		})()
+
+		function download() {
+			fbq('track', 'Contact')
+			// gtag_report_conversion()
+			window.location.href = 'https://pokio.onelink.me/NnkL/901f6283'
+			buryData('LP1_page_click')
+		}
+		// 增加埋点数据
+		function buryData(event_id) {
+			let u = navigator.userAgent
+			let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 //android
+			let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios
+			let phone_model = isAndroid ? 'Android' : isiOS ? 'ios' : 'other'
+			// let tempBasePrefix = '/api' // 本地测试用前缀
+			let tempBasePrefix = ''
+			let locURL = `${tempBasePrefix}/pybigshare/share/get_location_info`
+			let buryURL = `${tempBasePrefix}/pybigshare/share/buried_data_receive`
+			$.ajax({
+				url: locURL,
+				method: 'POST',
+				async: false,
+				data: {}
+			}).then((res) => {
+				let area_and_device = {
+					user_country: res.data.country || undefined,
+					phone_model,
+					_visitorId
+				}
+				let area_and_device_str = JSON.stringify(area_and_device)
+				console.log('area_and_device_str==>', area_and_device_str)
+				let data_json = {
+					event_id,
+					time: new Date().getTime(),
+					activity_url: window.location.href,
+					ext: area_and_device_str
+				}
+				console.log(data_json)
+				let data_json_str = JSON.stringify(data_json)
+				return $.ajax({
+					url: buryURL,
+					method: 'POST',
+					async: false,
+					data: {
+						buried_data: data_json_str
+					}
+				})
+			})
+		}
+	</script>
+</html>

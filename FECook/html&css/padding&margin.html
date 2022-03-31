@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="inp">
+    <input type="text" class="inp">
+    <p>margin和padding设置百分比的时候，都是根据父级元素的宽度来决定最终大小的。</p>
+    <style>
+      .inp{
+        width: 200px;
+        height: 80px;
+      }
+      .outer {
+        width: 200px;
+        height: 200px;
+        background-color: #000;
+        display: flex;
+      }
+      .inner {
+        width: 50px;
+        height: 50px;
+      }
+      .inner1 {
+        padding-top: 20%;
+        background-color: #eee;
+      }
+      .inner2 {
+        margin-top: 20%;
+        background-color: #eee;
+      }
+    </style>
+    <div class="outer">
+      <div class="inner inner1">1</div>
+      <div class="inner inner2">2</div>
+    </div>
+  </body>
+</html>

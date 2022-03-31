@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			let singleFn = (()=>{
+				let instance
+				let studentObj = function(student){
+				let  {name, age} = student
+					this.name = name
+					this.age = age
+				}
+				return function(student){
+					return instance || (instance = new studentObj(student))
+				}
+			})()
+			let p1 = singleFn({name:'jack', age: 19})
+			let p2 = singleFn({name:'jack', age: 19})
+			console.log(p1 == p2)
+			// console.log(.name)
+			
+		</script>
+	</body>
+</html>

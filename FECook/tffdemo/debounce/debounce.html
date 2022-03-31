@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		改变this：<input type="text" id="debounce">
+		<br>
+		没有改变this：<input type="text" id="debounce2">
+		<script>
+			//模拟一段ajax请求
+			var  name = "全局"
+			
+			let obj = {
+				ajax(content) {
+					console.log('ajax request :'+ this.name + content)
+				},
+				name: 'obj'
+			}
+		
+
+			function debounce(fun, delay) {
+				return function(args) {
+					let that = this
+					let _args = args
+					clearTimeout(fun.id)
+					fun.id = setTimeout(function() {
+						fun.call(that, _args)
+					}, delay)
+				}
+			}
+			function debounce2(fun, delay) {
+				return function(args) {
+					let that = this
+					let _args = args
+					clearTimeout(fun.id)
+					fun.id = setTimeout(function() {
+						// fun.call(that, _args)
+						fun(_args)
+					}, delay)
+				}
+			}
+
+			let inputb = document.getElementById('debounce')
+			let inputb2 = document.getElementById('debounce2')
+
+			let debounceAjax = debounce(obj.ajax, 500)
+			let debounceAjax2 = debounce2(obj.ajax, 500)
+
+			inputb.addEventListener('keyup', function(e) {
+				debounceAjax(e.target.value)
+			})
+			inputb2.addEventListener('keyup', function(e) {
+				debounceAjax2(e.target.value)
+			})
+		</script>
+	</body>
+</html>

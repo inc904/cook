@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.btn {
+				padding: 25px;
+				color: #428bca;
+				text-align: center;
+				text-decoration: none;
+				font-weight: 900;
+				font-size: 18px;
+				background: gold;
+				border: none;
+				border-radius: 50px 5px;
+				height: 100px;
+				vertical-align: middle;
+				outline: none;
+				box-shadow: 0 9px #999;
+				cursor: pointer;
+			}
+
+			.btn:hover {
+				background-color: #3e8e41;
+				color: #fff;
+			}
+
+			.btn:active {
+				background-color: #3e8e41;
+				box-shadow: 0 5px #666;
+				transform: translateY(4px);
+			}
+		</style>
+
+		<button id="btn" class="btn">Click here to download the file</button>
+
+		</div>
+		<script type="text/javascript">
+			// 请求数据
+			let getHolidaysData = async (url) => {
+				let response = await fetch(url)				
+				let data = await response.json()
+				console.log(data)
+				return data
+			}
+
+			// getHolidaysData()
+
+
+			// 创建一个 下载 方法，对方才 存的json文件，进行下载
+			function downloadJsonFile(url) {
+				// code
+
+				getHolidaysData(url).then(publicHolidays => {
+					console.log(publicHolidays)
+					/*
+						之后，将获取到的 publicHolidays， 存到 一个 json 文件里面, 
+						存文件的api，百度一下
+					*/
+					var blob = new Blob([JSON.stringify(publicHolidays)], {
+						type: 'application/json'
+					})
+					var url = window.URL.createObjectURL(blob)
+					// 上面这个是创建一个blob的对象连链接，
+					var link = document.createElement('a')
+					// 创建一个链接元素，是属于 a 标签的链接元素，所以括号里才是a，
+
+					link.href = url;
+					// 把上面获得的blob的对象链接赋值给新创建的这个 a 链接
+					link.setAttribute('download', "results.json")
+					// 设置下载的属性（所以使用的是download），这个是a 标签的一个属性
+					// 后面的是文件名字，可以更改
+					link.click();
+					// 使用js点击这个链接
+
+				})
+
+			}
+
+
+			let url = 'https://calendrier.api.gouv.fr/jours-feries/metropole.json'
+			
+			getHolidaysData(url).then(res =>{
+				console.log({res})
+			})
+
+			document.getElementById('btn').onclick = function() {
+				downloadJsonFile(url)
+			}
+		</script>
+	</body>
+</html>

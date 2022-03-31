@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<p>
+				<label for="message" style="color:red;font-size:24px;">给iframe子窗口发一个信息：</label>
+				<input type="text" name="message" value="send" id="message" />
+				<input type="submit" value="submit" id="submit" />
+			</p>
+		</form>
+		<h4>目标iframe传来的信息：</h4>
+		<p id="test">暂无信息</p>
+		<iframe id="iframe" src="http://c2.test.com:8848/tffdemo/m2.html" style="display:none"></iframe>
+		<script>
+			var win = document.getElementById("iframe").contentWindow;
+var flag = false 
+			document.getElementById("submit").onclick = function(e) {
+				e.preventDefault();
+				if(flag){
+					win.postMessage(document.getElementById("message").value, "*");
+				}
+				flag = true
+				return 
+			}
+
+			window.addEventListener("message", function(e) {
+				e.preventDefault();
+				document.getElementById("test").innerHTML = "1从" + e.origin + "那里传过来的消息:\n" + e.data;
+				// console.log(e.data)
+			}, false);
+		</script>
+	</body>
+</html>

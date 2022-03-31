@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta
+		      name="viewport"
+		      content="width=device-width, initial-scale=1.0,user-scalable=no"
+		    />
+		<title>函数防抖</title>
+		<style type="text/css">
+			p {
+				text-indent: 2em;
+			}
+			.m .item:nth-of-type(1){
+				background-color: aqua;
+			}
+			.t{
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="m">
+			<div class="item">1</div>
+			<div class="item">2</div>
+			<div class="item">3</div>
+			<div class="item">4</div>
+		</div>
+		<span class="t">G</span>
+		
+		<article>
+			<p>滚动事件做复杂计算频繁调用回调函数很可能会造成页面卡顿，这时候我们希望把多次计算合并成一次，只操作一个精确点，js把这种方法叫做 <strong>debounce</strong> （防抖）和
+				<b>throttle
+				</b>（节流）
+			</p>
+		</article>
+		<h2>函数防抖</h2>
+		<p>当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定时间到来之前，又触发了事件，就重新开始延时。也就是说当一个用户一直触发这个函数，且
+			<em>每次触发函数的间隔小于既定时间，那么防抖的情况只会执行一次。</em>
+		</p>
+		<pre>
+		<code>
+			function debounce(fn, wait) {
+				var timeout = null
+				return function() {
+					if (timeout !== null) {
+						clearTimeout(timeout)
+					}
+					timeout = setTimeout(fn, wait)
+			
+				}
+			}
+			
+			function handle() {
+				console.log(Math.random())
+			}
+			window.addEventListener('scroll', debounce(handle, 1000))
+		</code>
+		</pre>
+		<script type="text/javascript">
+			function debounce(fn, wait) {
+				var timeout = null
+				return function() {
+					if (timeout !== null) {
+						clearTimeout(timeout)
+					}
+					timeout = setTimeout(fn, wait)
+
+				}
+			}
+
+			function handle() {
+				console.log(Math.random())
+			}
+			window.addEventListener('scroll', debounce(handle, 1000))
+		</script>
+		<h2>函数节流</h2>
+		<p>当持续触发事件时，保证再一定时间内只调用一次事件处理函数，意思就是说，假设一个用户触发这个函数，且每次触发小于既定值，函数节流会每隔这个时间调用一次。</p>
+		<p>用一句话总结防抖和节流的区别：防抖是将多次执行变为最后一次执行，节流就是将多次执行行为变为每隔一段时间执行。</p>
+		<p>实现函数节流主要有两种方法：时间戳和定时器。</p>
+		
+		<script type="text/javascript">
+			var throttle = function(func, delay){
+				var prev = Date.now()
+				return function(){
+					var context = this
+					var args = arguments
+					var now = Date.now()
+					if(now - prev >= delay){
+						func.apply(context, args)
+						prev = Date.now()
+					}
+				}
+			}
+			
+			function handle(){
+				console.log('>>throttle', Math.random())
+			}
+			window.addEventListener('scroll', throttle(handle, 1000))
+		</script>
+		
+		<!-- <div style="height: 2000px; color: azure;"></div> -->
+	</body>
+</html>

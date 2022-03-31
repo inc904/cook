@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias, explicabo?
+		
+		  <div class="test">
+		          <img
+		            src="http://192.168.101.173:8109/media/group_portrait/0/100000_20200710094720.jpg"
+		            alt=""
+		          >
+		        </div>
+	</body>
+	<style>
+	.test{
+		width: 500px;
+		height: 500px;
+		margin: 300px auto;
+		border-radius: 50%;
+		background-color: blue;
+		border: 5px solid red;
+		box-sizing: border-box;
+	}
+	img{
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+	</style>
+	<script>
+		let obj1 = {
+			name: 'Jack',
+			age:18,
+			gender: 'male'
+		}
+		
+		let obj2 = JSON.stringify(obj1)
+		
+		let obj3 = JSON.parse(obj2)
+		console.log('obj1',obj1)
+		console.log('obj2',obj2)
+		console.log('obj3',obj3)
+	</script>
+</html>

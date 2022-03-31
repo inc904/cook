@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 变量
+      var obj = {
+        number: 1,
+        string: 'str',
+        array: [1, 2, 3],
+        object: { a: 1 },
+        date: '2018-10-10 08:08'
+      }
+
+      // 校验规则
+      var rule = {
+        number: [{ required: true, message: '请输入number' }],
+        string: [{ required: true, type: 'number', message: '请输入string' }],
+        array: [
+          { message: '请输入array' },
+          { min: 0, max: 3, message: '最小为0，最大为3' }
+        ],
+        object: [
+          { required: false, message: '请选择obj', validator: judgeObj }
+        ],
+        date: [
+          {
+            type: 'date',
+            required: true,
+            message: '校验时间是否合法时，type必须为date'
+          }
+        ]
+      }
+      // 自定义校验规则
+      function judgeObj(val, cb) {
+        console.log(val)
+        if (val.a > 1) {
+          cb()
+        } else {
+          cb(new Error('不通过'))
+        }
+      }
+
+      /* ------------------ */
+      class Verify {
+        constructor(data, rules) {
+          this.data = null
+          this.rules = {}
+          // 每次实例化的时候 把需要校验的规则和变量导入
+          this.$init(data, rules)
+        }
+        $init(data, rules) {
+          // 初始化函数
+          this.data = data
+          this.rules = rules
+        }
+        iterator(rules) {
+          // 核心函数，校验所以的规则
+
+          // 状态变量
+          let status = {
+            status: false,
+            message: '',
+            key: ''
+          }
+          // 循环迭代
+          for (let v of Object.keys(rules)) {
+            // 这里我们也简单点把，两个规则当一个去校验
+            const judge = { ...this.rules[v][0], ...this.rules[v][1] }
+            console.log(judge) // 此时我们就能获取到所有的规则啦
+            console.log(this.data[v]) // 所有的数据
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

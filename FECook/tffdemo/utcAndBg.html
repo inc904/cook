@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			div {
+				width: 100%;
+				height: 100vh;
+				background: url(./images/pokio-superseason/bg.png) no-repeat;
+				background-size: contain;
+			}
+
+			img {
+				width: 100%;
+				margin-top: -60px;
+			}
+
+			p {
+				position: absolute;
+				top: 221.5px;
+			}
+		</style>
+		<!-- <div></div> -->
+		<img src="./images/pokio-superseason/bg.png" alt="" />
+		<p>123</p>
+
+		<script>
+			$ {
+				(function() {
+					const date = new Date()
+					const month = date.getMonth()
+					const day = date.getDate()
+					// const hour = Number(item.Time.split(':')[0]) -2 // cet
+					const hour = Number(item2.time.split(':')[0]) // utc
+					const minite = item2.time.split(':')[1]
+					console.log('>>', hour, minite)
+					const utcToLoaclTime = moment
+						.utc([2021, month, day, hour, minite])
+						.local()
+					return `${
+			                      utcToLoaclTime.hours().toString().length == 1
+			                        ? '0' + utcToLoaclTime.hours()
+			                        : utcToLoaclTime.hours()
+			                    }:${
+			                      utcToLoaclTime.minutes() == 0
+			                        ? '00'
+			                        : utcToLoaclTime.minutes()
+			                    }`
+				})()
+			}
+
+			function getUtc(item2) {
+				const date = new Date()
+				const month = date.getMonth()
+				const day = date.getDate()
+				// const hour = Number(item.Time.split(':')[0]) -2 // cet
+				const hour = Number(item2.time.split(':')[0]) // utc
+				const minite = item2.time.split(':')[1]
+				console.log('>>', hour, minite)
+				const utcToLoaclTime = moment
+					.utc([2021, month, day, hour, minite])
+					.local()
+				return `${
+			                  utcToLoaclTime.hours().toString().length == 1
+			                    ? '0' + utcToLoaclTime.hours()
+			                    : utcToLoaclTime.hours()
+			                }:${
+			                  utcToLoaclTime.minutes() == 0
+			                    ? '00'
+			                    : utcToLoaclTime.minutes()
+			                }`
+			}
+
+
+
+
+			var a = {
+				img: 'gca3.jpg',
+				routeUrl: 'gca-poker-festival',
+				date: 'April 6, 2021',
+				eyes: '2.5k',
+				title: 'GCA Festival with Total Prize €66,500 GTD!',
+				content: "Pokio is excited to announce the GCA festival in partnership with Grand Casino As.<br><br>The series of events from the 29th of March to the 11th of April will have a total guaranteed prizepool of €65,000.00 with a multi-day Main event of €35,000.00 guaranteed.<br><br>There are daily satellites and some of the highlights include a series of Bracelet events rewarding Pokio players with a real bracelet. PLO and PLO5 events, as well as 6-Max.<br><br>This is the chance to participate in a great tournament series with events for every taste!<img class='insert-img' src='https://app.pokio.com/static/schedual/images/gca/gca1.png'><br><br>‘We are very happy and excited about our first online poker festival and having Pokio as a partner.<br><br>It’s gonna be a great experience for all players and guests from Grand casino Aš.’<br><br>Sandro Greulich, Poker Manager<br><br>Grand Casino As<img class='insert-img' src='https://app.pokio.com/static/schedual/images/gca/gca2.png'><br><br>‘we are very excited to host the GCA Festival. Grand Casino As is a casino that takes pride in their Live Poker events with unrivaled quality and atmosphere. We share the same DNA are are proud to try and replicate that in our Pokio platform during these online series.<br><br>We welcome this partnership with open arms and hope for many more in the years to come’<br><br>Manuel Lopes, CEO<br><br>Pokio"
+			}
+
+
+			let imgBaseURL = 'http://192.168.101.177:8119/'
+
+			let c = `<img class='insert-img' src='${imgBaseURL}static/schedual/images/gca/gca2.png'>`
+			let d = `      <br><br>      `
+			var b = {
+				img: '/news/5BPC.png',
+				routeUrl: 'five-best-pokerClubs',
+				date: 'July 1, 2021',
+				eyes: '1.5k',
+				title: '5 Best Poker Clubs For Poker Enthusiasts',
+				content: `Online poker has seen mammoth growth in recent times. Thanks to the incredible ease at which players can play, and of course covid- we just seem to be thanking this pandemic for everything online nowadays- playing poker at the comfort of their homes mean a lot to players. Not only does online poker allow people to sit back and enjoy a mature hobby, with the right games, you can also expect to win some low and even high stakes games as well. Here are some of the best clubs for poker enthusiasts. <br><br> Black chip poker <br><br> <img class='insert-img' src='${imgBaseURL}static/schedual/images/5FBC/1.png'> <br><br> Black chip poker is a great choice for the true enthusiasts and hardcore players. Black chip poker allows for all different kinds of HUDs and trackers- which other apps don’t. The freedom in tracking allows for greater strategy and a higher level of play which players who like a challenge would love. And the benefits for the pros continue even further. Black chip poker has special reward programs which benefit ‘high-volume’ players a lot. Also, there are still some incentives to newer players as well as there are free-roll tournaments which help newer players to settle. <br><br> Bovada  <br><br> <img class='insert-img' src='${imgBaseURL}static/schedual/images/5FBC/2.png'> <br><br> `
+			}
+		</script>
+	</body>
+</html>
+http://192.168.101.172:8109/static/officalWebsiteImages/5BPC/1.png
+http://192.168.101.172:8109/static/officalWebsiteImages/5BPC/1.png
+http://192.168.100.36:5500/club-activity/pokio-super-seasonfest.html
+<script>
+	在HTML5中新增了postMessage方法， postMessage可以实现跨文档消息传输（ Cross Document Messaging）， Internet Explorer 8, Firefox 3, Opera 9,
+	Chrome 3 和 Safari 4 都支持postMessage。
+	该方法可以通过绑定window的message事件来监听发送跨文档消息传输内容。
+
+	父页面：
+	var OnMessage = function(e) {
+		alert(e.data);
+	}
+
+	if (window.addEventListener) { // all browsers except IE before version 9
+		window.addEventListener("message", OnMessage, false);
+	} else {
+		if (window.attachEvent) { // IE before version 9
+			window.attachEvent("onmessage", OnMessage);
+		}
+	}
+
+	// 子页面：
+		// <script type = "text/javascript" >
+		window.parent.postMessage("hello", "*");
+<!-- </script> -->
+<!-- ————————————————
+版权声明：本文为CSDN博主「夢歸何處」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ASD1415926/article/details/13505041 -->
+</script>

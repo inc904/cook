@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.wait-loading {
+				margin: 0 auto;
+				width: 3rem;
+				height: 3rem;
+				vertical-align: middle;
+				-webkit-animation: waitLoading 1s steps(12, end) infinite;
+				animation: waitLoading 1s steps(12, end) infinite;
+				background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+				background-size: 100%;
+			}
+
+			@keyframes waitLoading {
+				0% {
+					-webkit-transform: rotate3d(0, 0, 1, 0deg);
+					transform: rotate3d(0, 0, 1, 0deg);
+				}
+
+				100% {
+					-webkit-transform: rotate3d(0, 0, 1, 360deg);
+					transform: rotate3d(0, 0, 1, 360deg);
+				}
+			}
+
+			.loading {
+				width: 4rem;
+				height: 4.4rem;
+				background-color: rgb(89, 89, 89);
+				z-index: 99999999;
+				position: fixed;
+				top: 50%;
+				left: 39%;
+				border-radius: 5px;
+			}
+
+			.loading-txt {
+				color: #fff;
+				width: 100%;
+				text-align: center;
+				font-size: 14px;
+			}
+
+			.ending {
+				width: 6rem;
+				height: 2.4rem;
+				background-color: rgb(89, 89, 89);
+				z-index: 99999999;
+				position: fixed;
+				top: 50%;
+				left: 34%;
+				border-radius: 5px;
+				line-height: 2.4rem;
+			}
+		</style>
+
+	</head>
+	<body>
+		<!-- loading -->
+		<div class="loading" style="display:none">
+			　　<div class="wait-loading"></div>
+			　　<div class="loading-txt">内容加载中</div>
+		</div>
+		<!-- ending 加载完毕 -->
+		<div class="ending" style="display:none">
+			　　<div class="loading-txt">没有更多数据了~</div>
+		</div>
+
+
+
+		<!-- //上拉加载更多css -->
+
+
+
+		<script>
+			let data = [{
+				"num": 1,
+				"uid": 20330
+			}, {
+				"num": 2,
+				"uid": 20101
+			}, {
+				"num": 3,
+				"uid": 20251
+			}, {
+				"num": 3,
+				"uid": 20102
+			}, {
+				"num": 6,
+				"uid": 20380
+			}]
+			console.log(data)
+
+			// function compare(prop) {
+			// 	return function(a, b) {
+			// 		var value1 = a[prop]
+			// 		var value2 = a[prop]
+			// 		return value1 - value2
+			// 	}
+			// }
+			
+			function combina(arr){
+				// tempArr: 用来判断的相同的属性 的集合, newArr: 合并后的数据集合
+				let tempArr = [], newArr = []
+				    for (let i = 0; i < arr.length; i++) {
+				      if (tempArr.indexOf(arr[i].num) === -1) {
+				        newArr.push({
+				          num: arr[i].num,
+				          uid: [arr[i].uid]
+				        })
+				        tempArr.push(arr[i].num);
+				      } else {
+				        for (let j = 0; j < newArr.length; j++) {
+				          if (newArr[j].num == arr[i].num) {
+				            newArr[j].uid.push(arr[i].uid)
+				          }
+				        }
+				      }
+				    }
+						console.log(tempArr)
+						return newArr
+			}
+			
+			function compare(property) {
+				return function(a, b) {
+					var value1 = a[property];
+					var value2 = b[property];
+					return value1 - value2;
+				}
+			}
+			data = combina(data)
+			console.log(data)
+			var b = data.sort(compare('num'))
+			console.log(b)
+			//page start
+			var page = 0,
+				timers = null;
+			//加载数据
+			var LoadingDataFn = function() {
+				showloading();
+				var date = $("#dateInfo").val();
+				if (date == '' || date == null) {
+					date = 0;
+				}
+				$.ajax({
+					type: "GET",
+					url: "{:url('index/indexdata')}",
+					data: {
+						'page': page,
+						'date': date
+					},
+					dataType: "json",
+					success: function(data) {
+						if (data.success) {
+							hideloading();
+							var ghtml = "";
+							for (var i = 0; i < data.msg.length; i++) {
+								ghtml += "<li><table><tr>";
+								ghtml += "<td width='14%'>" + data.msg[i].id + '期' + "</td>";
+								ghtml += "<td width='14%'>" + data.msg[i].start_time + "</td>";
+								ghtml += "<td class='nums'>";
+								for (var j = 0; j < data.msg[i].random.length; j++) {
+									ghtml += "<i class='no" + data.msg[i].random[j] + "'>" + data.msg[i].random[
+										j] + "</i>";
+								}
+								ghtml += "</td>";
+								ghtml += "</tr></table></li>";
+							}
+							$(".numList").append(ghtml);
+							$("#dateInfo").val(data.date);
+						} else {
+							showhiding();
+						}
+					}
+				});
+			};
+			//初始化， 第一次加载
+			$(document).ready(function() {
+				LoadingDataFn();
+				resetTime();
+			});
+			$(window).scroll(function() {
+				if (($(window).height() + $(window).scrollTop() + 60) >= $(document).height()) {
+					clearTimeout(timers);
+					timers = setTimeout(function() {
+						page++;
+						console.log("第" + page + "页");
+						LoadingDataFn();
+					}, 300);
+				}
+			});
+
+			function showloading() {
+				$(".loading").show()
+			}
+
+			function hideloading() {
+				$(".loading").hide()
+			}
+
+			function showhiding() {
+				$(".ending").show().delay(1500).hide(0);
+			}
+			//page end
+		</script>
+
+
+	</body>
+</html>

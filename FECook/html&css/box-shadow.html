@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOX-SHADOW</title>
+  </head>
+  <body>
+    <style>
+      div {
+        margin-top: 50px;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #ddd;
+        box-shadow: 5px 5px 5px 5px #909090;
+      }
+      .box2 {
+        font-size: 50px;
+        color: aqua;
+        text-shadow: 5px 5px 5px #ff0000;
+      }
+    </style>
+    <h1>BOX-SHADOW</h1>
+    <div>
+      <p>box-shadow: 5px 5px 5px 5px #909090 inset;</p>
+      <p>
+        x轴偏移； y轴偏移； blur模糊距离； spread阴影大小； color；inset
+        可选内阴影
+      </p>
+      <div class="box">盒子阴影</div>
+    </div>
+    <hr />
+    <div>
+      <p>text-shadow: 5px 10px 20px #FF0000;</p>
+      <p>x轴偏移； y轴偏移； blur模糊距离；color;</p>
+      <div class="box2">文本阴影</div>
+    </div>
+  </body>
+</html>

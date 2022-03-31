@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js"
+			integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<style type="text/css">
+			/* 	#myChart {
+				width: 400px;
+				height: 400px;
+			} */
+
+			.container {
+				width: 700px;
+				height: 500px;
+				margin: 0 auto;
+			}
+
+			.btn {
+				display: inline-block;
+				padding: 10px 20px;
+				background-color: #008000;
+				border: 1px solid #008080;
+				color: #FFF;
+				border-radius: 10px;
+			}
+
+
+			/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+			select::-ms-expand {
+				display: none;
+			}
+
+			select {
+				padding: 15px;
+			}
+
+			#radio-group {
+				display: flex;
+				flex-direction: column;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<canvas id="myChart"></canvas>
+
+
+			<div id="radio-group"></div>
+
+			<div class="btn">search</div>
+		</div>
+		<script type="text/javascript">
+			var ctx = document.getElementById("myChart");
+
+			initChart(ctx)
+
+			let regionList = ['metropole', 'metropole1', 'metropole2', 'metropole3']
+
+
+			var regionRadioHtml = generateRadioGroup(regionList)
+
+			document.getElementById('radio-group').innerHTML = regionRadioHtml
+
+			function generateRadioGroup(list) {
+				let radioHtml = ''
+				list.map((item, index) => {
+
+					radioHtml += `<label><input id="input-${index}"  type="radio"
+							name="radio" value="${item}" onclick="changeRegion('${item}')"/>${item}</label>`
+				})
+				return radioHtml
+			}
+
+			// function initDefaultRegion() {
+			// 	$('#input-0').attr('checked', 'checked')
+			// }
+
+
+			// initDefaultRegion()
+
+
+			function changeRegion(region) {
+
+				console.log(region)
+
+				// 改变region 后，获取数据， 重新渲染 图表
+				getHolidaysData().then(res => {
+					initChart(ctx, res)
+				})
+
+			}
+
+			function initChart(ctx, data) {
+				return new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+
+				});
+			}
+
+			let getHolidaysData = async (url) => {
+				console.log('url', url)
+				let response = await fetch(url)
+				let data = await response.json()
+				console.log(data)
+				return data
+			}
+
+			let default_region = 'metropole'
+
+			let final_url = `https://calendrier.api.gouv.fr/jours-feries/${default_region}.json`
+
+			getHolidaysData(final_url).then(res => {
+				console.log({
+					res
+				})
+			})
+		</script>
+	</body>
+</html>

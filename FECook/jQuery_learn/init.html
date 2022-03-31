@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      padding: 5px;
+    }
+
+    body {
+      height: 1300px;
+    }
+
+    .go-top {
+      width: 100px;
+      height: 30px;
+      border: 1px salmon solid;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+
+    .btn {
+      width: 100%;
+      height: 50px;
+      border: 1px salmon solid;
+    }
+
+    .img {
+      height: 600px;
+    }
+
+    .info {
+      height: 100px;
+    }
+
+    .add {
+      background: orange;
+      color: aliceblue;
+      transform: all 1s;
+    }
+
+    .fixed {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+    }
+  </style>
+  <div class="img">img:600</div>
+  <div class="info btn">info:100</div>
+  <div class="size btn">size: 50</div>
+  <div class="add btn">add:50</div>
+  <div class="recommed btn">
+  </div>
+  <div class="some">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita temporibus cum ducimus consequuntur doloremque.
+  </div>
+  <div class="go-top">Top</div>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // console.log(screen.height)
+    // let hello = document.getElementById('hello')
+    // // console.log($('#hello')[0].offsetTop())
+    // console.log('offsetTop',hello.offsetTop)
+    // console.log('offsetHeight',hello.offsetHeight)
+
+    //Main Function
+    let Main = function () {
+      //function to activate
+      let fuc1 = function () {
+        console.log("This is 1")
+      }
+      let fuc2 = function () {
+        console.log("This is 2")
+      }
+      let fuc3 = function () {
+        console.log("This is 3")
+      }
+      let fuc4 = function () {
+        console.log("This is 4")
+      }
+      //function to activate the Go-Top button
+      let runGoTop = function () {
+        $('.go-top').on('click', function (e) {
+          e.preventDefault()
+          $("html, body").animate({
+            scrollTop: 0
+          }, "slow")
+          return false
+        })
+      }
+
+      return {
+        //main function to initiate template pages
+        init: function () {
+          fuc1()
+          fuc2()
+          fuc3()
+          fuc4()
+          runGoTop()
+        }
+      }
+    }()
+
+
+    jQuery(document).ready(function () {
+      console.log(Main)
+      Main.init()
+    })
+
+
+    let addBtn = $('.add')
+    let sizeBtn = $('.size')
+    let screenHeight = screen.height
+    let sizeBtnTop = sizeBtn.offset().top
+    let sizeBtnBottomTop = sizeBtn.offset().top + sizeBtn.height()
+    console.log({ sizeBtnTop, sizeBtnBottomTop, screenHeight })
+    let addFixed = function () {
+      addBtn.addClass('fixed')
+    }
+    let removeFixed = function () {
+      addBtn.removeClass('fixed')
+    }
+    addFixed()
+    window.addEventListener('scroll', () => {
+      // console.log(123)
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // console.log(scrollTop)
+      if (scrollTop + screenHeight > sizeBtnBottomTop) {
+        removeFixed()
+      }
+      if (scrollTop + screenHeight > sizeBtnBottomTop + sizeBtn.height() + 300) {
+        addFixed()
+      }
+    })
+  </script>
+</body>
+
+</html>

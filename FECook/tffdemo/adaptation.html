@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta property="og:title" content="Pokio" />
+		<meta property="og:description" content="A Real Money Social Poker APP" />
+		<meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+		<meta http-equiv="pragma" content="no-store">
+		<meta http-equiv="cache-control" content="no-store">
+		<meta http-equiv="expires" content="0">
+		<title>Pokio</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				font-family: Helvetica, 'Source Han Sans', sans-serif;
+				background-color: #000;
+				font-size: 13.333333vw;
+			}
+
+			@media screen and (min-width: 414px) {
+				html {
+					font-size: 55.2px !important;
+					position: relative;
+				}
+
+				.page {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+
+
+				.page #fz {
+					color: red;
+				}
+			}
+
+			@media screen and (min-width: 562.5px) {
+				html {
+					font-size: 70px !important;
+					position: relative;
+				}
+
+				.page {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+
+				.page #fz {
+					color: red;
+				}
+			}
+
+			img {
+				vertical-align: middle !important;
+			}
+		</style>
+		<style>
+			.page {
+
+				background-color: #000;
+			}
+
+			.container {
+
+				width: 7.5rem;
+				height: 13.34rem;
+				background: url(https://cdn-app.pokio.com/static/schedual/images/freeroll/page_bg.png) no-repeat;
+				background-size: 100% 100%;
+				position: relative;
+			}
+
+			.schedule {
+				width: 95%;
+				margin: 0 auto;
+				position: absolute;
+				top: 27.6%;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.part {
+				width: 100%;
+				height: 2.03rem;
+				margin-bottom: 0.15rem;
+				position: relative;
+			}
+
+			.part1 {
+				background: url(https://cdn-app.pokio.com/static/schedual/images/freeroll/100.png) no-repeat;
+				background-size: 100% 100%;
+			}
+
+			.part2 {
+				background: url(https://cdn-app.pokio.com/static/schedual/images/freeroll/100.png) no-repeat;
+				background-size: 100% 100%;
+			}
+
+			.bottom {
+				width: 100%;
+				height: 0.55rem;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				display: flex;
+				/* justify-content: space-between; */
+				/* align-items: center; */
+				color: #ffebb1;
+				font-size: 0.36rem;
+				font-weight: 900;
+				/* font-family: DINPro; */
+				font-family: Helvetica;
+			}
+
+			.bottom p {
+				height: 0.55rem;
+				line-height: 0.55rem;
+				text-align: center;
+			}
+
+			.bottom p:nth-of-type(1) {
+				width: 34%;
+			}
+
+			.bottom p:nth-of-type(2) {
+				width: 34%;
+				margin-right: 5%;
+				margin-left: 3%;
+			}
+
+			.bottom p:nth-of-type(3) {
+				width: 23%;
+			}
+
+			.fun {
+				font-size: 0.3rem;
+				font-family: Helvetica;
+				font-weight: bold;
+				color: #21c7e6;
+				text-align: center;
+				margin-top: 0.2rem;
+			}
+
+			#fz {
+				width: 2rem;
+				background-color: #5C5C5C;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				color: red;
+				font-size: 40px;
+				z-index: 9999;
+			}
+		</style>
+	</head>
+
+
+
+	<script type="text">
+		// “()()”表示自执行函数
+		;
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				// 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+				resizeEvt =
+				'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					//clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+					var clientWidth = docEl.clientWidth
+					console.log(clientWidth, 100 * (clientWidth / 750))
+					if (!clientWidth) return
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+				}
+
+			recalc()
+			//判断是否支持监听事件 ，不支持则停止
+			if (!doc.addEventListener) return
+			//注册翻转事件
+			win.addEventListener(resizeEvt, recalc, false)
+		})(document, window)
+	</script>
+
+	<body>
+		<div class="page">
+			<p id="fz"></p>
+			<div class="container">
+				<div class="schedule">
+					<div class="part part1">
+						<div class="bottom">
+							<p>July 28th</p>
+							<p>Wednesday</p>
+							<p class="timeFilter">13:00</p>
+						</div>
+					</div>
+					<div class="part part2">
+						<div class="bottom">
+							<p>July 31st</p>
+							<p>Saturday</p>
+							<p class="timeFilter">13:00</p>
+						</div>
+					</div>
+					<div class="part part1">
+						<div class="bottom">
+							<p>August 4th</p>
+							<p>Wednesday</p>
+							<p class="timeFilter">13:00</p>
+						</div>
+					</div>
+					<div class="part part2">
+						<div class="bottom">
+							<p>August 7th</p>
+							<p>Saturday</p>
+							<p class="timeFilter">13:00</p>
+						</div>
+					</div>
+					<div class="fun">Let's harvest a lot in Summer!</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var docEl = document.documentElement
+			var clientWidth = docEl.clientWidth
+			// var fz = document.documentElement.style.fontSize || document.body.style.fontSize 
+			var fzs = window.getComputedStyle(docEl, null).getPropertyValue('font-size');
+			var fzw = window.getComputedStyle(fz, null).getPropertyValue('width');
+
+			console.log(clientWidth, 100 * (clientWidth / 750), fzs, fzw)
+			document.getElementById('fz').innerText = fzs
+		</script>
+	</body>
+
+
+</html>

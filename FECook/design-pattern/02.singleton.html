@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>单例模式</title>
+  </head>
+  <body>
+    <script>
+      // 单例模式
+      // 划分命名空间，并将属性和发能发组织在一起的一种方式
+      // 只是 实例化一次，每次返回的实例都是统一对象
+
+      function Singleton(name) {
+        this.name = name
+      }
+
+      Singleton.prototype.getName = function () {
+        console.log(this.name)
+      }
+
+      // new Singleton()
+
+      function getInstance(name) {
+        if (!this.instance) {
+          this.instance = new Singleton(name)
+        }
+        return this.instance
+      }
+
+      // var a = getrInstance('Jack')
+      // var b = getrInstance('Tom')
+      // console.log(a === b, { a, b })
+      console.log(Singleton)
+
+      Singleton.getInstance = (function () {
+        let instance
+        return function (name) {
+          if (!instance) {
+            instance = new Singleton(name)
+          }
+          return instance
+        }
+      })(name)
+      var a = Singleton.getInstance('Jack')
+      var b = Singleton.getInstance('Tom')
+      console.log(a === b, { a, b })
+
+      // 单例模式中，为什么要返回一个函数
+
+      function Person(name) {
+        this.name = name
+      }
+      // Person.get = (function () {
+      //   let ins
+      //   if (!ins) {
+      //     return new Person(name)
+      //   }
+      //   return ins
+      // })(name)
+
+      Person.get = (function () {
+        let ins
+        return function (name) {
+          if (!ins) {
+            ins = new Person(name)
+          }
+          return ins
+        }
+      })(name)
+
+      let p1 = Person.get('Jack')
+      let p2 = Person.get('Tom')
+      console.log(p1 === p2, { p1, p2 })
+
+      Person.get2 = (function (name) {
+        let ins2
+        if (!ins2) in2 = name
+        return ins2
+      })(name)
+      // 没用的 get2 返回了一个 ins2:Stiring 不具备保存参数的能力，每次调用都被重新赋值
+      // 要保存 get2 的值，所有要返回一个函数
+
+      Person.get2 = 'Jack'
+      console.log(`person-name:`, Person.get2) // jack
+
+      Person.get2 = 'Tom'
+      console.log(`person-name:`, Person.get2) // tom
+      // 被覆盖了
+    </script>
+  </body>
+</html>

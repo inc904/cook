@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var phoneWidth = parseInt(window.screen.width)
+      console.log(
+        '🚀 ~ file: adaptation.html ~ line 12 ~ phoneWidth',
+        phoneWidth
+      )
+
+      var phoneScale = phoneWidth / 750
+      var ua = navigator.userAgent
+      alert(ua)
+      console.log('🚀 ~ file: adaptation.html ~ line 19 ~ ua', ua)
+      if (/Android (\d+\.\d+)/.test(ua) || /ios (\d+\.\d+)/.test(ua)) {
+        var version = parseFloat(RegExp.$1)
+        alert('111', RegExp.$1)
+        if (version > 2.3) {
+          console.log(222)
+          document.write(
+            '<meta name="viewport" content="width=750, minimum-scale = ' +
+              phoneScale +
+              ', maximum-scale = ' +
+              phoneScale +
+              ', target-densitydpi=device-dpi">'
+          )
+        } else {
+          alert(333)
+          document.write(
+            '<meta name="viewport" content="width=750, target-densitydpi=device-dpi">'
+          )
+        }
+      } else {
+        alert(555)
+        document.write(
+          '<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">'
+        )
+      }
+    </script>
+    <p>asdadasdas</p>
+    <style>
+      body {
+        width: 100%;
+        background-color: cyan;
+      }
+      p {
+        font-size: 0.2rem;
+      }
+    </style>
+  </body>
+</html>

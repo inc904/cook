@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			let targetArray = [1,23,4,6,7,3,27,9]
+			let testArray = [3,6,44,9]
+			
+			function vertifyInclude(target, test){
+				test.forEach(item => {
+					console.log(target.includes(item))
+				})
+			}
+			vertifyInclude(targetArray, testArray)
+		</script>
+	</body>
+</html>

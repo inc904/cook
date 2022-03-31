@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+	<body>
+		<script>
+			post_data = {
+				uid: '20419',
+				activity_type: 21,
+				data_type: 'hands_rank'
+			}
+			url = 'http://192.168.101.177:8109/pybigshare/active/activity_progress/'
+			// $.post(
+			// 	'http://192.168.101.177:8109/pybigshare/active/activity_progress/',
+			// 	{// type: 'post',
+			// 	data: post_data,
+			// 	dataType: 'jsonp',
+			// 	success: function(res) {
+			// 		// if (res.code === 1) {
+			// 			// tabs_data_mock
+			// 			// let tabs_data = ret
+			// 			console.log(res)
+			// 			// generateHtml(tabs_data.data[0])
+			// 		// }
+			// 	}
+			// })
+			// $.post(url, post_data, function(res) {
+			// 	// console.log(res)
+			// })
+		</script>
+		<div id="app"></div>
+		<button type="button" onclick="vv()">click</button>
+		<button type="button" onclick="demo(fn)">click2</button>
+		<button type="button" onclick="debounce(sayDebounce)('Jack')">debounce</button>
+		<button type="button" id="debounce">debounce</button>
+		<!-- <button type="button" onclick="vv">click</button> -->
+		<script>
+			// new Vue({
+			// 	el:"#app",
+			// 	methods:{
+
+			// 		vv(){}
+			// 	}
+			// })
+			var jieliu = (() => {
+				var timer = null
+				return function() {
+					if (timer == null) {
+						console.log('send')
+						timer = setTimeout(() => {
+							console.log('open')
+							timer = null
+						}, 2000)
+					}
+
+				}
+			})()
+
+			function vv() {
+				jieliu()
+			}
+
+
+
+			var demo = function(fn) {
+				return function() {
+					var content = this
+					console.log('a', this)
+					fn.call(content, arguments)
+				}
+			}
+
+			function fn() {
+				console.log('fn', this)
+			}
+
+			demo(fn)
+
+
+
+			// function debounce(func, delay) {
+			// 	console.log(123)
+			// 	let timer = null;
+			// 	return function(...args) {
+			// 		if (timer) {
+			// 			clearTimeout(timer);
+			// 		} else {
+			// 			timer = setTimeout(() => {
+			// 				// func.apply(this, args);
+			// 				func.apply(args);
+			// 			}, delay);
+			// 		}
+			// 	};
+			// }
+
+			// debounce(fn, 2000)
+
+			// 2、防抖功能函数，接受传参
+			function debounce(fn) {
+				// 4、创建一个标记用来存放定时器的返回值
+				let timeout = null;
+				return function() {
+					// 5、每次当用户点击/输入的时候，把前一个定时器清除
+					clearTimeout(timeout);
+					// 6、然后创建一个新的 setTimeout，
+					// 这样就能保证点击按钮后的 interval 间隔内
+					// 如果用户还点击了的话，就不会执行 fn 函数
+					timeout = setTimeout(() => {
+						fn.call(this, arguments);
+						// fn(arguments);
+					}, 1000);
+				};
+			}
+
+			let obj = {
+				sayDebounce() {
+					// ... 有些需要防抖的工作，在这里执行
+					console.log("防抖成功！", this, '123123');
+				}
+			}
+			// 3、需要进行防抖的事件处理
+			// function sayDebounce() {
+			//   // ... 有些需要防抖的工作，在这里执行
+			//   console.log("防抖成功！", this,'123123');
+			// }
+
+			var myDebounce = document.getElementById("debounce");
+			myDebounce.addEventListener("click", debounce(obj.sayDebounce, 'TOM'));
+		</script>
+	</body>
+</html>

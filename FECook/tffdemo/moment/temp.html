@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Moment</title>
+	</head>
+	<body>
+		<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.js"></script>
+		<p>nextTick 测试</p>
+		<div id="app">
+			<p ref="yu">你的名字：{{name}}</p>
+			<button type="button" @click="showName()">click</button>
+		</div>
+		<img src="https://avatars.githubusercontent.com/u/73180970?s=64&v=4" alt="" class="img">
+		<style type="text/css">
+			.img {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+		<script>
+		var t = 'aa'
+		if(['aa', 'cc'].includes(t)){
+			console.log(12312321)
+		}
+		
+		
+			var a = moment([2008, 9]);
+			var b = moment([2008, 0]);
+		var res1 = 	a.diff(b, 'years'); // 1
+			var res2 = a.diff(b, 'years', true); // 1.75
+			console.log({res1, res2})
+		</script>
+		<script type="text/javascript">
+			// console.log(123)
+			// console.log(moment())
+			// console.log(moment().format())
+			// let b = moment('14:00', 'HH:mm')
+			// let c = moment.utc('14:00', 'HH:mm')
+			// let d = moment().utc('14:00', 'HH:mm')
+			// let e = moment('14:00', 'HH:mm').utc()
+			// console.log(b, b.format('HH:mm'))
+			// console.log(c, c.format('HH:mm'))
+			// console.log(d, d.format('HH:mm'))
+			// console.log(e, e.format('HH:mm'))
+		</script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					name: '大梦'
+				},
+				methods: {
+					showName() {
+						this.name = '小梦'
+						var n = this.$refs.yu
+						console.log(n, n.innerText, this.name)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

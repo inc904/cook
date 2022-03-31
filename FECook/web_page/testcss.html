@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/1.css">
+  <link rel="stylesheet" href="./css/2.css">
+  <!-- <script src="https://cdn.staticfile.org/fingerprintjs2/2.1.0/fingerprint2.min.js"></script> -->
+</head>
+<body>
+  <p>hello world!!!</p>
+  <button type="button" onclick="demo()">click</button>
+  <script type="text/javascript">
+  // var fingerprint = new Fingerprint().get();
+  // console.log(fingerprint)
+  	function demo(){
+		console.log(123)
+		history.pushState({},{id:123})
+	}
+  </script>
+  <script>
+    // Initialize the agent at application startup.
+    const fpPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.onload = resolve
+      script.onerror = reject
+      script.async = true
+      script.src = 'https://cdn.jsdelivr.net/npm/'
+        + '@fingerprintjs/fingerprintjs@3/dist/fp.min.js'
+      document.head.appendChild(script)
+    })
+      .then(() => FingerprintJS.load())
+  
+    // Get the visitor identifier when you need it.
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        // This is the visitor identifier:
+        const visitorId = result.visitorId
+        console.log(visitorId)
+      })
+  </script>
+  <script>
+  var o = {
+	  a: 1,
+	  b: 2,
+	  d: this.a,
+	  c: this.a + this.b
+  }
+  console.log(o)
+  </script>
+</body>
+</html>

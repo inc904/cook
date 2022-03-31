@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<style>
+			.content {
+				width: 3000px;
+				height: 3000px;
+			}
+		</style>
+		<!-- 		<style>
+		
+		/*滚动条样式*/
+		::-webkit-scrollbar {
+		  /*滚动条整体样式*/
+		  width: 6px; /*高宽分别对应横竖滚动条的尺寸*/
+		  height: 6px;
+		  background-color: red;
+		}
+		::-webkit-scrollbar-thumb {
+		  /*滚动条里面小方块*/
+		  border-radius: 5px;
+		  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  background: rgba(0, 0, 0, 0.2);
+		}
+		::-webkit-scrollbar-track {
+		  /*滚动条里面轨道*/
+		  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		  border-radius: 0;
+		  background: rgba(0, 0, 0, 0.1);
+		}
+		::-webkit-scrollbar:hover {
+		  width: 8px !important;
+		  // height: 8px;
+		  background-color: blue;
+		  // transform: scale(1.5);
+		  
+		}
+		::-webkit-scrollbar:hover ::-webkit-scrollbar-thumb {
+		border-radius: 50%;
+		/*  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); */
+		box-shadow: inset 0 0 10px rgba(233, 0, 0, 0.2);
+		-webkit-box-shadow: inset 0 0 10px rgba(233, 0, 0, 0.2);
+		}
+		</style> -->
+		<style>
+			::-webkit-scrollbar {
+				height: 9px !important;
+				width: 9px !important;
+			}
+
+			::-webkit-scrollbar-thumb {
+				border-radius: 5px;
+				border-style: dashed;
+				background-color: rgba(157, 165, 183, 0.4);
+				border-color: transparent;
+				border-width: 1.5px;
+				background-clip: padding-box;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: rgba(157, 165, 183, 0.7)
+			}
+		</style>
+		<div class="content"></div>
+		<script>
+			let hours = 432000
+			let hours2 = 432900
+			let hours3 = 260000
+			let hours4 = 11000 + 86400
+
+
+			function getTimeLength(t) {
+				const padZero = r => {
+					return r.toString().padStart(2, 0)
+				}
+				let d = Math.floor(t / 24 / 60 / 60)
+				let h = Math.floor((t / 60 / 60) % 24)
+				let totalHours = padZero(d * 24 + h)
+				let m = padZero(Math.floor((t / 60) % 60))
+				let s = padZero(Math.floor(t % 60))
+				return `${totalHours}:${m}:${s}`
+
+			}
+
+			function log(a) {
+				console.log(a)
+			}
+			log(getTimeLength(hours2))
+			log(getTimeLength(hours4))
+			log(getTimeLength(25798))
+		</script>
+
+
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script type="text/javascript">
+			console.log(returnCitySN["cip"] + '/' +  returnCitySN["cid"] + '/' + returnCitySN["cname"])
+		</script>
+	</body>
+</html>

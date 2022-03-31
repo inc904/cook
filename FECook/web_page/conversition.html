@@ -1,0 +1,220 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta property="og:title" content="Pokio" />
+		<meta property="og:description" content="A Real Money Social Poker APP" />
+		<meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+		<title>Pokio Install</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				font-family: Helvetica, 'Source Han Sans', sans-serif;
+			}
+
+			@media screen and (min-width: 768px) {
+				.page {
+					width: 11.25rem !important;
+					height: 20.01rem !important;
+					margin: 0 auto;
+				}
+
+				.test {
+					color: blueviolet;
+				}
+
+				html {
+					font-size: 33.333px !important;
+					background: #000;
+				}
+			}
+
+			@media screen and (min-width: 1024px) {
+				.page {
+					width: 11.25rem !important;
+					margin: auto;
+				}
+
+				.test {
+					color: rosybrown;
+				}
+
+				html {
+					font-size: 50px !important;
+					background: #000;
+				}
+			}
+
+			img {
+				vertical-align: middle !important;
+			}
+		</style>
+		<style>
+			.page {
+				width: 100%;
+				height: 100%;
+			}
+
+			.container {
+				width: 100%;
+				height: 100%;
+				background: url(./images/landing-page/0714/bg.png) no-repeat;
+				background-size: 100% 100%;
+				position: relative;
+			}
+
+			.btn-group {
+				width: 9.54rem;
+				height: 2.05rem;
+				background: url(./images/landing-page/0714/download_btn.png) no-repeat;
+				background-size: 100% 100%;
+				position: absolute;
+				top: 75.8%;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		</style>
+		<!-- Facebook Pixel Code -->
+		<script>
+			!(function(f, b, e, v, n, t, s) {
+				if (f.fbq) return
+				n = f.fbq = function() {
+					n.callMethod ?
+						n.callMethod.apply(n, arguments) :
+						n.queue.push(arguments)
+				}
+				if (!f._fbq) f._fbq = n
+				n.push = n
+				n.loaded = !0
+				n.version = '2.0'
+				n.queue = []
+				t = b.createElement(e)
+				t.async = !0
+				t.src = v
+				s = b.getElementsByTagName(e)[0]
+				s.parentNode.insertBefore(t, s)
+			})(
+				window,
+				document,
+				'script',
+				'https://connect.facebook.net/en_US/fbevents.js'
+			)
+			fbq('init', '349327433240260')
+			fbq('track', 'PageView')
+		</script>
+		<noscript><img height="1" width="1" style="display: none"
+				src="https://www.facebook.com/tr?id=349327433240260&ev=PageView&noscript=1" /></noscript>
+		<!-- End Facebook Pixel Code -->
+	</head>
+	<script type="text/javascript" charset="UTF-8" src="https://web.cdn.openinstall.io/openinstall.js"></script>
+	<script src="./js/jquery.js"></script>
+	<script src="https://cdn.staticfile.org/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
+	<script src="./js/mobile-detect.min.js"></script>
+	<script src="./js/device.js"></script>
+	<script src="./js/clipboard.min.js"></script>
+	<script src="./js/share.js"></script>
+	<script type="text/javascript">
+		// “()()”表示自执行函数
+		;
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				// 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+				resizeEvt =
+				'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					//clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+					var clientWidth = docEl.clientWidth
+					console.log(clientWidth, 100 * (clientWidth / 750))
+					if (!clientWidth) return
+					// 设计图 尺寸 为 1125 * 2010 ，以 1125 为基准
+					docEl.style.fontSize = 100 * (clientWidth / 1125) + 'px'
+				}
+
+			recalc()
+			//判断是否支持监听事件 ，不支持则停止
+			if (!doc.addEventListener) return
+			//注册翻转事件
+			win.addEventListener(resizeEvt, recalc, false)
+		})(document, window)
+	</script>
+
+	<body>
+		<div class="page">
+			<div class="container">
+				<div class="btn-group" id="install-wrap"></div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		// function download(type) {
+		//   window.location.href = 'https://pokio.onelink.me/8h3o/329fa4ee '
+		// }
+		// 粘贴板数据
+		$('#install-wrap').attr(
+			'data-clipboard-text',
+			`{"flag": "pokio_diversion", "channel":"lp_download"}`
+		)
+		let btn = document.getElementById('install-wrap')
+		let clipboard = new ClipboardJS(btn)
+		var data = OpenInstall.parseUrlParams() //openinstall.js中提供的工具函数，解析url中的所有查询参数
+
+		/*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+		var u = navigator.userAgent
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 //android
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios
+		let isSafari = u.indexOf('Safari') != -1 && u.indexOf('Version') != -1
+		let isIphone = u.indexOf('iPhone') != -1 && u.indexOf('Version') != -1
+		let isIPad = isSafari && !isIphone && 'ontouchend' in document
+		new OpenInstall({
+				/*appKey必选参数，openinstall平台为每个应用分配的ID*/
+				// appKey : "c8rhfj",
+				appKey: 'xi0xsm',
+				/*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+				//apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+				/*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+				//preferWakeup:true,
+				/*自定义遮罩的html*/
+				//mask:function(){
+				//  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+				//},
+				/*openinstall初始化完成的回调函数，可选*/
+				onready: function() {
+					var m = this,
+						button = document.getElementById('install-wrap')
+					console.log(m)
+					// button.style.visibility = "visible";
+					/*在app已安装的情况尝试拉起app*/
+					// m.schemeWakeup();
+					/*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+					clipboard.on('success', function(e) {
+						console.info('Action:', e.action)
+						console.info('Text:', e.text)
+						console.info('Trigger:', e.trigger)
+						console.log('789')
+						if (isAndroid || isiOS || isIPad) {
+							// m.wakeupOrInstall();
+							data_tracking({
+								clipboard_id: 'install',
+								url_path: window.location.href
+							})
+							m.wakeupOrInstall()
+							return false
+						}
+					})
+				}
+			},
+			data
+		)
+	</script>
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<div class="bar">
+		<div class="inner"></div>
+	</div>
+	<div class="hover"></div>
+	<style type="text/css">
+		.bar, .hover{
+			width: 200px;
+			height: 300px;
+			overflow-y: auto;
+		}
+		.inner{
+			height: 800px;
+			background: #eee;
+		}
+		p{color:red;}
+		.hover{
+			background: #ccc
+		}
+		/* .hover:hover{
+			background: #666;
+		} */
+	</style>
+	<script>
+	var hover = document.querySelector('.hover')
+		hover.onmouseover = function (){
+			hover.style.background = '#666'
+		}
+		hover.onmouseout = function (){
+			hover.style.background = '#ccc'
+		}
+		
+		let obj = {
+			name: 'jack',
+			say: ()=>{
+				console.log(hello)
+			}
+		}
+	</script>
+</body>
+</html>

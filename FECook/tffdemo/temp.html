@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<style>
+			.rotate-container:hover .flipper {
+				transform: rotateY(180deg);
+			}
+
+			.rotate-container,
+			.front,
+			.back {
+				width: 320px;
+				/* height: 480px; */
+			}
+
+			.rotate-container {
+				perspective: 1000;
+				transform-style: preserve-3d;
+			}
+
+			.flipper {
+				transition-duration: 1s;
+				transform-style: preserve-3d;
+				position: relative;
+			}
+
+			.front,
+			.back {
+				backface-visibility: hidden;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+			.front {
+				z-index: 2;
+			}
+
+			.back {
+				transform: rotateY(-180deg);
+			}
+			body{
+				background-color: green;
+			}
+			div{
+				margin: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="rotate-container" style="display: none;">
+			<div class="flipper">
+				<div class="front">
+					11
+					<img src="https://images-cn.ssl-images-amazon.com/images/I/51fD0ZgQoXL._SL400_.jpg" alt="">
+				</div>
+				<div class="back">
+					22
+					<img src="https://images-cn.ssl-images-amazon.com/images/I/51fD0ZgQoXL._SL400_.jpg" alt="">
+				</div>
+			</div>
+		</div>
+		<div></div>
+		<div id="box">123</div>
+		<div id="box2">123</div>
+		<div id="box3">123</div>
+		<style type="text/css">
+			#box {
+				/* 蛇式CSS边框 */
+				font-family: Arial;
+				font-size: 18px;
+				line-height: 30px;
+				font-weight: bold;
+				color: white;
+				padding: 15px;
+				border: 10px dashed #FF5722;
+				background:
+					linear-gradient(to top, green, 10px, transparent 10px),
+					linear-gradient(to right, green, 10px, transparent 10px),
+					linear-gradient(to bottom, green, 10px, transparent 10px),
+					linear-gradient(to left, green, 10px, transparent 10px);
+				background-origin: border-box;
+			}
+
+			#box2 {
+				/* 阶梯样式CSS边框 */
+				font-family: Arial;
+				font-size: 18px;
+				line-height: 30px;
+				font-weight: bold;
+				color: white;
+				padding: 40px;
+				box-shadow:
+					inset #009688 0 0 0 5px,
+					inset #059c8e 0 0 0 1px,
+					inset #0cab9c 0 0 0 10px,
+					inset #1fbdae 0 0 0 11px,
+					inset #8ce9ff 0 0 0 16px,
+					inset #48e4d6 0 0 0 17px,
+					inset #e5f9f7 0 0 0 21px,
+					inset #bfecf7 0 0 0 22px
+			}
+
+			#box3 {
+				font-family: Arial;
+				font-size: 18px;
+				line-height: 30px;
+				font-weight: bold;
+				color: white;
+				padding: 40px;
+				border-radius: 10px;
+				box-shadow: 0 0 0 10px white;
+			}
+		</style>
+	</body>
+
+</html>

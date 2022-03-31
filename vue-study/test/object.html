@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+    <ul>
+      <li>Lorem ipsum dolor sit.</li>
+      <li>Lorem ipsum dolor sit.</li>
+      <li>Minima soluta rem voluptate.</li>
+      <li>Exercitationem vero corrupti ut?</li>
+    </ul>
+    <p>Lorem ipsum dolor sit.</p>
+    <p>Repellat dolorum ipsam praesentium.</p>
+    <p>Cum quidem necessitatibus porro!</p>
+    <input type="radio" name="gender" value="0" onclick="show()">男
+    <input type="radio" name="gender" value="1" onclick="show()"> 女
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script>
+      function show(){
+        var val  = $("input[name='gender'][value='0']").val()
+        console.log(this, this.value, val)
+        if(val == 1) return false
+        if(val == 0) {console.log('first')}
+      }
+			let stu = {
+				name: 'Jack',
+				age: 18
+			}
+			console.log('stu=>', stu)
+			console.log('stu=>', stu.prototype)
+			console.log('stu=>', stu.__proto__)
+			console.log('typeof stu __proto__=>', typeof stu.__proto__)
+			console.log('stu.prototype的类型=>', typeof stu.prototype)
+
+
+			// var lucky = {
+			//   data:{
+			//     name: "Rose"
+			//   },
+			//   show: function(){
+			//     console.log(this)
+			//     console.log(this.data.name)
+			//   },
+			//   say: ()=>{
+			//     console.log(this)
+			//     console.log(this.data.name)
+			//   }
+			// }
+			// lucky.show()
+			// // lucky.say()
+
+
+			// function foo(a){
+			//   console.log(a)
+			// }
+			// let b = 5
+			// foo(b) // 5
+
+			// function test(a,b){
+			//     let length1=arguments.length;
+			//     let length2=arguments.callee.length;
+			//     console.log(length1,length2)
+			// }
+			// test(1,2,3);
+
+			let {
+				a,
+				b,
+				c,
+				d
+			} = {
+				a: 1,
+				b: 2,
+				c: 3
+			}
+			console.log(a, b, c, d)
+
+			for (var i = 0; i < 10; i++) {
+
+			}
+			console.log(i)
+
+			var foo = true
+			if (foo) {
+				var bar = 5
+				console.log('inner', bar)
+			}
+			console.log('outer', bar)
+		</script>
+
+		<style lang="scss">
+			.box {
+				width: 600px;
+				height: 400px;
+				margin: 95px auto;
+			}
+
+			.line {
+				margin-bottom: 30px;
+				width: 0;
+				height: 0;
+				border: 5px solid transparent;
+				border-right: 600px solid rgb(46, 240, 7);
+				border-radius: 5px;
+			}
+
+			.line1 {
+				margin-bottom: 30px;
+				width: 0;
+				height: 0;
+				border: 5px solid transparent;
+				border-left: 600px solid rgb(46, 240, 7);
+				border-radius: 5px;
+			}
+
+			.line2 {
+				margin-bottom: 30px;
+				width: 0;
+				height: 0;
+				border: 5px solid transparent;
+				border-top: 600px solid rgb(46, 240, 7);
+				border-radius: 5px;
+			}
+
+			.line3 {
+				margin-bottom: 30px;
+				width: 0;
+				height: 0;
+				border: 5px solid transparent;
+				border-bottom: 600px solid rgb(46, 240, 7);
+				border-radius: 5px;
+			}
+		</style>
+
+		<div class="test">
+			<div class="l"></div>
+		</div>
+		<style>
+		.test{
+			width: 100px;
+			height: 100px;
+		}
+		.l{
+			width: 0;
+			height: 0;
+			border: 1px solid transparent;
+			/* border: 5px solid blue; */
+
+			border-right: 100px solid pink;
+			/* border-right: 600px solid rgb(46, 240, 7); */
+			border-radius: 5px;
+		}
+		</style>
+
+		<div class="box">
+			<!-- 左粗右细 -->
+			<div class="line"></div>
+			<!-- 右粗左细 -->
+			<div class="line1"></div>
+			<!-- 上粗下细 -->
+			<div class="line2"></div>
+			<!-- 下粗上细 -->
+			<div class="line3"></div>
+		</div>
+<script type="text/javascript">
+	let aa = [0,1,2,3]
+	b =[]
+	b.push(...aa)
+	console.log(b)
+</script>
+	</body>
+</html>

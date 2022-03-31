@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@fullcalendar/daygrid": "^5.9.0"
+  }
+}

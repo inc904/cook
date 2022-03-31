@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+
+			<!-- 	<button onclick="handleKeyup('张三'，23)">zhangsan</button>
+			<br>
+			<button onclick="handleKeyup('李四'，23)">lisi</button> -->
+			<!-- <input type="text" onkeydown="handleKeyup('zc', 13)"> -->
+		</div>
+		<!-- ------- -->
+		<!-- 		<div>
+			<button onclick="handleKeyup('张三'，23)">zhangsan</button>
+			<br>
+			<button onclick="handleKeyup('李四'，23)">lisi</button>
+		</div> -->
+
+		<!-- 没有防抖的input：<input type="text" id="undebounce"> <br>
+		防抖后的input：<input type="text" id="debounce"> <br>
+		节流后的input：<input type="text" id="throttle"> -->
+		<script>
+			// function debounce(func, delay) {
+			// 	console.log('func', func);
+			// 	let timer;
+			// 	return function() {
+			// 		if (timer)
+			// 			clearTimeout(timer);
+			// 		timer = setTimeout(() => {
+			// 			func.call(this, ...arguments);
+			// 		}, delay);
+			// 	}
+			// }
+			// let handleKeyup = debounce(function(name, age) { //注意这里传入function不能用箭头函数 否则this指向不对 
+			// 	console.log(name, age);
+			// 	// 如果方法里面用到了await 可在debounce里面传入的函数前面加上 async
+			// }, 1000)
+		</script>
+
+		<script>
+			function ajax(content) {
+				console.log('ajax request', content)
+			}
+
+			// function debounce(fn, delay) {
+			// 	let timer
+			// 	return function(args) {
+			// 		if (timer)
+			// 			clearTimeout(timer)
+			// 		timer = setTimeout(function() {
+			// 			fn.call(this, ...args)
+			// 		}, delay);
+			// 	}
+			// }
+			// function debounce(fn, delay){
+			// 	var timer = null
+			//   return function(args){
+			//     clearTimeout()
+			//     timer = setTimeout(function(){
+			//       fn.call(this, ...args)
+			//     }, delay)
+			//   }
+			// }
+
+			// function throttle(fn, delay) {
+			// 	let last, timer
+
+			// 	return function() {
+			// 		let that = this
+			// 		let now = +new Date()
+			// 		let _args = arguments
+			// 		if (last && now < last + delay) {
+			// 			clearTimeout(timer)
+			// 			timer = setTimeout(function() {
+			// 				last = now
+			// 				fn.apply(that, _args)
+			// 			})
+			// 		} else {
+			// 			last = now
+			// 			fn.apply(that, _args)
+			// 		}
+			// 	}
+			// }
+
+			// let input_a = document.querySelector('#undebounce')
+			// let input_b = document.querySelector('#debounce')
+			// let input_c = document.querySelector('#throttle')
+
+			// input_a.addEventListener('keyup', function(e) {
+			// 	ajax(e.target.value)
+			// })
+			// let debounceAjax = debounce(ajax, 2000)
+			// input_b.addEventListener('keyup', function(e) {
+			// 	debounceAjax(e.target.value)
+			// })
+			// let throttleAjax = throttle(ajax, 2000)
+			// input_c.addEventListener('keyup', function(e) {
+			// 	throttleAjax(e.target.value)
+			// })
+		</script>
+		<script type="text/javascript">
+			//模拟一段ajax请求
+			function ajax(content) {
+				console.log('ajax request ' + content)
+			}
+
+			// function debounce(fun, delay) {
+			// 	return function(args) {
+			// 		let that = this
+			// 		let _args = args
+			// 		clearTimeout(fun.id)
+			// 		fun.id = setTimeout(function() {
+			// 			fun.call(that, _args)
+			// 		}, delay)
+			// 	}
+			// }
+
+			// function debounce(fn, delay) {
+			// 	var timer = null
+			// 	return function(args) {
+			// 		if (timer)
+			// 			clearTimeout(timer)
+			// 		timer = setTimeout(() => {
+			// 			fn.call(this, ...args)
+			// 		}, delay)
+			// 	}
+			// }
+			// function debounce(func, delay) {
+			// 	let timer = null;
+			// 	return function(...args) {
+			// 		if (timer) {
+			// 			clearTimeout(timer);
+			// 		} else {
+			// 			timer = setTimeout(() => {
+			// 				func.apply(this, args);
+			// 			}, delay);
+			// 		}
+			// 	};
+			// }
+
+
+			// let inputb = document.getElementById('debounce')
+
+			// // let debounceAjax = debounce(ajax, 500)
+
+			// inputb.addEventListener('keyup', function(e) {
+			// 	debounce(ajax, 2000)(e.target.value)
+			// })
+		</script>
+		<button type="button" id="normal">normal</button>
+		<button type="button" id="debounce">debounce</button>
+		<script type="text/javascript">
+			function sayHello() {
+				console.log('防抖！', new Date())
+			}
+
+			function debounce(fn, delay) {
+				let timer = null
+				return function() {
+					clearTimeout(timer)
+					timer = setTimeout(() => {
+						fn.call(this, arguments)
+					}, delay)
+				}
+			}
+			document.querySelector('#normal').addEventListener('click', sayHello)
+			document.querySelector('#debounce')
+				.addEventListener('click', debounce(sayHello, 2000))
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor(host) {
+          this.host =host
+          this.name = 'Jimmy'
+        }
+        query(url) {
+          return new Promise((reslove, reject) => {
+            fetch('https://v1.hitokoto.cn/?encode=json')
+              .then((response) => {
+                let obj = {
+                  foo: 'aa'+encodeURI(this.name)
+                }
+                console.log(obj, url)
+                reslove(response)
+              })
+              .catch((error) => {
+                reject(error)
+              })
+          })
+        }
+      }
+
+      let student = new Person()
+      student.query('aaaa').then((res) => {
+        // do something
+      })
+    </script>
+  </body>
+</html>

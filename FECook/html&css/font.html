@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>好看的字体</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    body{
+      background: rgba(0, 0, 0, 0.6);
+    }
+    /* latin */
+    @font-face {
+      font-family: 'Exo 2';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/exo2/v18/7cH1v4okm5zmbvwkAx_sfcEuiD8jvvKsOdC_.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Frijole';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/frijole/v12/uU9PCBUR8oakM2BQ3xTR3w.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Nothing You Could Do';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/nothingyoucoulddo/v13/oY1B8fbBpaP5OX3DtrRYf_Q2BPB1SnfZb3OOnVs.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    .title {
+      margin: 0 1rem 1rem;
+      color: #fff;
+      text-shadow: 0 0 0.5rem rgb(0 0 0 / 80%);
+      font-family: 'Frijole', cursive;
+      font-size: calc(3rem + 2vw);
+      font-weight: 400;
+      animation: fadeIn 1s 0.15s both;
+    }
+
+    .slogan {
+      margin: 0 1rem 4rem;
+      color: #eee;
+      text-shadow: 0 0 0.5rem rgb(0 0 0 / 60%);
+      font-family: 'Nothing You Could Do', cursive;
+      font-size: calc(1.8rem + 0.5vw);
+      animation: fadeIn 1s 0.4s both;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Exo 2', sans-serif;
+      animation: fadeIn 1s 0.7s both;
+    }
+  </style>
+</head>
+
+<body>
+  <p class="slogan">
+    打包后的源码是遵从UMD规范的，它是commonjs和amd的整合。而Vue的本质是一个构造器,并且它保证了只能通过new实例的形式去调用，而不能直接通过函数的形式使用。
+  </p>
+  <pre>
+    <code>
+      (function (global, factory) {
+        // 遵循UMD规范
+        typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+        typeof define === 'function' && define.amd ? define(factory) :
+        (global = global || self, global.Vue = factory());
+      }(this, function () { 'use strict';
+        ···
+        // Vue 构造函数
+        function Vue (options) {
+          // 保证了无法直接通过Vue()去调用，只能通过new的方式去创建实例
+          if (!(this instanceof Vue)
+          ) {
+            warn('Vue is a constructor and should be called with the `new` keyword');
+          }
+          this._init(options);
+        }
+        return Vue
+      })
+      
+    </code>
+  </pre>
+  <div id="app">
+    {{msg}}
+    <button @click="change">change</button>
+  </div>
+  <script>
+    function Person() {
+      console.log(this, !this)
+      if (!(this instanceof Person)) {
+        console.log('should be called with the "new"')
+      } else {
+        console.log(111)
+      }
+    }
+    Person()
+    new Person()
+    // Vue()
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          msg: 'hello'
+        }
+      },
+      methods: {
+        change() {
+          let _msg = this.msg
+          let __var = 'msg'
+          _msg = 'Nihao!'
+          console.log('_msg', _msg)
+          console.log('msg', this.msg)
+          this[__var] = _msg
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

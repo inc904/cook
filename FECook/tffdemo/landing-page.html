@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta property="og:title" content="Pokio" />
+		<meta property="og:description" content="A Real Money Social Poker APP" />
+		<meta property="og:image" content="https://www.pokio.com/banner-home-mobile.jpg" />
+		<meta name="facebook-domain-verification" content="y2ixgd1feary1nvtbz4fhqjrcdkeli" />
+		<title>Pokio Install</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				font-family: Arial, Helvetica, 'Source Han Sans', sans-serif;
+				background-color: cyan;
+				position: relative;
+			}
+
+			.page {
+				width: 100vw;
+				height: calc(100vw * (667 / 375));
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				/* transform: translate(-50%, 50%); */
+				/* background: linear-gradient(
+          to bottom,
+          #0f0708 0%,
+          #180000 50%,
+          #000 100%
+        ); */
+			}
+
+			.bg-img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.bg-img img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.downloadBtn {
+				width: 3.9rem;
+				height: 1.1rem;
+				/* background-color: blue; */
+				position: absolute;
+				top: 74.41%;
+				left: 24%;
+				opacity: 0.5;
+			}
+
+			@media screen and (min-width: 768px) {
+				.bg {
+					display: block;
+					width: 526px;
+					aspect-ratio: auto 526 / 936;
+					height: 936px;
+					margin: 0 auto;
+				}
+
+				.downloadBtn {
+					width: 276px;
+					height: 76px;
+				}
+			}
+		</style>
+	</head>
+	<script src="https://cdn-app.pokio.com/static/js/jquery.js"></script>
+	<script type="text/javascript">
+		// “()()”表示自执行函数
+		;
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				// 手机旋转事件,大部分手机浏览器都支持 onorientationchange 如果不支持，可以使用原始的 resize
+				resizeEvt =
+				'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					//clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框
+					var clientWidth = docEl.clientWidth
+					console.log(clientWidth, 100 * (clientWidth / 750))
+					if (!clientWidth) return
+					// 设计图 尺寸 为 1125 * 2010 ，以 1125 为基准
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+				}
+
+			recalc()
+			//判断是否支持监听事件 ，不支持则停止
+			if (!doc.addEventListener) return
+			//注册翻转事件
+			win.addEventListener(resizeEvt, recalc, false)
+		})(document, window)
+	</script>
+
+	<body>
+		<div class="page">
+			<div class="bg-img">
+				<img src="./images/landing-page/1112/1208.png" alt="" />
+			</div>
+			<div class="downloadBtn" onclick="download()"></div>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+	<script>
+		let _visitorId = ''
+		let fpPromise = FingerprintJS.load();
+		(async () => {
+			// Get the visitor identifier when you need it.
+			const fp = await fpPromise
+			const result = await fp.get()
+
+			// This is the visitor identifier:
+			_visitorId = result.visitorId
+
+			buryData('LP1_page_view')
+		})()
+
+		function download() {
+			fbq('track', 'Contact')
+			// gtag_report_conversion()
+			window.location.href = 'https://pokio.onelink.me/8h3o/567ff102'
+			buryData('LP1_page_click')
+			// NOTE 需要 GA conversion 代码？
+			// yx: 谷歌的先不用加   谷歌没办法通过web跟踪到应用端事件  只跟踪网页没啥用 暂时也不会投
+		}
+		// 增加埋点数据
+		function buryData(event_id) {
+			let u = navigator.userAgent
+			let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 //android
+			let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //ios
+			let phone_model = isAndroid ? 'Android' : isiOS ? 'ios' : 'other'
+			// let tempBasePrefix = '/api' // 本地测试用前缀
+			let tempBasePrefix = ''
+			let locURL = `${tempBasePrefix}/pybigshare/share/get_location_info`
+			let buryURL = `${tempBasePrefix}/pybigshare/share/buried_data_receive`
+			$.ajax({
+				url: locURL,
+				method: 'POST',
+				async: false,
+				data: {}
+			}).then((res) => {
+				let area_and_device = {
+					user_country: res.data.country || undefined,
+					phone_model,
+					_visitorId
+				}
+				let area_and_device_str = JSON.stringify(area_and_device)
+				console.log('area_and_device_str==>', area_and_device_str)
+				let data_json = {
+					event_id,
+					time: new Date().getTime(),
+					activity_url: window.location.href,
+					ext: area_and_device_str
+				}
+				console.log(data_json)
+				let data_json_str = JSON.stringify(data_json)
+				return $.ajax({
+					url: buryURL,
+					method: 'POST',
+					async: false,
+					data: {
+						buried_data: data_json_str
+					}
+				})
+			})
+		}
+	</script>
+</html>

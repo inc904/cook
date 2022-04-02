@@ -3,7 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-
+// var name = 'Jack'
 new Vue({
   render: h => h(App),
 }).$mount('#app')
@@ -101,3 +101,4 @@ var e = {
   'gender': 'Female',
   'reward': '0'
 }
+console.log(a,b,c,d,e)

@@ -44,7 +44,7 @@ var b = {
   'gender': 'Female',
   'reward': '0'
 }
-
+/* 中文注释的 */
 var c = {
   'start_timestamp': 1648520091,
   'last_name': '',

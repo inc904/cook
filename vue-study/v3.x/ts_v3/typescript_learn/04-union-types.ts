@@ -11,9 +11,9 @@ myFavoriteNumber = 'serve'
 // ## TAG 访问联合类型的属性或方法
 // 当 typescript 不确定一个联合类型的变量到底是哪个类型的时候，我们 * 只能访问此联合类型的所有类型里共有的属性或方法
 
-function getLength(something: string | number): number {
-  return something.length // 报错 类型“string | number”上不存在属性“length”。
-}
+// function getLength(something: string | number): number {
+//   return something.length // 报错 类型“string | number”上不存在属性“length”。
+// }
 // length 不是 string 和 number 的共有属性，所以会报错
 
 function getString(something: string | number): string {
@@ -26,4 +26,8 @@ let myFavoriteNumber2: string | number
 myFavoriteNumber2 = 'seven'
 console.log(myFavoriteNumber2.length)
 myFavoriteNumber2 = 7
-console.log(myFavoriteNumber2.length) // 类型“number”上不存在属性“length”
+// console.log(myFavoriteNumber2.length) // 类型“number”上不存在属性“length”
+
+// 第二行的 myFavoriteNumber 被推断成了 string，访问它的 length 属性不会报错。
+
+// 而第四行的 myFavoriteNumber 被推断成了 number，访问它的 length 属性时就报错了。

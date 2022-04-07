@@ -1,23 +1,9 @@
-# v2_demo_eslint2
+## v2 app
 
-## Project setup
-```
-yarn install
-```
+## 装包
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+```bash
+npm install -D sass-loader sass
 ```
 
 ### Customize configuration

@@ -1,0 +1,225 @@
+<html>
+
+<head>
+
+  <meta charset="utf-8" />
+  <script src="../js/vue.js"></script>
+
+  <style type="text/css">
+    .table-wrapper {
+      width: 90vw;
+      min-width: 1200px;
+      overflow: auto;
+      margin: auto;
+      padding: 10px;
+    }
+
+    table {
+      width: 1190px;
+      font-size: 15px;
+      line-height: 1.2;
+      border-top: 1px solid #a8a8a8;
+      border-left: 1px solid #a8a8a8;
+      text-align: center;
+      margin: 57px auto;
+      border-collapse: collapse;
+      overflow: auto;
+    }
+
+    table caption {
+      padding: 26px 0;
+      font-size: 26px;
+      line-height: 1;
+      color: #e63b3b;
+    }
+
+    table td,
+    table th {
+      padding: 6px 9px;
+      white-space: nowrap;
+      border-right: 1px solid #a8a8a8;
+      border-bottom: 1px solid #a8a8a8;
+      height: 20px;
+    }
+
+    table th {
+      background-color: #eeeeee;
+      /* padding: 8px 0; */
+    }
+
+    table td {
+      font-size: 12px;
+      line-height: 26px;
+      padding: 4px 15px 4px 9px;
+    }
+
+    .align-justy {
+      text-align: justify;
+    }
+
+
+    .gr {
+      background-color: #dff0d8;
+    }
+
+    .ye {
+      background-color: #fff1c7;
+    }
+
+    th {
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+
+<div id="app">
+  <p>{{msg}}</p>
+  <div class="table-wrapper">
+
+    <table>
+
+      <tr>
+        <th>UID</th>
+        <th class="gr">nickname</th>
+        <th class="gr">function</th>
+        <th class="ye">缓存</th>
+        <th class="ye">图层</th>
+      </tr>
+
+      <!--  -->
+      <template v-for="(item, index) in stu" ::key="index">
+        <tr>
+          <td rowspan="3">{{item.id}}</td>
+          <td class="gr" rowspan="3">{{item.nickName}}</td>
+          <td class="gr">{{item.func[0]}}</td>
+          <td class="ye" rowspan="3">{{item.cache}}</td>
+          <td class="ye">{{item.other[0]}}</td>
+        </tr>
+        <tr>
+          <td class="gr">{{item.func[1]}}</td>
+          <td class="ye">{{item.other[0]}}</td>
+        </tr>
+        <tr>
+          <td class="gr">{{item.func[2]}}</td>
+          <td class="ye">{{item.other[0]}}</td>
+        </tr>
+      </template>
+
+    </table>
+
+  </div>
+
+  <div class="table-wrapper">
+
+    <table>
+      <tr>
+        <th> UID </th>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Risk Score </th>
+        <th> Country </th>
+        <th> Registration Date </th>
+        <th> Account Status 1 </th>
+        <th> Account Status 2 </th>
+        <th> Number of Logins </th>
+        <th> Buddy Transfer(Out) </th>
+        <th> Buddy Transfer(In) </th>
+        <th> Reward </th>
+        <th> Total Deposit Amount </th>
+        <th> Deposit Payment Method </th>
+        <th> Deposit Amount </th>
+        <th> Total Withdrawal Amount </th>
+        <th> Withdrawal Payment Method </th>
+        <th> Withdrawal Amount </th>
+        <th> Last Login Date </th>
+      </tr>
+      <template v-for="(item, index) in foo" ::key="index">
+
+        <tr>
+          <td rowspan="3">1111111</td>
+          <td rowspan="3">2</td>
+          <td rowspan="3">3</td>
+          <td rowspan="3">4</td>
+          <td rowspan="3">5</td>
+          <td rowspan="3">6</td>
+          <td rowspan="3">7</td>
+          <td rowspan="3">8</td>
+          <td rowspan="3">9</td>
+          <td rowspan="3">10</td>
+          <td rowspan="3">11</td>
+          <td rowspan="3">12</td>
+          <td rowspan="3">13</td>
+          <td>14</td>
+          <td>15</td>
+          <td rowspan="3">16</td>
+          <td>17</td>
+          <td>18</td>
+          <td rowspan="3">2022年4月8日15:07:50</td>
+        </tr>
+        <tr>
+          <td class="gr">{item.func[14]}</td>
+          <td class="ye">{item.other[15]}</td>
+          <td class="ye">{item.other[17]}</td>
+          <td class="ye">{item.other[18]}</td>
+        </tr>
+        <tr>
+          <td class="gr">{item.func[14]}</td>
+          <td class="ye">{item.other[15]}</td>
+          <td class="ye">{item.other[17]}</td>
+          <td class="ye">{item.other[18]}</td>
+        </tr>
+      </template>
+    </table>
+  </div>
+
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        msg: 'hello',
+        stu: [
+          {
+            id: 20330,
+            nickName: 'jack',
+            cache: '128k',
+            func: ['item1', 'item2', 'item3'],
+            other: ['other1', 'other2', 'other3'],
+          },
+          {
+            id: 20101,
+            nickName: 'jerry',
+            cache: '256k',
+            func: ['item1', 'item2', 'item3'],
+            other: ['other1', 'other2', 'other3'],
+          }
+        ],
+        foo: [{
+          uid: 'a111',
+          first_name: 'a111',
+          last_name: 'a111',
+          risk_score: 'a111',
+          country: 'a111',
+          registration_date: 'a111',
+          account_status_1: 'a111',
+          account_status_2: 'a111',
+          number_of_logins: 'a111',
+          buddy_transfer_out: 'a111',
+          buddy_transfer_in: 'a111',
+          reward: 'a111',
+          total_deposit_amount: 'a111',
+          deposit_payment_method: 'a111',
+          deposit_amount: 'a111',
+          total_withdrawal_amount: 'a111',
+          withdrawal_payment_method: 'a111',
+          withdrawal_amount: 'a111',
+          last_login_date: 'a111',
+        }]
+      }
+    }
+  })
+</script>
+
+</html>

@@ -1,0 +1,288 @@
+<script src="../js/jquery.js"></script>
+<table id="tb" border="1">
+  <thead>
+    <tr>
+      <td align="center">序号</td>
+      <td>id</td>
+      <td>国家</td>
+      <td>地区</td>
+      <td>颜色</td>
+    </tr>
+  </thead>
+  <tr>
+    <td align="center">1</td>
+    <td>001</td>
+    <td>中国</td>
+    <td>河南</td>
+    <td>红色</td>
+  </tr>
+
+  <tr>
+    <td align="center">2</td>
+    <td>001</td>
+    <td>中国</td>
+    <td>北京</td>
+    <td>红色</td>
+  </tr>
+  <tr>
+    <td align="center">3</td>
+    <td>004</td>
+    <td>中国</td>
+    <td>四川</td>
+    <td>紫色</td>
+  </tr>
+  <tr>
+    <td align="center">4</td>
+    <td>003</td>
+    <td>美国</td>
+    <td>纽约</td>
+    <td>黑色</td>
+  </tr>
+  <tr>
+    <td align="center">5</td>
+    <td>003</td>
+    <td>美国</td>
+    <td>洛杉矶</td>
+    <td>蓝色</td>
+  </tr>
+  <tr>
+    <td align="center">6</td>
+    <td>005</td>
+    <td>英国</td>
+    <td>伦敦</td>
+    <td>蓝色</td>
+  </tr>
+</table>
+<label for="aaa"></label>
+<input type="checkbox" onclick="up()" name="test" id="aaa"> hahahah
+
+<input type="checkbox" value="markcheckbox1" id="markcheckbox1">
+<label class="mark" for="markcheckbox1">markcheckbox1</label>
+
+
+<input type="checkbox" value="markcheckbox1" id="markcheckbox1">
+<label class="mark" for="markcheckbox1">markcheckbox2</label>
+
+
+
+
+<div class="chat-windows-color-div row">
+  <div class="col-xs-4 col-sm-4 col-md-4">
+      <div class="col-xs-2 col-sm-2 col-md-2">
+          <input id="color-input-red" class="chat-button-location-radio-input" type="checkbox" name="color-input-red" value="#f0544d" />
+          <label  for="color-input-red"></label >
+       </div>
+       <div class="col-xs-2 col-sm-2 col-md-2">
+          <input id="color-input-orange" class="chat-button-location-radio-input" type="checkbox" name="color-input-orange" value="#ea9836" />
+           <label  for="color-input-orange"></label >
+       </div>
+
+       <div class="col-xs-2 col-sm-2 col-md-2">
+          <input id="color-input-yellow" class="chat-button-location-radio-input" type="checkbox" name="color-input-yellow" value="#e6c03a" />
+           <label  for="color-input-yellow"></label >
+       </div>
+       <div class="col-xs-2 col-sm-2 col-md-2">
+           <input id="color-input-green" class="chat-button-location-radio-input" type="checkbox" name="color-input-green" value="#5fbd41" />
+            <label  for="color-input-green"></label >
+       </div>
+       <div class="col-xs-2 col-sm-2 col-md-2">
+          <input id="color-input-blue" class="chat-button-location-radio-input" type="checkbox" name="color-input-blue" value="#3daae6" />
+           <label  for="color-input-blue"></label >
+       </div>
+       <div class="col-xs-2 col-sm-2 col-md-2">
+           <input id ="color-input-purple" class="chat-button-location-radio-input" type="checkbox" name="color-input-purple" value="#c37ad3" />
+           <label for="color-input-purple"></label>
+       </div>
+   </div>
+</div>
+
+<style>
+/*input框中颜色更改*/
+#color-input-red +label{
+	display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(240, 84, 77, 1);;
+}
+
+#color-input-red:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+input[type=checkbox]{
+	visibility: hidden;
+}
+#color-input-orange +label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(234, 152, 54, 1);
+}
+
+#color-input-orange:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+#color-input-yellow +label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(230, 192, 58, 1);
+}
+
+#color-input-yellow:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+#color-input-green +label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(95, 189, 65, 1);
+}
+
+#color-input-green:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+#color-input-blue +label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(61, 170, 230, 1);
+}
+
+#color-input-blue:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+#color-input-purple +label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 15px;
+    background: rgba(195, 122, 211, 1);
+}
+
+#color-input-purple:checked +label::before{
+    display: block;
+    content: "\2714";
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+/*  */
+  input[type="checkbox"] {
+    /*
+  display: none;这样会让tab键无法选取自定义的checkbox，所以使用下面的方法
+  clip 属性剪裁绝对定位元素。
+  */
+    position: absolute;
+    clip: rect(0, 0, 0, 0)
+  }
+
+  .mark::before {
+    content: '\a0';
+    display: inline-block;
+    border: 1px solid silver;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"]:checked+.mark::before {
+    content: '\2713';
+    color: #FA8E53;
+  }
+</style>
+
+<script>
+
+  function up(e) {
+    var r = confirm("Press a button!")
+    console.log(e)
+    if (r == true) {
+      alert("You pressed OK!")
+    }
+    else {
+      alert("You pressed Cancel!")
+      return false
+    }
+  }
+
+  window.onload = function () {
+    var tab = document.getElementById("tb")
+    var maxCol = 5,
+      val, count, start
+    for (var col = maxCol - 1; col >= 0; col--) {
+      count = 1
+      val = ""
+      for (var i = 0; i < tab.rows.length; i++) {
+        if (val == tab.rows[i].cells[col].innerHTML) {
+          count++
+        } else {
+          if (count > 1) { //合并
+            start = i - count
+            tab.rows[start].cells[col].rowSpan = count
+            for (var j = start + 1; j < i; j++) {
+              tab.rows[j].cells[col].style.display = "none"
+            }
+            count = 1
+          }
+          val = tab.rows[i].cells[col].innerHTML
+        }
+      }
+      if (count > 1) { //合并，最后几行相同的情况下
+        start = i - count
+        tab.rows[start].cells[col].rowSpan = count
+        for (var j = start + 1; j < i; j++) {
+          tab.rows[j].cells[col].style.display = "none"
+        }
+      }
+    }
+  }
+</script>

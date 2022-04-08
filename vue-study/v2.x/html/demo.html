@@ -1,0 +1,113 @@
+<html>
+
+<head>
+
+  <meta charset="utf-8" />
+  <script src="../js/vue.js"></script>
+
+  <style type="text/css">
+    table {
+      width: 1190px;
+      font-size: 15px;
+      line-height: 1.2;
+      border-top: 1px solid #a8a8a8;
+      border-left: 1px solid #a8a8a8;
+      text-align: center;
+      margin: 57px auto;
+      border-collapse: collapse;
+    }
+
+    table caption {
+      padding: 26px 0;
+      font-size: 26px;
+      line-height: 1;
+      color: #e63b3b;
+    }
+
+    table td,
+    table th {
+      border-right: 1px solid #a8a8a8;
+      border-bottom: 1px solid #a8a8a8;
+      height: 20px;
+    }
+
+    table th {
+      background-color: #eeeeee;
+      padding: 8px 0;
+    }
+
+    table td {
+      font-size: 12px;
+      line-height: 26px;
+      padding: 4px 15px 4px 9px;
+    }
+
+    .align-justy {
+      text-align: justify;
+    }
+  </style>
+
+</head>
+
+<div id="app">
+  <p>{{msg}}</p>
+  <table border="1 " width="200 ">
+
+    <tr>
+      <td>UID</td>
+      <td>nickname</td>
+      <td>function</td>
+      <td>缓存</td>
+      <td>图层</td>
+      <!-- <td rowspan=32">图层注释(可编辑)</td> -->
+    </tr>
+
+    <!--  -->
+    <template v-for="(item, index) in stu" ::key="index">
+      <tr>
+        <td rowspan="3">{{item.id}}</td>
+        <td rowspan="3">{{item.nickName}}</td>
+        <td>{{item.func[0]}}</td>
+        <td rowspan="3">123</td>
+        <td>{{item.other[0]}}</td>
+      </tr>
+      <tr>
+        <td>{{item.func[1]}}</td>
+        <td>{{item.other[0]}}</td>
+      </tr>
+      <tr>
+        <td>{{item.func[2]}}</td>
+        <td>{{item.other[0]}}</td>
+      </tr>
+    </template>
+
+
+  </table>
+
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        msg: 'hello',
+        stu: [
+          {
+            id: 20330,
+            nickName: 'jack',
+            func: ['item1', 'item2', 'item3'],
+            other: ['other1', 'other2', 'other3'],
+          },
+          {
+            id: 20101,
+            nickName: 'jerry',
+            func: ['item1', 'item2', 'item3'],
+            other: ['other1', 'other2', 'other3'],
+          }
+        ]
+      }
+    }
+  })
+</script>
+
+</html>

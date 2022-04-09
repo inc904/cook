@@ -66,7 +66,6 @@ function push2(array, ...items) {
     });
 }
 let a2 = [];
-push(a2, 1, 2, 3);
 function reverse(x) {
     if (typeof x === 'number') {
         return Number(x.toString().split('').reverse().join(''));

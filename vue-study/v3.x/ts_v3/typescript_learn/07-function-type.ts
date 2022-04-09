@@ -92,7 +92,7 @@ function push2(array: any[], ...items: any[]) {
   })
 }
 let a2: any[] = []
-push(a2, 1, 2, 3)
+// push(a2, 1, 2, 3)
 
 // 【rest 参数只能是最后一个参数】
 

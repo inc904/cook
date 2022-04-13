@@ -77,7 +77,7 @@
   <p>{{msg}}</p>
   <div class="table-wrapper">
 
-    <table>
+    <table style="display: none;">
 
       <tr>
         <th>UID</th>
@@ -111,7 +111,6 @@
   </div>
 
   <div class="table-wrapper">
-
     <table>
       <tr>
         <th> UID </th>
@@ -168,6 +167,65 @@
           <td class="ye">{item.other[15]}</td>
           <td class="ye">{item.other[17]}</td>
           <td class="ye">{item.other[18]}</td>
+        </tr>
+      </template>
+    </table>
+  </div>
+
+
+  <div class="table-wrapper">
+    <table>
+      <tr>
+        <th> UID </th>
+        <th> Club ID</th>
+        <th> First Name</th>
+        <th> Last Name</th>
+        <th> Risk Score</th>
+        <th> Country</th>
+        <th> Registration Date</th>
+        <th> Account Status 1</th>
+        <th> Account Status 2</th>
+        <th> Number of Clubs Owned</th>
+        <th> Club Revenue</th>
+        <th class="gr"> Total Deposit Amount</th>
+        <th class="gr"> Deposit Payment Method</th>
+        <th class="gr"> Deposit Amount</th>
+        <th class="ye"> Total Withdrawal Amount</th>
+        <th class="ye"> Withdrawal Payment Method</th>
+        <th class="ye"> Withdrawal Amount</th>
+      </tr>
+
+      <template v-for="(item, index) in foo" ::key="index">
+        <tr>
+          <td rowspan="3">1111111</td>
+          <td rowspan="3">2</td>
+          <td rowspan="3">3</td>
+          <td rowspan="3">4</td>
+          <td rowspan="3">5</td>
+          <td rowspan="3">6</td>
+          <td rowspan="3">7</td>
+          <td rowspan="3">8</td>
+          <td rowspan="3">9</td>
+          <td rowspan="3">10</td>
+          <td rowspan="3">11</td>
+          <td rowspan="3">12</td>
+          <td>13</td>
+          <td>14</td>
+          <td rowspan="3">15</td>
+          <td>16</td>
+          <td>17</td>
+        </tr>
+        <tr>
+          <td class="gr">{item.func[13]}</td>
+          <td class="ye">{item.other[14]}</td>
+          <td class="ye">{item.other[16]}</td>
+          <td class="ye">{item.other[17]}</td>
+        </tr>
+        <tr>
+          <td class="gr">{item.func[13]}</td>
+          <td class="ye">{item.other[14]}</td>
+          <td class="ye">{item.other[16]}</td>
+          <td class="ye">{item.other[17]}</td>
         </tr>
       </template>
     </table>

@@ -1,5 +1,10 @@
-module.export = {
-  productionSourceMap: true
+console.log(12312)
+module.exports = {
+  productionSourceMap: false,
+  devServer: {
+    port: 9501,
+    open:false
+  }
 }
 
 // const IS_PROD = ['production'].includes(process.env.NODE_ENV)

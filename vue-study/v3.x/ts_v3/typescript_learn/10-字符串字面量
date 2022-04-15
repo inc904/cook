@@ -1,0 +1,13 @@
+## 字符串字面量
+
+```ts
+type EventNames = 'clickl' | 'scroll' | 'mousemove'
+function handleEvent(ele: Melment, event: EventNames){
+  // do something
+}
+
+handleEvent(document.getElementById('hello'), 'scroll')
+handleEvent(document.getElementById('world'), 'dbclick') // 报错 event 不能为 dbclick
+```
+使用 type 定义了一个字符串字面量 类型 EventNames ，它只能取三种字符串的的一种；
+类型别名 和 字符车字面量 都是使用 type 进行定义。

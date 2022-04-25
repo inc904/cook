@@ -11,7 +11,6 @@
 
 <body>
   <div id="app">
-
     <table border="1" cellspacing="0">
       <tr>
         <th>项目名称</th>
@@ -31,7 +30,6 @@
         <td>{{item.completeRate}}</td>
       </tr>
     </table>
-
   </div>
   <script>
     new Vue({
@@ -80,7 +78,7 @@
             },
           ],
           data: [],
-          mydata: []
+          mydata: [],
         }
       },
       mounted() {
@@ -90,9 +88,9 @@
       methods: {
         // 获取合并行数
         getRow() {
-          let data = this.tableData.map(item => {
+          let data = this.tableData.map((item) => {
             let rows = 0
-            item.model.forEach(item2 => {
+            item.model.forEach((item2) => {
               rows += item2.task.length
             })
             item.rowspan = rows
@@ -111,23 +109,21 @@
                     projectName: projectItem.projectName,
                     rowspan2: modelItem.task.length,
                     modelName: modelItem.modelName,
-                    ...taskItem
-                  }
-                  )
+                    ...taskItem,
+                  })
                 } else if (taskIndex === 0) {
                   this.mydata.push({
                     rowspan2: modelItem.task.length,
                     modelName: modelItem.modelName,
-                    ...taskItem
-                  }
-                  )
+                    ...taskItem,
+                  })
                 } else {
                   this.mydata.push(taskItem)
                 }
               })
             })
           })
-        }
+        },
       },
     });
   </script>

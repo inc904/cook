@@ -9,7 +9,43 @@
 </head>
 
 <body>
+
+
+
+  <a href="mailto:support@pokio.com" target="_blank">support@pokio.com</a>
+  <br>
+  <a href="mailto:Jack <support@pokio.com>?cc=baid.com&subject=" hello !!" target="_blank">support@pokio.com</a>
+  <br>
+  <a href="http://mailto:123@pokio.com">support@pokio.com_2</a>
+
   <script>
+    /**
+     * 上级作用域 无法 直接访问 下级作用域中的变量，
+     * 但下级作用域可以访问上级作用域中的变量。
+     *
+     *
+    */
+
+    function fn1() {
+      var n = 100
+      function fn2() {
+        console.log(n)
+      }
+    }
+
+    function fn3() {
+      function fn4() {
+        var n = 100
+      }
+      console.log(n)
+    }
+    fn1()
+    // fn3()
+
+    console.log(a)
+
+
+    // other
 
     class Person {
 
@@ -27,6 +63,7 @@
     let lotrChar = new Person('Frodo')
     console.log(lotrChar._self, lotrChar._agee)
     lotrChar.say();
+
   </script>
 </body>
 

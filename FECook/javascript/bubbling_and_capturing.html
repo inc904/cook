@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div onclick="alert('The handler!')">
+    <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+  </div>
+  <style>
+    * {
+      font-size: 30px;
+      /* color: rebeccapurple; */
+    }
+  </style>
+  <style>
+    body * {
+      margin: 10px;
+      border: 1px solid blue;
+    }
+
+    .parent {
+      --custom-property: red;
+      color: var(--custom-property);
+    }
+  </style>
+
+  <form onclick="alert('form')">FORM
+    <div onclick="alert('div')">DIV
+      <p onclick="alert('p')">P</p>
+    </div>
+  </form>
+  <div class="parent">
+    <p>hello</p>
+    <p>world</p>
+  </div>
+
+  <svg class="icon icon--color-alt" aria-hidden="true">
+    <use xlink:href="#icon-coffee" href="#icon-coffee" />
+  </svg>
+  <style>
+    #icon-coffee {
+      --cup-color: red;
+      --handle-color: rebeccapurple;
+      --smoke1-color: blue;
+      --smoke2-color: orange;
+      --smoke3-color: gold;
+    }
+
+    #test {
+      --test-color: pink;
+      color: var(--test-color)
+    }
+  </style>
+  <p id="test">Lorem ipsum dolor sit amet.</p>
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+    <symbol id="icon-coffee" viewBox="0 0 20 20">
+      <title>icon-coffee</title>
+      <path fill="var(--handle-color)"
+        d="M15,17H14V9h3a3,3,0,0,1,3,3h0A5,5,0,0,1,15,17Zm1-6v3.83A3,3,0,0,0,18,12a1,1,0,0,0-1-1Z" />
+      <rect fill="var(--cup-color)" x="1" y="7" width="15" height="12" rx="3" ry="3" />
+      <path fill="var(--smoke1-color)"
+        d="M7.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,0,1-1.79.89Z" />
+      <path fill="var(--smoke2-color)"
+        d="M3.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z" />
+      <path fill="var(--smoke3-color)"
+        d="M11.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z" />
+    </symbol>
+  </svg>
+</body>
+君不见黄河之水天上来，奔流到海不复回。
+君不见高堂明镜悲白发，朝如青丝暮成雪。
+人生得意须尽欢，莫使金樽空对月。
+天生我材必有用，千金散尽还复来。
+烹羊宰牛且为乐，会须一饮三百杯。
+岑夫子，丹丘生，将进酒，杯莫停。
+与君歌一曲，请君为我倾耳听。(倾耳听 一作：侧耳听)
+钟鼓馔玉不足贵，但愿长醉不愿醒。(不足贵 一作：何足贵；不愿醒 一作：不复醒)
+古来圣贤皆寂寞，惟有饮者留其名。(古来 一作：自古；惟 通：唯)
+陈王昔时宴平乐，斗酒十千恣欢谑。
+主人何为言少钱，径须沽取对君酌。
+五花马、千金裘，呼儿将出换美酒，与尔同销万古愁。
+</html>

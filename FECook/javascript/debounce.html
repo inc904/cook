@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      const debounce = function (fn, delay) {
+        let timer = null
+        const _debounce = function () {
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => {
+            fn()
+          }, delay)
+        }
+        return _debounce
+      }
+
+      const inputEl = document.querySelector('input')
+      let count = 0
+
+      const inputChange = function () {
+        console.log(this, this.value, arguments)
+        console.log(`第${++count}次调用 inputChange 方法`)
+      }
+
+      // inputEl.oninput = inputChange
+      // inputEl.oninput = debounce(inputChange, 1000)
+
+      const debounce2 = function (fn, delay) {
+        let timer = null
+        const _debounce = function (...args) {
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => {
+            fn.call(this, args)
+          }, delay)
+        }
+        return _debounce
+      }
+      inputEl.oninput = debounce2(inputChange, 1000)
+    </script>
+  </body>
+</html>

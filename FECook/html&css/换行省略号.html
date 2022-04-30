@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      p {
+        width: 180px;
+        height: 80px;
+        background: pink;
+        margin: 0 auto;
+        /* white-space 文本是否自动换行，默认换行 */
+        white-space: nowrap;
+        /* overflow 溢出部分隐藏 */
+        overflow: hidden;
+        /* 溢出部分显示省略号 */
+        text-overflow: ellipsis;
+      }
+      div {
+        width: 180px;
+        height: 65px;
+        background: pink;
+        margin: 0 auto;
+        /* 弹性伸缩盒子模型显示 */
+        display: -webkit-box;
+        /* 限制在一个块元素显示的文本的行数 */
+        -webkit-line-clamp: 3;
+        /* 设置或检索伸缩盒对象的子元素的排列方式 */
+        -webkit-box-orient: vertical;
+        /* 溢出隐藏 */
+        overflow: hidden;
+      }
+    </style>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, voluptate?</p>
+    <div>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque modi illo iusto culpa laborum totam, vitae eligendi vero aliquid quisquam eos minus voluptatibus obcaecati maiores sapiente sequi
+      iste laboriosam consequatur? Quibusdam perferendis at recusandae numquam quidem possimus, veritatis libero cum facilis fuga vitae tempore dolorem consequatur ad debitis error? Atque neque maxime
+      nam, at culpa labore obcaecati adipisci corporis tempora. Dicta est rem quaerat reiciendis veritatis rerum modi, natus voluptas enim ab quibusdam culpa ducimus ratione beatae. Minus, maiores
+      repudiandae consectetur mollitia assumenda fuga omnis nesciunt possimus itaque. Veritatis, nihil. Amet voluptate accusantium necessitatibus, nemo ipsum, blanditiis odio quo cumque id impedit
+      similique, doloremque laborum soluta in quam veritatis enim consequuntur exercitationem atque voluptates labore. Nemo et reprehenderit voluptatum eveniet!
+    </div>
+  </body>
+</html>

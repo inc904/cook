@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
-
-
-  <a href="mailto:support@pokio.com" target="_blank">support@pokio.com</a>
-  <br>
-  <a href="mailto:Jack <support@pokio.com>?cc=baid.com&subject=" hello !!" target="_blank">support@pokio.com</a>
-  <br>
-  <a href="http://mailto:123@pokio.com">support@pokio.com_2</a>
-
-  <script>
-    /**
-     * 上级作用域 无法 直接访问 下级作用域中的变量，
-     * 但下级作用域可以访问上级作用域中的变量。
-     *
-     *
-    */
-
-    function fn1() {
-      var n = 100
-      function fn2() {
-        console.log(n)
+  <body>
+    <script>
+      /**
+       * 上级作用域 无法 直接访问 下级作用域中的变量，
+       * 但下级作用域可以访问上级作用域中的变量。
+       * 作用：
+       * 让外界读取某个函数内部的变量
+       * 让这些变量始终保持在内存中（可能会造成内存泄露）
+       * 最基本的作用：可以用过闭包返回的函数或方法，来修改内部的数据
+       * 创建一个私有空间，保护数据
+       */
+      /**
+       * this 对象在运行时 给予函数的执行环境绑定的，谁调用 this 就是谁
+       * 如果在全局范围内，this 就是 window，如果在对象内部，this 就指向这个对象
+       * 因为闭包 并不属于这个对象的属性或方法，所以在闭包中 this 指向 window
+       *
+       */
+      var name = 'The window'
+      var obj = {
+        name: 'The object',
+        getName: function () {
+          return function () {
+            return this.name
+          }
+        }
       }
-    }
-
-    function fn3() {
-      function fn4() {
-        var n = 100
+      var myobj = obj.getName() // 接收到一个 匿名函数
+      console.log(myobj()) // 在 window 下调用 函数，返回 The window
+    </script>
+    <table border="1">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3aaaaaaaaaa</td>
+        <td>
+          <div class="inner">1</div>
+        </td>
+        <td>5</td>
+      </tr>
+    </table>
+    <style>
+      td {
+        width: 200px;
+        height: 200px;
       }
-      console.log(n)
-    }
-    fn1()
-    // fn3()
-
-    console.log(a)
-
-
-    // other
-
-    class Person {
-
-      _agee = 123
-      constructor(name) {
-        this._self = 'hello'
-        this._name = name
+      .inner {
+        width: 100%;
+        height: 100%;
+        background-color: pink;
       }
-      say() {
-        // console.log(1,this)
-        console.log(this._agee)
-      }
-    }
+.t{
+  height: 200px;
+  background-color: deeppink;
+  display: table-cell;
+  vertical-align:middle;
+}
+    </style>
 
-    let lotrChar = new Person('Frodo')
-    console.log(lotrChar._self, lotrChar._agee)
-    lotrChar.say();
-
-  </script>
-</body>
-
+    <p class="t">Lorem, ipsum dolor.</p> <br>
+    <p class="t">Lorem, ipsum dolor.</p>
+  </body>
 </html>

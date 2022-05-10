@@ -1,4 +1,4 @@
-import { initState } from "./state"
+import { initState } from './state'
 
 export function initMixin(Vue) {
   Vue.prototype._init = function (options) {
@@ -6,6 +6,6 @@ export function initMixin(Vue) {
     vm.$options = options
 
     // 初始化状态
-   initState(vm)
+    initState(vm)
   }
 }

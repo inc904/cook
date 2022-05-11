@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- class 对象语法： -->
+      <div v-bind:class="{active: isActive}">class</div>
+
+      <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }">class</div>
+
+      <!-- class 数组语法： -->
+      <div v-bind:class="[activeClass, errorClass]">class</div>
+      <!-- 数组语法中可以写 三元表达式 -->
+      <div v-bind:class="[isActive ? activeClass : '', errorClass, 'info']">class</div>
+      <div v-bind:class="[isActive ? 'yellow' : '', errorClass, 'info']">class</div>
+      <!-- 数组语法中也可以写 对象语法 -->
+      <div v-bind:class="[{ active: isActive }, errorClass]">class</div>
+
+      <!-- style 对象语法 -->
+      <!-- 看起来想 css 语法，其实是一个 js 对象。css 属性名 可以使用 小驼峰或者肉串发命名 -->
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">style</div>
+      <!-- style 直接绑定一个 样式对象 (直接定义的样式对象 或者 结合 计算属性 返回的 样式对象) -->
+      <div v-bind:style="styleObj">style</div>
+      <!-- style 数组语法 -->
+      <div v-bind:style="[baseStyles, overridingStyles]">style</div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            isActive: true,
+            hasError: false,
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            activeColor: 'red',
+            fontSize: 30,
+            styleObj: {
+              color: 'red',
+              fontSize: '15px'
+            },
+            baseStyles: {},
+            overridingStyles: {}
+          }
+        }
+      })
+    </script>
+    <style>
+      .info {
+        color: aqua;
+      }
+    </style>
+  </body>
+</html>

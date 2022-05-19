@@ -1,7 +1,12 @@
 class Observe {
   constructor(data) {
     // Object.defineProperty  只能劫持 已经存在的属性，增加的 删除的 都不会被劫持 （增加$set. $delete）
-    this.walk(data)
+    if (Array.isArray(data)) {
+      // 重写 7个数组 变异方法（会修改数组本身的方法）
+      this.observeArray(data)
+    } else {
+      this.walk(data)
+    }
   }
   walk(data) {
     // 循环对象 对属性 依次劫持
@@ -10,6 +15,9 @@ class Observe {
       // ”重新定义“ 属性
       defineReactive(data, key, data[key])
     })
+  }
+  observeArray(data) {
+    data.forEach(item => observe(item))
   }
 }
 
@@ -28,6 +36,7 @@ export function defineReactive(target, key, value) {
     set(newValue) {
       console.log('用户设置值了')
       if (newValue === value) return
+      observe(newValue)
       value = newValue
     }
   })

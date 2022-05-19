@@ -15,7 +15,11 @@
         data() {
           return {
             name: 'Jack',
-            age: 20
+            age: 20,
+            address: {
+              num: 22
+            },
+            habby: ['eat', 'play']
           }
         }
       })
@@ -23,8 +27,14 @@
       console.log(vm._data)
       console.log(vm.name)
       vm.age = 28
-
+      vm.address = {
+        num: 25
+      }
+      vm.habby.push('study')
+      // 修改数组 很少用索引来操作数组 因为 [923]写代码 内部做劫持会浪费性能
+      // 用户一般修改数组 都是通过方法来修改 push shift
       console.log(vm.age)
+      console.log(vm)
     </script>
   </body>
 </html>

@@ -36,11 +36,11 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-.red{
+.red {
   color: red;
-  .font{
+
+  .font {
     font-size: 20px;
   }
 }
-
 </style>

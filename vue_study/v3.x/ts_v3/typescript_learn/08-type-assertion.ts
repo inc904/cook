@@ -126,3 +126,34 @@ tom5.run()
  * - 任何类型都可以被断言成 any
  * - any 可以被断言成 任何类型
  */
+
+interface person {
+  name: string,
+  age: number,
+  gender: string,
+  pocket?: string | number
+}
+
+
+let peroson1 = [{
+  name: 'zs',
+  age: 15,
+  gender: 'male',
+}, {
+  name: 'zs',
+  age: 15,
+  gender: 'male',
+  pocket: 'has'
+}
+]
+let peroson2: person[] = [{
+  name: 'zs',
+  age: 15,
+  gender: 'male',
+}, {
+  name: 'zs',
+  age: 15,
+  gender: 'male',
+  pocket: 'has'
+}]
+

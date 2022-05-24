@@ -34,7 +34,7 @@
 
       <div class="comment-list">
 
-        <p class="title">评论列表({{this.comment_list.length}})</p>
+        <p class="title">评论列表({{ this.comment_list.length }})</p>
         <!-- 评论列表 -->
         <el-card class="box-card">
           <div v-for="item in comment_list" :key="item.id">
@@ -91,7 +91,10 @@ export default {
     logOut () {
       this.userInfo = {}
       this.isLogined = false
+      // 清掉 user key，不能仅仅清掉 value
       localStorage.setItem('user', '')
+      // 需要 请求 后台 取消登录
+      // axios
     },
     open () {
       this.$message.error('这是一条消息提示')
@@ -111,6 +114,8 @@ export default {
         // 发送请求，真实情况走下面else  这里是 测试
         console.log(123)
       } else {
+        // something else
+
         axios({
           method: 'post',
           url: '/comment/post',
@@ -123,10 +128,10 @@ export default {
           console.log(res)
           if (res.error_code) {
             //  注册失败 ， 弹窗提示 错误信息
-            this.$message.error(' 注册失败， 错误信息')
+            this.$message.error(' 评论成功 错误信息:', res.msg)
           } else {
             //  注册成功， 跳转 登录页面 页面
-            this.$router.push('/login')
+            this.$message(' 评论成功')
           }
         })
       }
@@ -186,7 +191,7 @@ export default {
 }
 
 /* 评论输入 */
-.post-comment {}
+/* .post-comment {} */
 
 .cmt-top {
   justify-content: space-between;

@@ -38,6 +38,7 @@ export default {
     }
   },
   methods: {
+    // 假的
     handleLogin () {
       const that = this
       // 发送模拟 登录请求  POST 请求
@@ -62,6 +63,7 @@ export default {
     setLocalStorage (data) {
       localStorage.setItem('user', data)
     },
+    // 真的
     handleLogin2 () {
       // 发送 登录请求,POST 请求
 

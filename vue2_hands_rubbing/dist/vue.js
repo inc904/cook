@@ -44,7 +44,12 @@
       _classCallCheck(this, Observe);
 
       // Object.defineProperty  只能劫持 已经存在的属性，增加的 删除的 都不会被劫持 （增加$set. $delete）
-      this.walk(data);
+      if (Array.isArray(data)) {
+        // 重写 7个数组 变异方法（会修改数组本身的方法）
+        this.observeArray(data);
+      } else {
+        this.walk(data);
+      }
     }
 
     _createClass(Observe, [{
@@ -55,6 +60,13 @@
           // Object.defineProperty(data, data[key],{})
           // ”重新定义“ 属性
           defineReactive(data, key, data[key]);
+        });
+      }
+    }, {
+      key: "observeArray",
+      value: function observeArray(data) {
+        data.forEach(function (item) {
+          return observe(item);
         });
       }
     }]);
@@ -74,6 +86,7 @@
       set: function set(newValue) {
         console.log('用户设置值了');
         if (newValue === value) return;
+        observe(newValue);
         value = newValue;
       }
     });

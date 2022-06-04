@@ -3,10 +3,17 @@ class Observe {
     // Object.defineProperty  只能劫持 已经存在的属性，增加的 删除的 都不会被劫持 （增加$set. $delete）
     if (Array.isArray(data)) {
       // 重写 7个数组 变异方法（会修改数组本身的方法）
+
+      /**
+       *
+       */
       this.observeArray(data)
     } else {
       this.walk(data)
     }
+
+    // this.walk(data)
+
   }
   walk(data) {
     // 循环对象 对属性 依次劫持

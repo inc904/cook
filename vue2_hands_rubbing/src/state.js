@@ -9,7 +9,6 @@ export function initState(vm) {
 }
 
 function proxy(vm, target, key) {
-  console.log(123)
   Object.defineProperty(vm, key, {
     get() {
       return vm[target][key]

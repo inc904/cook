@@ -7,10 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Vue Source</h1>
+    <h1>Vue2 Source Code</h1>
     <script src="./vue.js"></script>
     <script>
-      console.log({ Vue })
+      // console.log({ Vue })
 
       let vm = new Vue({
         data() {
@@ -20,23 +20,23 @@
             address: {
               num: 22
             },
-            habby: ['eat', 'play']
+            habby: ['eat', 'play', { like: 'movie' }]
           }
         }
       })
       console.log({ vm })
-      console.log(vm._data)
-      console.log(vm.name)
-      vm.age = 28
-      vm.address = {
-        num: 25
-      }
-      vm.habby.push('study')
+      // console.log(vm._data)
+      // console.log(vm.name)
+      // vm.age = 28
+      // vm.address = {
+      //   num: 25
+      // }
+      // vm.habby.push('study')
 
-      // 修改数组 很少用索引来操作数组 因为 [923]写代码 内部做劫持会浪费性能
-      // 用户一般修改数组 都是通过方法来修改 push shift
-      console.log(vm.age)
-      console.log(vm)
+      // // 修改数组 很少用索引来操作数组 因为 [923]写代码 内部做劫持会浪费性能
+      // // 用户一般修改数组 都是通过方法来修改 push shift
+      // console.log(vm.age)
+      // console.log(vm)
     </script>
   </body>
 </html>

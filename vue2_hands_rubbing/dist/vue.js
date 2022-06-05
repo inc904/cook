@@ -4,6 +4,113 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Vue = factory());
 })(this, (function () { 'use strict';
 
+  // 对模板进行编译
+  var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z]*";
+  var qnameCapture = "((?:".concat(ncname, "\\:)?").concat(ncname, ")");
+  var startTagOpen = new RegExp("^<".concat(qnameCapture)); // 匹配到的分组是一个 标签名 <xxx 匹配到的是开始 标签的名字
+
+  var endTag = new RegExp("<\\/".concat(qnameCapture, "[^>]*>")); // 匹配的是 </xxxx> 最终匹配到的分组就是结束标签的名字
+  // 第一个分组就是属性的key value 就是分组3、分组4、分组5
+
+  var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+  var startTagClose = /^\s*(\/?)>/; // <div> <br/>
+
+  console.log(startTagOpen);
+
+  function parseHTML(html) {
+    //  html最开始肯定是一个 <
+    function advance(n) {
+      html = html.substring(n);
+    }
+
+    function parseStartTag() {
+      var start = html.match(startTagOpen);
+      console.log(start);
+
+      if (start) {
+        var match = {
+          tagName: start[1],
+          attrs: []
+        };
+        advance(start[0].length);
+        console.log(11, match); // 如果不是开始便签的结束就开始一直匹配下去
+
+        var attr, end;
+
+        while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+          advance(attr[0].length);
+          match.attrs.push({
+            name: attr[1],
+            value: attr[3] || attr[4] || attr[5] || true
+          });
+        }
+
+        console.log(22, html);
+
+        if (end) {
+          advance(end[0].length);
+        }
+
+        console.log({
+          match: match
+        });
+        return match;
+      }
+
+      console.log(21, html);
+      console.log(23, html);
+      return false; // 不是开始标签
+    }
+
+    while (html) {
+      /*
+        如果 textEnd 为0 说明是一个开始标签或者结束标签
+        如果 textEnd >0 说明是一个开始就是文本的结束位置
+      */
+      var textEnd = html.indexOf('<'); // 如果 indexOf 中的索引是0 则说明是一个标签
+
+      if (textEnd == 0) {
+        var startTagMatch = parseStartTag(); // 开始标签的匹配结果
+
+        if (startTagMatch) {
+          continue; // console.log('continue:', html)
+        }
+
+        var endTagMatch = html.match(endTag);
+        console.log({
+          endTagMatch: endTagMatch
+        });
+
+        if (endTagMatch) {
+          advance(endTagMatch[0].length);
+          continue;
+        }
+      }
+
+      if (textEnd >= 0) {
+        // 有文本
+        var text = html.substring(0, textEnd); // 文本内容
+
+        if (text) {
+          advance(text.length); // 解析到的文本
+
+          console.log(333, html);
+        }
+      }
+    }
+
+    console.log(555, html);
+  }
+
+  function complieToFunction(template) {
+    /*
+      1. 将 template 转化成 ast 语法树
+      2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
+    */
+    parseHTML(template);
+    console.log(template);
+  }
+
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
@@ -235,9 +342,17 @@
           }
         }
 
-        console.log({
-          template: template
-        });
+        if (template) {
+          var render = complieToFunction(template);
+          console.log('r1', {
+            render: render
+          });
+          opts.render = render;
+          console.log('r', {
+            render: render
+          });
+        } // console.log({ template })
+
       }
     };
   }

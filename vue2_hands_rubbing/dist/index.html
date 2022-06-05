@@ -9,7 +9,8 @@
   <body>
     <h1>Vue2 Source Code</h1>
     <div id="app">
-      {{name}} -- {{age}}
+      <div style="color: red">{{name}} hello</div>
+      <span> -- {{age}} </span>
     </div>
     <script src="./vue.js"></script>
     <script>
@@ -26,15 +27,14 @@
             habby: ['eat', 'play', { like: 'movie' }]
           }
         },
-        template: '<>hello</>'
+        // template: '<>hello</>'
         // el: '#app', // 将数据 解析到el元素上
         // render(){
         //   return h('div', {})
         // }
-
       })
       vm.$mount('#app')
-/*
+      /*
  1. 模板引擎 性能差 需要正则匹配 1.0的时候 没有引入虚拟DOM的改变
  2. 采用 虚拟DOM 数据变化之后 比较虚拟DOM的差异，最后更新需哟啊更新的地方
  3. 核心就是 我们需要讲模板变成我们的js语法， 通过js语法生成虚拟DOM
@@ -43,7 +43,6 @@
  css 压缩 我么你需要先变成语法树 再重新组装代码成为新的语法
  将 template 转化为 render
 */
-
     </script>
   </body>
 </html>

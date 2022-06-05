@@ -1,3 +1,4 @@
+import { complieToFunction } from './complier'
 import { initState } from './state'
 
 export function initMixin(Vue) {
@@ -13,10 +14,10 @@ export function initMixin(Vue) {
     }
   }
   Vue.prototype.$mount = function (el) {
-    console.log({el})
+    console.log({ el })
     const vm = this
     el = document.querySelector(el)
-    console.log(2,{el})
+    console.log(2, { el })
 
     let opts = vm.$options
     if (!opts.render) {
@@ -30,7 +31,14 @@ export function initMixin(Vue) {
           template = opts.template
         }
       }
-      console.log({ template })
+      if (template) {
+        const render = complieToFunction(template)
+        console.log('r1', { render })
+
+        opts.render = render
+        console.log('r', { render })
+      }
+      // console.log({ template })
     }
   }
 }

@@ -8,6 +8,9 @@
   </head>
   <body>
     <h1>Vue2 Source Code</h1>
+    <div id="app">
+      {{name}} -- {{age}}
+    </div>
     <script src="./vue.js"></script>
     <script>
       // console.log({ Vue })
@@ -22,23 +25,24 @@
             },
             habby: ['eat', 'play', { like: 'movie' }]
           }
-        }
-      })
-      console.log({ vm })
-      // console.log(vm._data)
-      // console.log(vm.name)
-      // vm.age = 28
-      // vm.address = {
-      //   num: 25
-      // }
-      // vm.habby.push('study')
+        },
+        template: '<>hello</>'
+        // el: '#app', // 将数据 解析到el元素上
+        // render(){
+        //   return h('div', {})
+        // }
 
-      // // 修改数组 很少用索引来操作数组 因为 [923]写代码 内部做劫持会浪费性能
-      // // 用户一般修改数组 都是通过方法来修改 push shift
-      // console.log(vm.age)
-      // console.log(vm)
-      vm.habby.push('study')
-      vm.habby.push({gender: 0})
+      })
+      vm.$mount('#app')
+/*
+ 1. 模板引擎 性能差 需要正则匹配 1.0的时候 没有引入虚拟DOM的改变
+ 2. 采用 虚拟DOM 数据变化之后 比较虚拟DOM的差异，最后更新需哟啊更新的地方
+ 3. 核心就是 我们需要讲模板变成我们的js语法， 通过js语法生成虚拟DOM
+
+ 从一个东西变成另一个东西 语法之间的转化 es6 - es5
+ css 压缩 我么你需要先变成语法树 再重新组装代码成为新的语法
+ 将 template 转化为 render
+*/
 
     </script>
   </body>

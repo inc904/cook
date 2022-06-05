@@ -205,6 +205,40 @@
       vm.$options = options; // 初始化状态
 
       initState(vm);
+
+      if (options.el) {
+        vm.$mount(options.el);
+      }
+    };
+
+    Vue.prototype.$mount = function (el) {
+      console.log({
+        el: el
+      });
+      var vm = this;
+      el = document.querySelector(el);
+      console.log(2, {
+        el: el
+      });
+      var opts = vm.$options;
+
+      if (!opts.render) {
+        // 先查找有没有render函数
+        var template; // 没有render 看一下 是否写了 template ，没有写template 采用外部的template
+
+        if (!opts.template && el) {
+          template = el.outerHTML;
+        } else {
+          if (el) {
+            // 如果有el 则采用模板的内容
+            template = opts.template;
+          }
+        }
+
+        console.log({
+          template: template
+        });
+      }
     };
   }
 

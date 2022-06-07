@@ -8,77 +8,129 @@ const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s
 const startTagClose = /^\s*(\/?)>/ // <div> <br/>
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g // {{asdsada}} 匹配到的内容就是我们表达式的变量
 
-console.log(startTagOpen)
+// console.log(startTagOpen)
 
 function parseHTML(html) {
+  const ELEMENT_TYPE = 1
+  const TEXT_TYPE = 1
+  const stack = [] // 用于存放元素的
+  let currentParent, root // 指向的是栈中的最后一个 ; 根节点
   //  html最开始肯定是一个 <
+  while (html) {
+    /*
+      如果 textEnd 为0 说明是一个开始标签或者结束标签
+      如果 textEnd >0 说明是一个开始就是文本的结束位置
+    */
+
+    function createATSElement(tag, attrs) {
+      return {
+        tag,
+        type: ELEMENT_TYPE,
+        attrs,
+        children: [],
+        parent: null
+      }
+    }
+
+    function onStart(tag, attrs) {
+      let node = createATSElement(tag, attrs) // 创造一个 ast 节点
+      if (!root) {
+        // 看一下是否是 空树，如果是空树 则当前是输得根节点
+        root = node
+      }
+      if (currentParent) {
+        node.parent = currentParent
+        currentParent.children.push(node)
+      }
+      stack.push(node)
+      currentParent = node // currentParent 是栈中的最后一个
+    }
+    function onChars(text) {
+      text = text.replace(/\s/g, '')
+      // 文本直接 放到 当前指向的节点中
+      currentParent?.children.push({
+        type: TEXT_TYPE,
+        text,
+        parent: currentParent
+      })
+    }
+    function onEnd(tag) {
+      //
+      stack.pop() // 将栈中的最后一个 弹出
+      currentParent = stack[stack.length - 1]
+
+      // 可以在这里校验 弹出的标签事不是 tag 是不是合法
+    }
+
+    let textEnd = html.indexOf('<') // 如果 indexOf 中的索引是0 则说明是一个标签
+    if (textEnd == 0) {
+      const startTagMatch = parseStartTag() // 开始标签的匹配结果
+      if (startTagMatch) {
+        onStart(startTagMatch.tagName, startTagMatch.attrs)
+        continue
+      }
+
+      // // console.log('continue:', html)
+
+      // 在html截取后 只剩 标签的闭合为止的时候
+      let endTagMatch = html.match(endTag)
+      // console.log({ endTagMatch })
+      if (endTagMatch) {
+        advance(endTagMatch[0].length)
+        onEnd(endTagMatch.tagName)
+        continue
+      }
+    }
+
+    if (textEnd > 0) {
+      // 如果 indexOf 中的索引 大于0 则说明是一个 结束标签开始的文职 即文本的结束为止 hello</div>
+      // 有文本
+      let text = html.substring(0, textEnd) // 文本内容
+      if (text) {
+        onChars(text)
+        advance(text.length) // 解析到的文本
+        // console.log(333, html)
+      }
+    }
+  }
+  console.log(root)
   function advance(n) {
     html = html.substring(n)
   }
   function parseStartTag() {
     const start = html.match(startTagOpen)
-    console.log(start)
+    // console.log({ start })
+    // console.log(start)
     if (start) {
       const match = {
         tagName: start[1],
         attrs: []
       }
       advance(start[0].length)
-      console.log(11, match)
+      // console.log('startTagOpen=>>', match)
 
-      // 如果不是开始便签的结束就开始一直匹配下去
+      // 如果不是开始标签的结束就开始一直匹配下去
       let attr, end
       while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+        // // console.log('attribute==>',html.match(attribute))
         advance(attr[0].length)
         match.attrs.push({
           name: attr[1],
           value: attr[3] || attr[4] || attr[5] || true
         })
       }
-      console.log(22, html)
+      // console.log(22, html)
 
       if (end) {
         advance(end[0].length)
       }
-      console.log({ match })
+      // console.log({ match })
       return match
     }
-    console.log(21, html)
-
-    console.log(23, html)
-
     return false // 不是开始标签
   }
-  while (html) {
-    /*
-      如果 textEnd 为0 说明是一个开始标签或者结束标签
-      如果 textEnd >0 说明是一个开始就是文本的结束位置
-    */
-    let textEnd = html.indexOf('<') // 如果 indexOf 中的索引是0 则说明是一个标签
-    if (textEnd == 0) {
-      const startTagMatch = parseStartTag() // 开始标签的匹配结果
-      if (startTagMatch) {
-        continue
-        // console.log('continue:', html)
-      }
-      let endTagMatch = html.match(endTag)
-      console.log({endTagMatch})
-      if (endTagMatch) {
-        advance(endTagMatch[0].length)
-        continue
-      }
-    }
-
-    if (textEnd >= 0) {
-      // 有文本
-      let text = html.substring(0, textEnd) // 文本内容
-      if (text) {
-        advance(text.length) // 解析到的文本
-        console.log(333, html)
-      }
-    }
-  }
-  console.log(555, html)
+  // console.log(555, html)
+  // console.log(999, root)
 }
 
 export function complieToFunction(template) {
@@ -87,5 +139,5 @@ export function complieToFunction(template) {
     2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
   */
   parseHTML(template)
-  console.log(template)
+  // console.log(template)
 }

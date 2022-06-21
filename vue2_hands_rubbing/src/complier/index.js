@@ -8,7 +8,6 @@ const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s
 const startTagClose = /^\s*(\/?)>/ // <div> <br/>
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g // {{asdsada}} 匹配到的内容就是我们表达式的变量
 
-console.log(startTagOpen)
 
 function parseHTML(html) {
   //  html最开始肯定是一个 <
@@ -17,14 +16,12 @@ function parseHTML(html) {
   }
   function parseStartTag() {
     const start = html.match(startTagOpen)
-    console.log(start)
     if (start) {
       const match = {
         tagName: start[1],
         attrs: []
       }
       advance(start[0].length)
-      console.log(11, match)
 
       // 如果不是开始便签的结束就开始一直匹配下去
       let attr, end
@@ -35,17 +32,13 @@ function parseHTML(html) {
           value: attr[3] || attr[4] || attr[5] || true
         })
       }
-      console.log(22, html)
 
       if (end) {
         advance(end[0].length)
       }
-      console.log({ match })
       return match
     }
-    console.log(21, html)
 
-    console.log(23, html)
 
     return false // 不是开始标签
   }
@@ -59,10 +52,8 @@ function parseHTML(html) {
       const startTagMatch = parseStartTag() // 开始标签的匹配结果
       if (startTagMatch) {
         continue
-        // console.log('continue:', html)
       }
       let endTagMatch = html.match(endTag)
-      console.log({endTagMatch})
       if (endTagMatch) {
         advance(endTagMatch[0].length)
         continue
@@ -74,11 +65,9 @@ function parseHTML(html) {
       let text = html.substring(0, textEnd) // 文本内容
       if (text) {
         advance(text.length) // 解析到的文本
-        console.log(333, html)
       }
     }
   }
-  console.log(555, html)
 }
 
 export function complieToFunction(template) {
@@ -87,5 +76,4 @@ export function complieToFunction(template) {
     2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
   */
   parseHTML(template)
-  console.log(template)
 }

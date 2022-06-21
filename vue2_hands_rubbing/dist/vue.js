@@ -15,8 +15,6 @@
   var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
   var startTagClose = /^\s*(\/?)>/; // <div> <br/>
 
-  console.log(startTagOpen);
-
   function parseHTML(html) {
     //  html最开始肯定是一个 <
     function advance(n) {
@@ -25,15 +23,13 @@
 
     function parseStartTag() {
       var start = html.match(startTagOpen);
-      console.log(start);
 
       if (start) {
         var match = {
           tagName: start[1],
           attrs: []
         };
-        advance(start[0].length);
-        console.log(11, match); // 如果不是开始便签的结束就开始一直匹配下去
+        advance(start[0].length); // 如果不是开始便签的结束就开始一直匹配下去
 
         var attr, end;
 
@@ -45,20 +41,13 @@
           });
         }
 
-        console.log(22, html);
-
         if (end) {
           advance(end[0].length);
         }
 
-        console.log({
-          match: match
-        });
         return match;
       }
 
-      console.log(21, html);
-      console.log(23, html);
       return false; // 不是开始标签
     }
 
@@ -73,13 +62,10 @@
         var startTagMatch = parseStartTag(); // 开始标签的匹配结果
 
         if (startTagMatch) {
-          continue; // console.log('continue:', html)
+          continue;
         }
 
         var endTagMatch = html.match(endTag);
-        console.log({
-          endTagMatch: endTagMatch
-        });
 
         if (endTagMatch) {
           advance(endTagMatch[0].length);
@@ -93,13 +79,9 @@
 
         if (text) {
           advance(text.length); // 解析到的文本
-
-          console.log(333, html);
         }
       }
     }
-
-    console.log(555, html);
   }
 
   function complieToFunction(template) {
@@ -108,7 +90,6 @@
       2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
     */
     parseHTML(template);
-    console.log(template);
   }
 
   function _typeof(obj) {
@@ -319,14 +300,8 @@
     };
 
     Vue.prototype.$mount = function (el) {
-      console.log({
-        el: el
-      });
       var vm = this;
       el = document.querySelector(el);
-      console.log(2, {
-        el: el
-      });
       var opts = vm.$options;
 
       if (!opts.render) {
@@ -344,15 +319,8 @@
 
         if (template) {
           var render = complieToFunction(template);
-          console.log('r1', {
-            render: render
-          });
           opts.render = render;
-          console.log('r', {
-            render: render
-          });
-        } // console.log({ template })
-
+        }
       }
     };
   }

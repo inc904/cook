@@ -4,6 +4,100 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Vue = factory());
 })(this, (function () { 'use strict';
 
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
+    return Constructor;
+  }
+
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+
+    var _s, _e;
+
+    try {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
   // 对模板进行编译
   var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z]*";
   var qnameCapture = "((?:".concat(ncname, "\\:)?").concat(ncname, ")");
@@ -29,52 +123,6 @@
         如果 textEnd 为0 说明是一个开始标签或者结束标签
         如果 textEnd >0 说明是一个开始就是文本的结束位置
       */
-      function createATSElement(tag, attrs) {
-        return {
-          tag: tag,
-          type: ELEMENT_TYPE,
-          attrs: attrs,
-          children: [],
-          parent: null
-        };
-      }
-
-      function onStart(tag, attrs) {
-        var node = createATSElement(tag, attrs); // 创造一个 ast 节点
-
-        if (!root) {
-          // 看一下是否是 空树，如果是空树 则当前是输得根节点
-          root = node;
-        }
-
-        if (currentParent) {
-          node.parent = currentParent;
-          currentParent.children.push(node);
-        }
-
-        stack.push(node);
-        currentParent = node; // currentParent 是栈中的最后一个
-      }
-
-      function onChars(text) {
-        var _currentParent;
-
-        text = text.replace(/\s/g, ''); // 文本直接 放到 当前指向的节点中
-
-        (_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
-          type: TEXT_TYPE,
-          text: text,
-          parent: currentParent
-        });
-      }
-
-      function onEnd(tag) {
-        //
-        stack.pop(); // 将栈中的最后一个 弹出
-
-        currentParent = stack[stack.length - 1]; // 可以在这里校验 弹出的标签事不是 tag 是不是合法
-      }
-
       var textEnd = html.indexOf('<'); // 如果 indexOf 中的索引是0 则说明是一个标签
 
       if (textEnd == 0) {
@@ -107,15 +155,61 @@
           // console.log(333, html)
         }
       }
+
+      function createATSElement(tag, attrs) {
+        return {
+          tag: tag,
+          type: ELEMENT_TYPE,
+          attrs: attrs,
+          children: [],
+          parent: null
+        };
+      }
+
+      function onStart(tag, attrs) {
+        var node = createATSElement(tag, attrs); // 创造一个 ast 节点
+
+        if (!root) {
+          // 看一下是否是 空树，如果是空树 则当前是输得根节点
+          root = node;
+        }
+
+        if (currentParent) {
+          node.parent = currentParent;
+          currentParent.children.push(node);
+        }
+
+        stack.push(node);
+        currentParent = node; // currentParent 是栈中的最后一个
+      }
+
+      function onChars(text) {
+        var _currentParent;
+
+        text = text.replace(/\s/g, ''); //  原意：将 超过两个以上的空格 替换为空
+        // 文本直接 放到 当前指向的节点中
+
+        text && ((_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
+          type: TEXT_TYPE,
+          text: text,
+          parent: currentParent
+        }));
+      }
+
+      function onEnd(tag) {
+        //
+        stack.pop(); // 将栈中的最后一个 弹出
+
+        currentParent = stack[stack.length - 1]; // 可以在这里校验 弹出的标签事不是 tag 是不是合法
+      }
     };
 
     while (html) {
       var _ret = _loop();
 
       if (_ret === "continue") continue;
-    }
+    } // console.log('root:',root)
 
-    console.log(root);
 
     function advance(n) {
       html = html.substring(n);
@@ -152,8 +246,10 @@
 
       return false; // 不是开始标签
     } // console.log(555, html)
-    // console.log(999, root)
 
+
+    console.log(999, root);
+    return root;
   }
 
   function complieToFunction(template) {
@@ -161,42 +257,49 @@
       1. 将 template 转化成 ast 语法树
       2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
     */
-    parseHTML(template); // console.log(template)
+    var ast = parseHTML(template); // console.log(template)
+
+    console.log('ast：', ast);
+    var render = codegen(ast);
+    console.log('render:', render);
   }
 
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
+  function genProps(attrs) {
+    var str = ''; // {name. value}
 
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
-  }
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      console.log(attr, attr.name);
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      if (attr.name == 'style') {
+        (function () {
+          // style: {coloe: red}
+          var obj = {};
+          attr.value.split(';').forEach(function (item) {
+            // qs 库 queryString
+            var _item$split = item.split(':'),
+                _item$split2 = _slicedToArray(_item$split, 2),
+                key = _item$split2[0],
+                value = _item$split2[1];
+
+            obj[key] = value;
+          });
+          console.log({
+            obj: obj
+          });
+          attr.value = obj;
+        })();
+      }
+
+      str += "".concat(attr.name, ":").concat(JSON.stringify(attr.value), ",");
     }
+
+    return "{".concat(str.slice(0, -1), "}");
   }
 
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
-    return Constructor;
+  function codegen(ast) {
+    var code = "_c('".concat(ast.tag, "', ").concat(ast.attrs.length > 0 ? genProps(ast.attrs) : null, ")");
+    return code;
   }
 
   // 我们希望重写数组中的部分方法

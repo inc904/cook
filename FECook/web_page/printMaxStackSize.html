@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    计算call stack的最大内存
+    <input type="text" value="输入" />
+    <script>
+      function demo() {
+        // oninput="demo()"
+        console.log(99, this) // window
+      }
+
+      let inp = document.querySelector('input')
+      inp.addEventListener('input', demo)
+    </script>
+    <script>
+      function printMaxStackSize() {
+        let size = 0
+        const fn = () => {
+          size++
+          fn()
+        }
+        try {
+          fn()
+        } catch (error) {
+          console.log(size, error)
+          return size
+        }
+      }
+
+      function printMaxStackSize2() {
+        try {
+          return 1 + printMaxStackSize2()
+        } catch (e) {
+          return 1
+        }
+      }
+
+      // console.log(printMaxStackSize())
+      // console.log(printMaxStackSize2())
+    </script>
+  </body>
+</html>

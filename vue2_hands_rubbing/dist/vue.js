@@ -14,9 +14,109 @@
 
   var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
   var startTagClose = /^\s*(\/?)>/; // <div> <br/>
+  // console.log(startTagOpen)
 
   function parseHTML(html) {
+    var ELEMENT_TYPE = 1;
+    var TEXT_TYPE = 1;
+    var stack = []; // 用于存放元素的
+
+    var currentParent, root; // 指向的是栈中的最后一个 ; 根节点
     //  html最开始肯定是一个 <
+
+    var _loop = function _loop() {
+      /*
+        如果 textEnd 为0 说明是一个开始标签或者结束标签
+        如果 textEnd >0 说明是一个开始就是文本的结束位置
+      */
+      function createATSElement(tag, attrs) {
+        return {
+          tag: tag,
+          type: ELEMENT_TYPE,
+          attrs: attrs,
+          children: [],
+          parent: null
+        };
+      }
+
+      function onStart(tag, attrs) {
+        var node = createATSElement(tag, attrs); // 创造一个 ast 节点
+
+        if (!root) {
+          // 看一下是否是 空树，如果是空树 则当前是输得根节点
+          root = node;
+        }
+
+        if (currentParent) {
+          node.parent = currentParent;
+          currentParent.children.push(node);
+        }
+
+        stack.push(node);
+        currentParent = node; // currentParent 是栈中的最后一个
+      }
+
+      function onChars(text) {
+        var _currentParent;
+
+        text = text.replace(/\s/g, ''); // 文本直接 放到 当前指向的节点中
+
+        (_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
+          type: TEXT_TYPE,
+          text: text,
+          parent: currentParent
+        });
+      }
+
+      function onEnd(tag) {
+        //
+        stack.pop(); // 将栈中的最后一个 弹出
+
+        currentParent = stack[stack.length - 1]; // 可以在这里校验 弹出的标签事不是 tag 是不是合法
+      }
+
+      var textEnd = html.indexOf('<'); // 如果 indexOf 中的索引是0 则说明是一个标签
+
+      if (textEnd == 0) {
+        var startTagMatch = parseStartTag(); // 开始标签的匹配结果
+
+        if (startTagMatch) {
+          onStart(startTagMatch.tagName, startTagMatch.attrs);
+          return "continue";
+        } // // console.log('continue:', html)
+        // 在html截取后 只剩 标签的闭合为止的时候
+
+
+        var endTagMatch = html.match(endTag); // console.log({ endTagMatch })
+
+        if (endTagMatch) {
+          advance(endTagMatch[0].length);
+          onEnd(endTagMatch.tagName);
+          return "continue";
+        }
+      }
+
+      if (textEnd > 0) {
+        // 如果 indexOf 中的索引 大于0 则说明是一个 结束标签开始的文职 即文本的结束为止 hello</div>
+        // 有文本
+        var text = html.substring(0, textEnd); // 文本内容
+
+        if (text) {
+          onChars(text);
+          advance(text.length); // 解析到的文本
+          // console.log(333, html)
+        }
+      }
+    };
+
+    while (html) {
+      var _ret = _loop();
+
+      if (_ret === "continue") continue;
+    }
+
+    console.log(root);
+
     function advance(n) {
       html = html.substring(n);
     }
@@ -29,11 +129,12 @@
           tagName: start[1],
           attrs: []
         };
-        advance(start[0].length); // 如果不是开始便签的结束就开始一直匹配下去
+        advance(start[0].length); // 如果不是开始标签的结束就开始一直匹配下去
 
         var attr, end;
 
         while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+          // // console.log('attribute==>',html.match(attribute))
           advance(attr[0].length);
           match.attrs.push({
             name: attr[1],
@@ -43,45 +144,16 @@
 
         if (end) {
           advance(end[0].length);
-        }
+        } // console.log({ match })
+
 
         return match;
       }
 
       return false; // 不是开始标签
-    }
+    } // console.log(555, html)
+    // console.log(999, root)
 
-    while (html) {
-      /*
-        如果 textEnd 为0 说明是一个开始标签或者结束标签
-        如果 textEnd >0 说明是一个开始就是文本的结束位置
-      */
-      var textEnd = html.indexOf('<'); // 如果 indexOf 中的索引是0 则说明是一个标签
-
-      if (textEnd == 0) {
-        var startTagMatch = parseStartTag(); // 开始标签的匹配结果
-
-        if (startTagMatch) {
-          continue;
-        }
-
-        var endTagMatch = html.match(endTag);
-
-        if (endTagMatch) {
-          advance(endTagMatch[0].length);
-          continue;
-        }
-      }
-
-      if (textEnd >= 0) {
-        // 有文本
-        var text = html.substring(0, textEnd); // 文本内容
-
-        if (text) {
-          advance(text.length); // 解析到的文本
-        }
-      }
-    }
   }
 
   function complieToFunction(template) {
@@ -89,7 +161,7 @@
       1. 将 template 转化成 ast 语法树
       2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
     */
-    parseHTML(template);
+    parseHTML(template); // console.log(template)
   }
 
   function _typeof(obj) {
@@ -307,22 +379,29 @@
       if (!opts.render) {
         // 先查找有没有render函数
         var template; // 没有render 看一下 是否写了 template ，没有写template 采用外部的template
+        // if (!opts.template && el) {
+        //   template = el.outerHTML
+        // } else {
+        //   if (el) {
+        //     // 如果有el 则采用模板的内容
+        //     template = opts.template
+        //   }
+        // }
 
-        if (!opts.template && el) {
-          template = el.outerHTML;
-        } else {
-          if (el) {
-            // 如果有el 则采用模板的内容
-            template = opts.template;
-          }
+        if (el) {
+          template = opts.template ? opts.template : el.outerHTML;
         }
 
         if (template) {
+          console.log('r0', template);
           var render = complieToFunction(template);
           opts.render = render;
         }
       }
-    };
+    }; // script 标签引用的 vue.global.js 这个编译过程是在浏览器运行的
+    // runtime是不再包含模板编译的，这个编译是打包的时候通过loader来转义 .vue 文件的
+    // 用 runtime的时候不能使用 template 配置项
+
   }
 
   function Vue(options) {

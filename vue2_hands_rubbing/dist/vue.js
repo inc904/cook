@@ -29,52 +29,6 @@
         如果 textEnd 为0 说明是一个开始标签或者结束标签
         如果 textEnd >0 说明是一个开始就是文本的结束位置
       */
-      function createATSElement(tag, attrs) {
-        return {
-          tag: tag,
-          type: ELEMENT_TYPE,
-          attrs: attrs,
-          children: [],
-          parent: null
-        };
-      }
-
-      function onStart(tag, attrs) {
-        var node = createATSElement(tag, attrs); // 创造一个 ast 节点
-
-        if (!root) {
-          // 看一下是否是 空树，如果是空树 则当前是输得根节点
-          root = node;
-        }
-
-        if (currentParent) {
-          node.parent = currentParent;
-          currentParent.children.push(node);
-        }
-
-        stack.push(node);
-        currentParent = node; // currentParent 是栈中的最后一个
-      }
-
-      function onChars(text) {
-        var _currentParent;
-
-        text = text.replace(/\s/g, ''); // 文本直接 放到 当前指向的节点中
-
-        (_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
-          type: TEXT_TYPE,
-          text: text,
-          parent: currentParent
-        });
-      }
-
-      function onEnd(tag) {
-        //
-        stack.pop(); // 将栈中的最后一个 弹出
-
-        currentParent = stack[stack.length - 1]; // 可以在这里校验 弹出的标签事不是 tag 是不是合法
-      }
-
       var textEnd = html.indexOf('<'); // 如果 indexOf 中的索引是0 则说明是一个标签
 
       if (textEnd == 0) {
@@ -107,6 +61,55 @@
           // console.log(333, html)
         }
       }
+
+      function createATSElement(tag, attrs) {
+        return {
+          tag: tag,
+          type: ELEMENT_TYPE,
+          attrs: attrs,
+          children: [],
+          parent: null
+        };
+      }
+
+      function onStart(tag, attrs) {
+        var node = createATSElement(tag, attrs); // 创造一个 ast 节点
+
+        if (!root) {
+          // 看一下是否是 空树，如果是空树 则当前是输得根节点
+          root = node;
+        }
+
+        if (currentParent) {
+          node.parent = currentParent;
+          currentParent.children.push(node);
+        }
+
+        stack.push(node);
+        currentParent = node; // currentParent 是栈中的最后一个
+      }
+
+      function onChars(text) {
+        text = text.replace(/\s/g, '');
+
+        if (text) {
+          var _currentParent;
+
+          // 文本直接 放到 当前指向的节点中
+          (_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
+            type: TEXT_TYPE,
+            text: text,
+            parent: currentParent
+          });
+        }
+      }
+
+      function onEnd(tag) {
+        //
+        stack.pop(); // 将栈中的最后一个 弹出
+
+        currentParent = stack[stack.length - 1]; // 可以在这里校验 弹出的标签事不是 tag 是不是合法
+      }
     };
 
     while (html) {
@@ -123,7 +126,6 @@
 
     function parseStartTag() {
       var start = html.match(startTagOpen); // console.log({ start })
-      // console.log(start)
 
       if (start) {
         var match = {
@@ -154,9 +156,9 @@
       }
 
       return false; // 不是开始标签
-    } // console.log(555, html)
-    // console.log(999, root)
+    }
 
+    return root;
   }
 
   function complieToFunction(template) {
@@ -164,7 +166,11 @@
       1. 将 template 转化成 ast 语法树
       2. 生成 render方法 render 方法执行后的结果就是 虚拟DOM
     */
-    parseHTML(template); // console.log(template)
+    var ast = parseHTML(template); // console.log(template)
+
+    console.log({
+      ast: ast
+    });
   }
 
   function _typeof(obj) {

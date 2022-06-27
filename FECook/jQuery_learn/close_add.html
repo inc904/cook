@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/jquery.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="#1">hhh</a>
+      </li>
+      <li>
+        <a href="#1">hhh</a>
+      </li>
+      <li>
+        <a href="#1">hhh</a>
+      </li>
+      <li>
+        <a href="#1">hhh</a>
+      </li>
+      <li>
+        <a href="#1">hhh</a>
+      </li>
+    </ul>
+    <script>
+      let hrefStr = '/crm/club_rebate/summary_record?operation_type=1'
+      console.log(hrefStr.split('/'))
+      let lis = $('ul').find('li a')
+      lis.each((i, item) => {
+        console.log(item)
+        console.log($(item).prop('href'))
+      })
+      var s = document.getElementById('thing').style
+      s.opacity = 1
+      ;(function fade() {
+        ;(s.opacity -= 0.1) < 0 ? (s.display = 'none') : setTimeout(fade, 40)
+      })()
+    </script>
+  </body>
+</html>

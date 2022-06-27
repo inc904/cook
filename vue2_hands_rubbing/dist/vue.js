@@ -4,6 +4,100 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Vue = factory());
 })(this, (function () { 'use strict';
 
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
+    return Constructor;
+  }
+
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+
+    var _s, _e;
+
+    try {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
   // 对模板进行编译
   var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z]*";
   var qnameCapture = "((?:".concat(ncname, "\\:)?").concat(ncname, ")");
@@ -90,18 +184,16 @@
       }
 
       function onChars(text) {
-        text = text.replace(/\s/g, '');
+        var _currentParent;
 
-        if (text) {
-          var _currentParent;
+        text = text.replace(/\s/g, ''); //  原意：将 超过两个以上的空格 替换为空
+        // 文本直接 放到 当前指向的节点中
 
-          // 文本直接 放到 当前指向的节点中
-          (_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
-            type: TEXT_TYPE,
-            text: text,
-            parent: currentParent
-          });
-        }
+        text && ((_currentParent = currentParent) === null || _currentParent === void 0 ? void 0 : _currentParent.children.push({
+          type: TEXT_TYPE,
+          text: text,
+          parent: currentParent
+        }));
       }
 
       function onEnd(tag) {
@@ -116,24 +208,22 @@
       var _ret = _loop();
 
       if (_ret === "continue") continue;
-    }
+    } // console.log('root:',root)
 
-    console.log(root);
 
     function advance(n) {
       html = html.substring(n);
     }
 
     function parseStartTag() {
-      var start = html.match(startTagOpen); // console.log({ start })
+      var start = html.match(startTagOpen);
 
       if (start) {
         var match = {
           tagName: start[1],
           attrs: []
         };
-        advance(start[0].length); // console.log('startTagOpen=>>', match)
-        // 如果不是开始标签的结束就开始一直匹配下去
+        advance(start[0].length); // 如果不是开始标签的结束就开始一直匹配下去
 
         var attr, end;
 
@@ -144,8 +234,7 @@
             name: attr[1],
             value: attr[3] || attr[4] || attr[5] || true
           });
-        } // console.log(22, html)
-
+        }
 
         if (end) {
           advance(end[0].length);
@@ -156,8 +245,10 @@
       }
 
       return false; // 不是开始标签
-    }
+    } // console.log(555, html)
 
+
+    console.log(999, root);
     return root;
   }
 
@@ -168,44 +259,47 @@
     */
     var ast = parseHTML(template); // console.log(template)
 
-    console.log({
-      ast: ast
-    });
+    console.log('ast：', ast);
+    var render = codegen(ast);
+    console.log('render:', render);
   }
 
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
+  function genProps(attrs) {
+    var str = ''; // {name. value}
 
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
-  }
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      console.log(attr, attr.name);
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      if (attr.name == 'style') {
+        (function () {
+          // style: {coloe: red}
+          var obj = {};
+          attr.value.split(';').forEach(function (item) {
+            // qs 库 queryString
+            var _item$split = item.split(':'),
+                _item$split2 = _slicedToArray(_item$split, 2),
+                key = _item$split2[0],
+                value = _item$split2[1];
+
+            obj[key] = value;
+          });
+          console.log({
+            obj: obj
+          });
+          attr.value = obj;
+        })();
+      }
+
+      str += "".concat(attr.name, ":").concat(JSON.stringify(attr.value), ",");
     }
+
+    return "{".concat(str.slice(0, -1), "}");
   }
 
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
-    return Constructor;
+  function codegen(ast) {
+    var code = "_c('".concat(ast.tag, "', ").concat(ast.attrs.length > 0 ? genProps(ast.attrs) : null, ")");
+    return code;
   }
 
   // 我们希望重写数组中的部分方法
@@ -381,14 +475,8 @@
     };
 
     Vue.prototype.$mount = function (el) {
-      console.log({
-        el: el
-      });
       var vm = this;
       el = document.querySelector(el);
-      console.log(2, {
-        el: el
-      });
       var opts = vm.$options;
 
       if (!opts.render) {
@@ -411,11 +499,7 @@
           console.log('r0', template);
           var render = complieToFunction(template);
           opts.render = render;
-          console.log('r', {
-            render: render
-          });
-        } // console.log({ template })
-
+        }
       }
     }; // script 标签引用的 vue.global.js 这个编译过程是在浏览器运行的
     // runtime是不再包含模板编译的，这个编译是打包的时候通过loader来转义 .vue 文件的

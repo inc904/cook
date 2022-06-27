@@ -14,10 +14,8 @@ export function initMixin(Vue) {
     }
   }
   Vue.prototype.$mount = function (el) {
-    console.log({ el })
     const vm = this
     el = document.querySelector(el)
-    console.log(2, { el })
 
     let opts = vm.$options
     if (!opts.render) {
@@ -40,9 +38,7 @@ export function initMixin(Vue) {
         const render = complieToFunction(template)
 
         opts.render = render
-        console.log('r', { render })
       }
-      // console.log({ template })
     }
   }
   // script 标签引用的 vue.global.js 这个编译过程是在浏览器运行的

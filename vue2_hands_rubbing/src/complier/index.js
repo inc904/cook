@@ -7,9 +7,32 @@ export function complieToFunction(template) {
   */
   let ast = parseHTML(template)
   // console.log(template)
-  console.log({ ast })
-  function render() {
-    return h()
+  console.log('ast：', ast)
+  let render = codegen(ast)
+  console.log('render:', render)
+}
+
+function genProps(attrs) {
+  let str = '' // {name. value}
+  for (let i = 0; i < attrs.length; i++) {
+    let attr = attrs[i]
+    console.log(attr, attr.name)
+    if (attr.name == 'style') {
+      // style: {coloe: red}
+      let obj = {}
+      attr.value.split(';').forEach(item => {
+        // qs 库 queryString
+        let [key, value] = item.split(':')
+        obj[key] = value
+      })
+      console.log({ obj })
+      attr.value = obj
+    }
+    str += `${attr.name}:${JSON.stringify(attr.value)},`
   }
-  function h() {}
+  return `{${str.slice(0, -1)}}`
+}
+function codegen(ast) {
+  let code = `_c('${ast.tag}', ${ast.attrs.length > 0 ? genProps(ast.attrs) : null})`
+  return code
 }

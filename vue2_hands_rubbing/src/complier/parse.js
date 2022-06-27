@@ -61,6 +61,7 @@ export function parseHTML(html) {
         parent: null
       }
     }
+
     function onStart(tag, attrs) {
       let node = createATSElement(tag, attrs) // 创造一个 ast 节点
       if (!root) {
@@ -78,6 +79,9 @@ export function parseHTML(html) {
       text = text.replace(/\s/g, '')
       if (text) {
         // 文本直接 放到 当前指向的节点中
+      text = text.replace(/\s/g, '') //  原意：将 超过两个以上的空格 替换为空
+      // 文本直接 放到 当前指向的节点中
+      text &&
         currentParent?.children.push({
           type: TEXT_TYPE,
           text,
@@ -94,19 +98,18 @@ export function parseHTML(html) {
     }
   }
   console.log(root)
+  // console.log('root:',root)
   function advance(n) {
     html = html.substring(n)
   }
   function parseStartTag() {
     const start = html.match(startTagOpen)
-    // console.log({ start })
     if (start) {
       const match = {
         tagName: start[1],
         attrs: []
       }
       advance(start[0].length)
-      // console.log('startTagOpen=>>', match)
 
       // 如果不是开始标签的结束就开始一直匹配下去
       let attr, end
@@ -118,7 +121,6 @@ export function parseHTML(html) {
           value: attr[3] || attr[4] || attr[5] || true
         })
       }
-      // console.log(22, html)
 
       if (end) {
         advance(end[0].length)
@@ -128,5 +130,7 @@ export function parseHTML(html) {
     }
     return false // 不是开始标签
   }
+  // console.log(555, html)
+  console.log(999, root)
   return root
 }

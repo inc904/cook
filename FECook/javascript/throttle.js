@@ -5,19 +5,19 @@ let o1 = {
   }
 }
 // 节流：定时器写法
-function throttle(fn, delay) {
-  let timer
-  return function () {
-    if (!timer) {
-      timer = setTimeout(() => {
-        timer = null
-        fn.call(this)
-      }, delay)
-    } else {
-      console.log('技能CD中')
-    }
-  }
-}
+// function throttle(fn, delay) {
+//   let timer
+//   return function () {
+//     if (!timer) {
+//       timer = setTimeout(() => {
+//         timer = null
+//         fn.call(this)
+//       }, delay)
+//     } else {
+//       console.log('技能CD中')
+//     }
+//   }
+// }
 function throttle2(fn, delay) {
   let preTime = 0
 
@@ -35,6 +35,7 @@ function throttle2(fn, delay) {
   }
 }
 function throttle3(func, wait) {
+  console.log(func)
   let previous = 0
 
   return function () {
@@ -49,3 +50,44 @@ function throttle3(func, wait) {
     }
   }
 }
+// function throttle(fn, delay) {
+//   console.log({fn})
+//   let timer = null
+//   return () => {
+//     console.log({arguments})
+//     if (timer) {
+//       return
+//     }
+//     timer = setTimeout(() => {
+//       fn.apply(this, arguments)
+//       timer = null
+//     }, delay)
+//   }
+// }
+
+function throttle(fn, delay) {
+  let last = 0
+  return (...args) => {
+    const now = +Date.now()
+    console.log('call', now, last, delay)
+    if (now > last + delay) {
+      last = now
+      fn.apply(this, args)
+    }
+  }
+}
+
+// function throttle(func, wait) {
+//   let previous = 0
+//   return function () {
+//     let now = +new Date()
+//     let remain = wait - (now - previous)
+
+//     if (remain < 0) {
+//       previous = now
+//       func.call(this, arguments)
+//     } else {
+//       // console.log('技能CD中')
+//     }
+//   }
+// }

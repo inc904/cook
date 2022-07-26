@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<style>
+  .wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    grid-gap: 10px 10px;
+    /* grid-template-areas: 'a b c'
+        'd e f'
+        'g h i'; */
+    grid-template-areas: "header header header"
+      "main main sidebar"
+      "footer footer footer";
+  }
+
+  .item {
+    text-align: center;
+    font-size: 200%;
+    color: #fff;
+  }
+
+  .one {
+    background-color: #b8e8e0;
+  }
+
+  .two {
+    background-color: #8CC7B5;
+  }
+
+  .three {
+    background-color: #efe3bf;
+  }
+
+  .four {
+    background-color: #BEE7E9;
+  }
+
+  .five {
+    background-color: #E6CEAC;
+  }
+
+  .six {
+    background-color: #ECAD9E;
+  }
+
+</style>
+<div class="wrapper">
+  <div class="one item">One</div>
+  <div class="two item">Two</div>
+  <div class="three item">Three</div>
+  <div class="four item">Four</div>
+  <div class="five item">Five</div>
+  <div class="six item">Six</div>
+  <div class="six item">Six</div>
+  <div class="six item">Six</div>
+  <div class="six item">Six</div>
+</div>
+
+</html>

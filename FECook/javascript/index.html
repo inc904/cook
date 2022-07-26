@@ -13,10 +13,28 @@
     <button id="btn3">CLICK3</button>
     <button id="btn4">CLICK4</button>
     <script>
-      btn1.onclick = o1.say
-      btn2.onclick = throttle(o1.say, 2000)
-      btn3.onclick = throttle2(o1.say,2000)
-      btn4.onclick = throttle3(o1.say,2000)
+      // btn1.onclick = o1.say
+      // btn2.onclick = throttle(o1.say, 2000)
+      // btn3.onclick = throttle2(o1.say, 2000)
+      // btn4.onclick = throttle3(o1.say, 2000)
+
+      function fn(f) {
+        let obj = {
+          fn1: function () {
+            console.log('fn11111')
+          },
+          fn2: function () {
+            console.log('fn22222')
+          }
+        }
+        obj[f]()
+      }
+
+      var throttleAjax = throttle(fn, 1000)
+
+      btn4.onclick = function () {
+        throttleAjax('fn2')
+      }
     </script>
   </body>
 </html>

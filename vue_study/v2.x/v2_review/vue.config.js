@@ -1,4 +1,3 @@
-console.log(12312)
 module.exports = {
   productionSourceMap: false,
   devServer: {

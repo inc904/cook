@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <el-button type="primary">Create</el-button>
   </div>
 </template>
 

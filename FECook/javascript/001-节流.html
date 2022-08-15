@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+</head>
+
+<body>
+  <!--
+    https://zhuanlan.zhihu.com/p/542839509
+   -->
+  <button id="btn">console</button>
+
+  <script>
+
+
+    let btn = document.getElementById('btn')
+
+    // btn.onclick = () => {
+    //   // myConsole('hah')
+    //   let a = throttle(myConsole, 500)
+    //   a()
+    // }
+
+
+    let th_con = throttle2(myConsole, 1500)
+
+    btn.onclick = function () {
+      th_con('xxxa')
+      // throttle2(myConsole, 500)('bbb')
+    }
+
+    // btn.onclick = throttle2(myConsole, 1500)('aaa')
+
+
+    function throttled1(fn, delay = 500) {
+      let oldTime = 0
+      return function (...args) {
+        let nowTime = +Date.now()
+        let remain = delay - (nowTime - oldTime)
+
+        if (remain < 0) {
+          oldTime = nowTime
+          fn.apply(this, args)
+        } else {
+          console.log('CD...')
+        }
+      }
+    }
+
+    function throttle2(fn, delay) {
+      // 记录上一次触发的时间
+      var lastTime = 0
+      return function (...args) {
+        //  记录当前函数触发的时间
+        var nowTime = +Date.now()
+        let remain = delay - (nowTime - lastTime)
+        if (remain < 0) {
+          lastTime = nowTime
+          // 修正 this 指向
+          fn.call(this, ...args)
+          // 同步时间
+        } else {
+          console.log('CD...')
+        }
+      }
+    }
+
+    function throttle(func, wait) {
+      let previous = 0
+      return function () {
+        let now = +new Date()
+        let remain = wait - (now - previous)
+        if (remain < 0) {
+          previous = now
+          func.call(this, arguments)
+        } else {
+          console.log('技能CD中')
+        }
+      }
+    }
+
+
+
+    function myConsole(n) {
+      console.log(n)
+      console.log('hello world!' + n)
+    }
+  </script>
+</body>
+
+</html>

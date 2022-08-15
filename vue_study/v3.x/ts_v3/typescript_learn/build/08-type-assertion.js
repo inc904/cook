@@ -74,11 +74,24 @@ function getCacheData(key) {
 }
 const tom5 = getCacheData('tom');
 tom5.run();
-// 上面的例子中，我们调用完 getCacheData 之后，立即将它断言为 Cat 类型。这样的话明确了 tom 的类型，后续对 tom 的访问时就有了代码补全，提高了代码的可维护性
-// ##  TAG 类型短衫的限制
-/**
- * - 联合类型可以被断言为其中的一个类型
- * - 父类可以被断言成子类
- * - 任何类型都可以被断言成 any
- * - any 可以被断言成 任何类型
- */
+let peroson1 = [{
+        name: 'zs',
+        age: 15,
+        gender: 'male',
+    }, {
+        name: 'zs',
+        age: 15,
+        gender: 'male',
+        pocket: 'has'
+    }
+];
+let peroson2 = [{
+        name: 'zs',
+        age: 15,
+        gender: 'male',
+    }, {
+        name: 'zs',
+        age: 15,
+        gender: 'male',
+        pocket: 'has'
+    }];

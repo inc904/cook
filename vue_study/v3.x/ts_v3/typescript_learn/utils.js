@@ -2,7 +2,14 @@
 
 function debounce(fn, delay) {
   let timer
-  return function (...args) { if (timer) { clearTimeout(timer) } timer = setTimeout(() => { fn.apply(this, args) }, delay) }
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+    }, delay)
+  }
 } // 测试 const task = () => {   console.log('run task') } const debounceTask = debounce(task, 1000) window.addEventListener('scroll', debounceTask)
 // 2、 节流
 
@@ -15,7 +22,7 @@ function throttle(fn, delay) {
       fn.apply(this, args)
     }
   }
-} // 测试 const task = () => {   console.log('run task') } const throttleTask = throttle(task, 1000) window.addEventListener('scroll', throttleTask) 复制代码
+} // 测试 const task = () => {   console.log('run task') } const throttleTask = throttle(task, 1000) window.addEventListener('scroll', throttleTask)
 // 3、 深拷贝
 
 function deepClone(obj, cache = new WeakMap()) {
@@ -36,23 +43,25 @@ function deepClone(obj, cache = new WeakMap()) {
 
 // 4、 实现 Promise
 class MyPromise {
-  constructor(executor) { // executor执行器
+  constructor(executor) {
+    // executor执行器
     this.status = 'pending' // 等待状态
     this.value = null // 成功或失败的参数
     this.fulfilledCallbacks = [] // 成功的函数队列
     this.rejectedCallbacks = [] // 失败的函数队列
     const that = this
 
-    function resolve(value) { // 成功的方法
+    function resolve(value) {
+      // 成功的方法
       if (that.status === 'pending') {
         that.status = 'resolved'
         that.value = value
         that.fulfilledCallbacks.forEach(myFn => myFn(that.value)) //执行回调方法
-
       }
     }
 
-    function reject(value) { //失败的方法
+    function reject(value) {
+      //失败的方法
       if (that.status === 'pending') {
         that.status = 'rejected'
         that.value = value
@@ -67,15 +76,22 @@ class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
-    if (this.status === 'pending') { // 等待状态，添加回调函数到成功的函数队列
-      this.fulfilledCallbacks.push(() => { onFulfilled(this.value) }) // 等待状态，添加回调函数到失败的函数队列
-      this.rejectedCallbacks.push(() => { onRejected(this.value) })
+    if (this.status === 'pending') {
+      // 等待状态，添加回调函数到成功的函数队列
+      this.fulfilledCallbacks.push(() => {
+        onFulfilled(this.value)
+      }) // 等待状态，添加回调函数到失败的函数队列
+      this.rejectedCallbacks.push(() => {
+        onRejected(this.value)
+      })
     }
-    if (this.status === 'resolved') { // 支持同步调用
+    if (this.status === 'resolved') {
+      // 支持同步调用
       console.log('this', this)
       onFulfilled(this.value)
     }
-    if (this.status === 'rejected') { // 支持同步调用
+    if (this.status === 'rejected') {
+      // 支持同步调用
       onRejected(this.value)
     }
   }
@@ -83,15 +99,23 @@ class MyPromise {
 
 function fn() {
   return new MyPromise((resolve, reject) => {
-    setTimeout(() => { if (Math.random() > 0.6) { resolve(1) } else { reject(2) } }, 1000)
+    setTimeout(() => {
+      if (Math.random() > 0.6) {
+        resolve(1)
+      } else {
+        reject(2)
+      }
+    }, 1000)
   })
 }
-fn().then(res => {
-  console.log('res', res) // res 1
-}, err => {
-  console.log('err', err) // err 2
-})
-
+fn().then(
+  res => {
+    console.log('res', res) // res 1
+  },
+  err => {
+    console.log('err', err) // err 2
+  }
+)
 
 // 5、 异步控制并发数
 
@@ -104,7 +128,8 @@ function limitRequest(urls = [], limit = 5) {
       if (url) {
         try {
           await axios.post(url)
-          if (count == len - 1) { // 最后一个任务
+          if (count == len - 1) {
+            // 最后一个任务
             resolve()
           } else {
             count++ // 成功，启动下一个任务
@@ -125,8 +150,12 @@ function limitRequest(urls = [], limit = 5) {
 limitRequest(['http://xxa', 'http://xxb', 'http://xxc', 'http://xxd', 'http://xxe'])
 
 // 6、 ES5继承（ 组合继承）
-function Parent(name) { this.name = name }
-Parent.prototype.eat = function () { console.log(this.name + ' is eating') }
+function Parent(name) {
+  this.name = name
+}
+Parent.prototype.eat = function () {
+  console.log(this.name + ' is eating')
+}
 
 function Child(name, age) {
   Parent.call(this, name) // 构造函数继承
@@ -134,7 +163,9 @@ function Child(name, age) {
 }
 Child.prototype = new Parent() // 原型链继承
 Child.prototype.contructor = Child
-Child.prototype.study = function () { console.log(this.name + ' is studying') } // 测试 let child = new Child('xiaoming', 16) console.log(child.name) // xiaoming child.eat() // xiaoming is eating child.study() // xiaoming is studying
+Child.prototype.study = function () {
+  console.log(this.name + ' is studying')
+} // 测试 let child = new Child('xiaoming', 16) console.log(child.name) // xiaoming child.eat() // xiaoming is eating child.study() // xiaoming is studying
 
 // 7、 数组排序
 // sort 排序
@@ -154,7 +185,8 @@ console.log(arr) // ['a', 'b', 'c', 'd', 'e']
 // 冒泡排序
 function bubbleSort(arr) {
   let len = arr.length
-  for (let i = 0; i < len - 1; i++) { // 从第一个元素开始，比较相邻的两个元素，前者大就交换位置
+  for (let i = 0; i < len - 1; i++) {
+    // 从第一个元素开始，比较相邻的两个元素，前者大就交换位置
     for (let j = 0; j < len - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
         let num = arr[j]
@@ -175,11 +207,13 @@ const newArr4 = Array.from(new Set(arr))
 
 function resetArr(arr) {
   let res = []
-  arr.forEach(item => { if (res.indexOf(item) === -1) { res.push(item) } })
+  arr.forEach(item => {
+    if (res.indexOf(item) === -1) {
+      res.push(item)
+    }
+  })
   return res
 } // 测试 const arr = [1, 1, 2, 3, 3] console.log(resetArr(arr)) // [1, 2, 3]
-
-
 
 // 9、 获取url参数
 
@@ -193,8 +227,9 @@ function getParams(url) {
       const val = item.split('=')[1]
       res[key] = decodeURIComponent(val) // 解码
     })
-  } return res
-}  // 测试 const user = getParams('http://www.baidu.com?user=%E9%98%BF%E9%A3%9E&amp;age=16')
+  }
+  return res
+} // 测试 const user = getParams('http://www.baidu.com?user=%E9%98%BF%E9%A3%9E&amp;age=16')
 console.log(user) // { user: '阿飞', age: '16' }
 
 // 10、 事件总线 | 发布订阅模式
@@ -212,26 +247,32 @@ class EventEmitter {
   off(name, fn) {
     const tasks = this.cache[name]
     if (tasks) {
-      const index = tasks.findIndex((f) => f === fn || f.callback === fn)
+      const index = tasks.findIndex(f => f === fn || f.callback === fn)
       if (index >= 0) {
         tasks.splice(index, 1)
       }
     }
   }
   emit(name, once = false) {
-    if (this.cache[name]) { // 创建副本，如果回调函数内继续注册相同事件，会造成死循环
+    if (this.cache[name]) {
+      // 创建副本，如果回调函数内继续注册相同事件，会造成死循环
       const tasks = this.cache[name].slice()
       for (let fn of tasks) {
         fn()
-      } if (once) {
+      }
+      if (once) {
         delete this.cache[name]
       }
     }
   }
-}  // 测试
+} // 测试
 const eventBus = new EventEmitter()
-const task1 = () => { console.log('task1') }
-const task2 = () => { console.log('task2') }
+const task1 = () => {
+  console.log('task1')
+}
+const task2 = () => {
+  console.log('task2')
+}
 eventBus.on('task', task1)
 eventBus.on('task', task2)
 eventBus.off('task', task1)

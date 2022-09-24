@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in arr1" :key="item">{{item}}</li>
+    </ul>
+    <p>{{p1.name}}</p>
+    <button @click="myclick">click</button>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          arr1: ['haha', 'hhwww'],
+          arr2: ['123', '567'],
+          p1: { name: 'Jack' },
+          p2: { name: 'Rose' }
+        }
+      },
+      methods: {
+        myclick() {
+          this.arr1 = this.arr2
+          this.p1 = this.p2
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

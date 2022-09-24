@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,
+    td {
+      border: 1px solid #333;
+    }
+
+    table {
+      font-family: verdana, arial, sans-serif;
+      font-size: 14px;
+      color: #333333;
+      border-width: 1px;
+      border-color: #666666;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    table th {
+      border-width: 1px;
+      padding: 8px;
+      border-style: solid;
+      border-color: #666666;
+      font-size: 2em;
+    }
+
+    table td {
+      border-width: 1px;
+      padding: 8px 40px;
+      border-style: solid;
+      border-color: #666666;
+    }
+
+    .dst {
+      background-color: #fffcf1;
+    }
+
+    .c2 {
+      background-color: rgba(234, 205, 64, 1);
+    }
+
+    .c3 {
+      background-color: rgba(220, 122, 28, 1);
+    }
+
+    .dst tr:nth-child(1) td {
+      font-weight: bold;
+    }
+
+    .dst tr:nth-child(2) td,
+    .dst tr:nth-child(3) td,
+    .dst tr:nth-child(4) td {
+      background-color: rgba(220, 122, 28, 0.5);
+    }
+
+    .dst tr:nth-child(15) td,
+    .dst tr:nth-child(16) td,
+    .dst tr:nth-child(17) td {
+      background-color: rgba(220, 122, 28, 0.5);
+      font-weight: bold;
+      color: #68686c;
+    }
+
+    .dst tr:nth-child(15) td:nth-child(1),
+    .dst tr:nth-child(16) td:nth-child(1),
+    .dst tr:nth-child(17) td:nth-child(1) {
+      background-color: #fffcf1;
+      font-weight: normal;
+    }
+
+    .no-bgc {
+      background-color: transparent !important;
+    }
+
+    .dst th {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(to bottom, #c65517, #cd6119, #dc7b1c, #ea9120);
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="outer">
+  <table class="dst">
+    <thead>
+      <tr>
+        <th colspan="6">PSSF Event Schedule</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>Time CET</td>
+        <td>Event</td>
+        <td>Buy-in</td>
+        <td>Rebuy</td>
+        <td>Add-on</td>
+      </tr>
+      <tr>
+        <td rowspan="10" class="no-bgc">Dayily</td>
+        <td class="c2">12:00</td>
+        <td>FREE SAT - €1 x 20</td>
+        <td>Freeroll</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>13:00</td>
+        <td>FREE SAT - €1 x 20</td>
+        <td>Freeroll</td>
+        <td>0 </td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>14:00</td>
+        <td>FREE SAT - €1 x 20</td>
+        <td>Freeroll</td>
+        <td>0 </td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>15:00</td>
+        <td>€1 SAT - €5 x 5 GTD</td>
+        <td>€1+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>16:00</td>
+        <td>€1 SAT - €5 x 5 GTD </td>
+        <td>€1+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>17:00</td>
+        <td>€1 SAT - €5 x 5 GTD </td>
+        <td>€1+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>18:00</td>
+        <td>€5 SAT - €20 x 3 GTD </td>
+        <td>€5+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <td>€5 SAT - €20 x 3 GTD </td>
+        <td>€5+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>21:00</td>
+        <td>€2 SAT - €20 x 1 GTD </td>
+        <td>€2+€0 </td>
+        <td>Unlimited </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>22:00</td>
+        <td>€2 SAT - €20 x 1 GTD </td>
+        <td>€2+€0 </td>
+        <td>Unlimited </td>
+        <td>1 </td>
+      </tr>
+      <tr>
+        <td rowspan="3">Sep 30, Oct 10 & 20</td>
+        <td>17:30 </td>
+        <td>HYPER TURBO SAT </td>
+        <td>€5+€0 </td>
+        <td>1 </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>18:00</td>
+        <td>HYPER TURBO SAT </td>
+        <td>€5+€0 </td>
+        <td>1 </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>18:30</td>
+        <td>HYPER TURBO SAT </td>
+        <td>€5+€0 </td>
+        <td>1 </td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>Sep 30th</td>
+        <td>19:00 </td>
+        <td> PKO EVENT €6K GTD </td>
+        <td>€ 20+€0 </td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>Oct 10th</td>
+        <td>19:00 </td>
+        <td> PLO5 EVENT €6K GTD </td>
+        <td>€ 20+€0 </td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>Oct 20th</td>
+        <td>19:00 </td>
+        <td> NLH EVENT €6K GTD </td>
+        <td>€ 20+€0 </td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <table class="dst"><thead><tr><th colspan="6">PSSF Event Schedule</th></tr></thead><tbody><tr><td>Date</td><td>Time CET</td><td>Event</td><td>Buy-in</td><td>Rebuy</td><td>Add-on</td></tr><tr><td rowspan="10"class="no-bgc">Dayily</td><td class="c2">12:00</td><td>FREE SAT-€1 x 20</td><td>Freeroll</td><td>0</td><td>0</td></tr><tr><td>13:00</td><td>FREE SAT-€1 x 20</td><td>Freeroll</td><td>0</td><td>0</td></tr><tr><td>14:00</td><td>FREE SAT-€1 x 20</td><td>Freeroll</td><td>0</td><td>0</td></tr><tr><td>15:00</td><td>€1 SAT-€5 x 5 GTD</td><td>€1+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>16:00</td><td>€1 SAT-€5 x 5 GTD</td><td>€1+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>17:00</td><td>€1 SAT-€5 x 5 GTD</td><td>€1+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>18:00</td><td>€5 SAT-€20 x 3 GTD</td><td>€5+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>19:00</td><td>€5 SAT-€20 x 3 GTD</td><td>€5+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>21:00</td><td>€2 SAT-€20 x 1 GTD</td><td>€2+€0</td><td>Unlimited</td><td>1</td></tr><tr><td>22:00</td><td>€2 SAT-€20 x 1 GTD</td><td>€2+€0</td><td>Unlimited</td><td>1</td></tr><tr><td rowspan="3">Sep 30,Oct 10&20</td><td>17:30</td><td>HYPER TURBO SAT</td><td>€5+€0</td><td>1</td><td>1</td></tr><tr><td>18:00</td><td>HYPER TURBO SAT</td><td>€5+€0</td><td>1</td><td>1</td></tr><tr><td>18:30</td><td>HYPER TURBO SAT</td><td>€5+€0</td><td>1</td><td>1</td></tr><tr><td>Sep 30th</td><td>19:00</td><td>PKO EVENT€6K GTD</td><td>€20+€0</td><td>2</td><td>1</td></tr><tr><td>Oct 10th</td><td>19:00</td><td>PLO5 EVENT€6K GTD</td><td>€20+€0</td><td>2</td><td>1</td></tr><tr><td>Oct 20th</td><td>19:00</td><td>NLH EVENT€6K GTD</td><td>€20+€0</td><td>2</td><td>1</td></tr></tbody></table>
+</div>
+
+
+</body>
+
+</html>

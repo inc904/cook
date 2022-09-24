@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Layout from '@/layout'
 
 Vue.use(VueRouter)
 // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
@@ -10,13 +11,17 @@ import Foo from '@/views/foo.vue'
 
 const Bar = { template: '<div>bar</div>' }
 
+
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
 // 通过 Vue.extend() 创建的组件构造器，
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  { path: '/foo', component: Foo },
+  { path: '/', component: Layout },
+  { path: '/foo/:id', component: Foo , meta:{
+    author: 'yang'
+  }},
   { path: '/bar', component: Bar }
 ]
 

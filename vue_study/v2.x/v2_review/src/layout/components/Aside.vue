@@ -2,7 +2,7 @@
   <el-col>
     <el-row class="logo-area" type="flex">
       <el-col :span="5"><img class="logo" alt="Vue logo" src="@/assets/logo.png" /></el-col>
-      <el-col :span="19">自由无界</el-col>
+      <el-col :span="19">秋天该很好</el-col>
     </el-row>
 
     <el-menu

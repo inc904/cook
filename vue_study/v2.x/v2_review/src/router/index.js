@@ -7,11 +7,10 @@ Vue.use(VueRouter)
 
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来
-import Foo from '@/views/foo.vue'
 import Home from '@/views/Home.vue'
+import Foo from '@/views/foo.vue'
 
 const Bar = { template: '<div>bar</div>' }
-
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -20,9 +19,14 @@ const Bar = { template: '<div>bar</div>' }
 // 我们晚点再讨论嵌套路由。
 const routes = [
   { path: '/', component: Layout },
-  { path: '/foo/:id', component: Foo , meta:{
-    author: 'yang'
-  }},
+  { path: '/home', component: Home },
+  {
+    path: '/foo/:id',
+    component: Foo,
+    meta: {
+      author: 'yang'
+    }
+  },
   { path: '/bar', component: Bar }
 ]
 
@@ -33,7 +37,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   // ...
-console.log(12312)
+  console.log(12312)
   next()
 })
 export default router

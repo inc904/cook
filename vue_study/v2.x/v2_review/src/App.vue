@@ -6,7 +6,7 @@
       </el-aside>
 
       <el-container>
-        <el-header>Header</el-header>
+        <el-header><Navbar /></el-header>
         <el-main>
           <router-view></router-view>
         </el-main>
@@ -16,11 +16,13 @@
 </template>
 
 <script>
-  import Aside from '@/views/Aside'
+  import Aside from '@/layout/components/Aside'
+  import Navbar from '@/layout/components/NavBar'
   export default {
     name: 'App',
     components: {
-      Aside
+      Aside,
+      Navbar
     }
   }
 </script>

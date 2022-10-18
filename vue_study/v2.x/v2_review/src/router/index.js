@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来
 import Foo from '@/views/foo.vue'
+import Home from '@/views/Home.vue'
 
 const Bar = { template: '<div>bar</div>' }
 

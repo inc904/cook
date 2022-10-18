@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .hbox {
+      height: 400px;
+      background-color: aliceblue;
+      position: relative;
+    }
+
+    .inner {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="hbox">
+      <div class="d"></div>
+      <p>我是第一行的文字</p>
+      <div class="inner">我是底部的</div>
+    </div>
+    <p>{{ message }}</p>
+    <input type="text" v-model="message">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world!'
+      }
+    })
+    document.querySelector('.d').innerHTML = window.innerHeight
+    const ua = navigator.userAgent
+    const iOS = /iPad|iPhone|iPod/.test(ua)
+    const input = document.querySelector('input')
+
+    input.addEventListener('focus', () => {
+      console.log(123)
+      setTimeout(() => {
+        if (iOS) {
+          if (!/OS 11_[0-3]\D/.test(ua)) {
+
+            document.body.scrollTop = document.body.scrollHeight
+          }
+        } else {
+          document.querySelector('.d').innerHTML = window.innerHeight
+
+          // input.scrollIntoView(false)
+          document.body.scrollTop = document.body.scrollHeight + 1000
+
+        }
+      }, 300)
+    });
+  </script>
+</body>
+
+</html>

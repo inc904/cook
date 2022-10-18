@@ -2,7 +2,7 @@
   <div>
     <img alt="Vue logo" src="@/assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <router-link to="/foo">Foo</router-link>
+    <router-link to="/foo/12">Foo</router-link>
   </div>
 </template>
 <script>

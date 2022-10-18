@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <button onclick="demo()">click</button>
+  <script>
+    function demo(){
+      let value =  document.querySelector('input').value
+      // if(value > 5){
+      //   if(value >10){
+      //     return
+      //   }
+      //   console.log('inner')
+      // }
+
+      if(value > 5 && value > 10){
+        return
+        console.log('inner')
+      }
+      console.log('next')
+    }
+  </script>
+</body>
+</html>

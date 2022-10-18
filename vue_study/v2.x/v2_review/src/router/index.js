@@ -30,4 +30,9 @@ const routes = [
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
 })
+router.beforeEach((to, from, next) => {
+  // ...
+console.log(12312)
+  next()
+})
 export default router

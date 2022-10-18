@@ -1,0 +1,120 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .ifr {
+      width: 100vw;
+      height: 100vh;
+    }
+
+  </style>
+</head>
+
+<body>
+  <iframe src="./index.html" frameborder="0" class="ifr"></iframe>
+</body>
+
+</html>
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .hbox {
+      height: 800px;
+      background-color: aliceblue;
+      position: relative;
+    }
+
+    .inner {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    body {
+      height: 100%;
+      overflow: auto;
+      position: relative;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="hbox">
+      <div class="d"></div>
+      <p>我是第一行的文字</p>
+      <div class="inner">我是底部的</div>
+      <button onclick="demo()">click</button>
+    </div>
+    <p>{{ message }}</p>
+    <input type="text" v-model="message">
+  </div>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world!'
+      }
+    })
+    document.querySelector('.d').innerHTML = window.innerHeight
+    const ua = navigator.userAgent
+    const iOS = /iPad|iPhone|iPod/.test(ua)
+    const input = document.querySelector('input')
+
+    input.addEventListener('focus', () => {
+      console.log(123)
+      setTimeout(() => {
+        if (iOS) {
+          if (!/OS 11_[0-3]\D/.test(ua)) {
+
+            document.body.scrollTop = document.body.scrollHeight
+          }
+        } else {
+          document.querySelector('.d').innerHTML = window.innerHeight
+
+          // input.scrollIntoView(false)
+          document.body.scrollTop = document.body.scrollHeight + 1000
+
+        }
+      }, 300)
+    })
+
+    function demo() {
+      input.scrollIntoView(false)
+    }
+  </script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

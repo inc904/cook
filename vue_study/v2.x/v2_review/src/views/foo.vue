@@ -1,10 +1,11 @@
 <template>
   <div>
-    hello foo
+    <router-link to="/">Home</router-link>
+    <el-row> hello foo </el-row>
   </div>
 </template>
 <script>
 export default {
-  name: 'foo'
-}
+  name: "foo",
+};
 </script>

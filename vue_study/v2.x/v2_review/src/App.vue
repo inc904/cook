@@ -45,7 +45,7 @@
     .el-footer {
       background-color: #b3c0d1;
       color: #333;
-      text-align: center;
+      // text-align: center;
     }
 
     .el-aside {

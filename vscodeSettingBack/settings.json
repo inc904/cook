@@ -1,0 +1,114 @@
+{
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "'Maple Mono SC NF',Hack,'JetBrains Mono','微软雅黑'",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.8,
+  "editor.glyphMargin": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.smoothScrolling": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.lineNumbers": "interval",
+  // "editor.renderWhitespace": "boundary",
+  "editor.suggestSelection": "first",
+  "editor.bracketPairColorization.enabled": true,
+  // ESLint config: https://github.com/antfu/eslint-config
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.quiet": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "json5"
+  ],
+  "files.associations": {
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript"
+  },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+  "javascript.format.semicolons": "remove",
+  "typescript.format.semicolons": "remove",
+  "emmet.includeLanguages": {
+    "wxml": "html"
+  },
+  "minapp-vscode.disableAutoConfig": true,
+  "explorer.confirmDelete": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.cursorBlinking": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "debug.console.fontSize": 14,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "window.dialogStyle": "custom",
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "files.insertFinalNewline": true,
+  "projectManager.sortList": "Path",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.list.smoothScrolling": true,
+  "workbench.tree.indent": 10,
+  "workbench.preferredLightColorTheme": "Eva Light Bold",
+  "workbench.preferredDarkColorTheme": "Eva Dark Bold", // Eva Light Bold Eva Dark Bold
+  "prettier.enable": true, // I only use Prettier for manually formatting
+  "prettier.printWidth": 120,
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxSingleQuote": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.useEditorConfig": false,
+  "prettier.vueIndentScriptAndStyle": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]", "NOTE", "TAG"],
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.iconTheme": "vscode-great-icons",
+  "vsicons.dontShowNewVersionMessage": true,
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Eva Dark Bold",
+  "liveServer.settings.CustomBrowser": "chrome",
+  "open-in-browser.default": "Chrome",
+  "window.autoDetectColorScheme": true,
+  "vue-helper.alias": {
+    "@": "src"
+  },
+  "vue-helper.componentPrefix": {
+    "alias": "@",
+    "path": "src"
+  },
+  "editor.stickyScroll.enabled": true,
+  "turboConsoleLog.quote": "'",
+  "turboConsoleLog.includeFileNameAndLineNum": false,
+  "turboConsoleLog.delimiterInsideMessage": "~ ",
+  "editor.linkedEditing": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.formatOnSave": true
+  // "liveServer.settings.host": "192.168.100.20",
+}

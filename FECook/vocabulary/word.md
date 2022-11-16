@@ -1,3 +1,9 @@
+evidence 证据证明
+
+observe 观察，注意到
+
+professional 职业的，专业的
+
 impress vt vi 使得印象深刻，使钦佩
 
 impose vt 强制实行；将……强加于；
@@ -35,4 +41,7 @@ academic 学院的，学术的
 academy 学会，学院
 
 associated 联合的，关联的
+
 serialize 连续的
+
+enormous 巨大的，很多的

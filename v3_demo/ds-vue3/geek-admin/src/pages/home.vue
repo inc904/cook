@@ -1,6 +1,10 @@
 <script setup>
-import HelloWorld from '@/components/HelloWorld.vue'
-import Todolist from '@/components/Todolist.vue'
+import HelloWorld from "@/components/HelloWorld.vue"
+import Todolist from "@/components/Todolist.vue"
+
+import useMouse from "@/utils/mouse"
+let { x, y } = useMouse()
+console.log(x.value, y.value)
 </script>
 
 <template>
@@ -13,7 +17,7 @@ import Todolist from '@/components/Todolist.vue'
         <img src="../assets/vue.svg" class="logo vue" alt="Vue logo" />
       </a>
     </div>
-    <HelloWorld msg="Vite + Vue3" />
+    <!-- <HelloWorld msg="Vite + Vue3" /> -->
     <Todolist msg="Vite + Vue3" />
   </div>
 </template>

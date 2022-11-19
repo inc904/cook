@@ -4,13 +4,7 @@
     <div class="rate" @mouseout="mouseOut">
       <span @mouseover="mouseOver(num)" v-for="num in 5" :key="num">☆</span>
       <span class="hollow" :style="fontWidth">
-        <span
-          @click="onRate(num)"
-          @mouseover="mouseOver(num)"
-          v-for="num in 5"
-          :key="num"
-          >★</span
-        >
+        <span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num">★</span>
       </span>
     </div>
   </div>
@@ -69,6 +63,7 @@ function onRate(num) {
 watch(props, () => {
   width.value = props.modelValue
 })
+
 </script>
 
 <style scoped>
@@ -77,10 +72,12 @@ watch(props, () => {
   position: relative;
   display: inline-block;
 }
-.rate > span {
+
+.rate>span {
   cursor: pointer;
 }
-.rate > span.hollow {
+
+.rate>span.hollow {
   position: absolute;
   display: inline-block;
   top: 0;

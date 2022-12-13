@@ -8,17 +8,19 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: '/about',
+        name: 'About',
+        component: About,
+      },
+    ],
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
     hidden: true,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
   },
 ]
 

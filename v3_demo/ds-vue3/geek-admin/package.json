@@ -14,7 +14,9 @@
     "axios": "^1.1.3",
     "element3": "^0.0.40",
     "js-cookie": "^3.0.1",
+    "mockjs": "^1.1.0",
     "sass": "^1.56.1",
+    "vite-plugin-mock": "^2.9.6",
     "vue": "^3.2.41",
     "vue-router": "4",
     "vuex": "^4.0.2"

@@ -1,66 +1,107 @@
-<template >
-  <div class="login-page">
-    <el-form style="position: absolute; left: 45%; " :model="ruleForm" :rules="rules" ref="form" label-width="100px"
-      class="demo-ruleForm">
-      <el-form-item label="用户名" prop="name">
-        <el-input v-model="ruleForm.name" size="small"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="ruleForm.password" type="password" size="small" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+<template>
+  <el-form style="position: absolute; left: 45%; " ref="formRef" :model="form" label-width="auto">
+    <el-form-item label="用户名">
+      <el-input v-model="form.name" size="small" />
+    </el-form-item>
+
+    <el-form-item label="密码">
+      <el-input v-model="form.password" type="password" size="small" />
+    </el-form-item>
+
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit" :loading="loading">
+        登录
+      </el-button>
+      <el-button type="primary" @click="onSubmit2" :loading="loading">
+        登录2
+      </el-button>
+      <el-button type="primary" @click="onSubmit3" :loading="loading">
+        登录3
+      </el-button>
+    </el-form-item>
+  </el-form>
 </template>
-<script >
+
+<script>
 import { ref, reactive, toRefs } from 'vue'
+import { login, login2, login3 } from '../api/apis'
+import { Message } from 'element3'
+import { useRouter } from 'vue-router'
+
 export default {
+
   setup() {
-    const form = ref(null)
+    const formRef = ref(null)
+    const loading = ref(false)
     const data = reactive({
-      ruleForm: {
+      form: {
         name: '',
-        password: ''
+        password: '',
       }
     })
-    const rules = reactive({
-      rules: {
-        name: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
-        ]
+    const router = useRouter()
+
+    const onSubmit = async () => {
+      loading.value = true
+      try {
+        const res = await login(data.form)
+        console.log('try', res);
+
+        // router.replace('/')
+      } catch (error) {
+        Message({
+          type: 'warning',
+          message: error
+        })
+      } finally {
+        loading.value = false
       }
-    })
-    function submitForm() {
-      form.value.validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
     }
-    function resetForm() {
-      form.value.resetFields()
+
+    const onSubmit2 = async () => {
+      loading.value = true
+      try {
+        const res = await login2(data.form)
+        // console.log(res);
+        console.log('try', res);
+
+        // router.replace('/')
+      } catch (error) {
+        Message({
+          type: 'warning',
+          message: error
+        })
+      } finally {
+        loading.value = false
+      }
+    }
+
+    const onSubmit3 = async () => {
+      loading.value = true
+      try {
+        const res = await login3(data.form)
+        // console.log(res);
+        console.log('try', res);
+
+        // router.replace('/')
+      } catch (error) {
+        Message({
+          type: 'warning',
+          message: error
+        })
+      } finally {
+        loading.value = false
+      }
     }
 
     return {
-      form,
       ...toRefs(data),
-      ...toRefs(rules),
-      submitForm,
-      resetForm
+      loading,
+      formRef,
+      onSubmit,
+      onSubmit2,
+      onSubmit3
     }
   }
 }
 </script>
-<style>
-
-</style>

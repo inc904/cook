@@ -15,7 +15,7 @@ interface selectDataInt {
 
 export class InitData {
   selectData: selectDataInt = {
-    title: '123123',
+    title: '',
     desc: '',
     page: 1,
     count: 0,

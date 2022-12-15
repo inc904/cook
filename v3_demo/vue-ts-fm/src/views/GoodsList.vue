@@ -17,9 +17,9 @@
     <el-table-column prop="introduce" label="详情" />
   </el-table>
   <div class="demo-pagination-block">
-    <div class="demonstration">Total item count</div>
     <el-pagination
       v-model:current-page="selectData.page"
+      background
       :page-sizes="[5, 10, 15, 20]"
       layout="total, sizes, prev, pager, next"
       :total="selectData.count"
@@ -31,6 +31,7 @@
 <script lang="ts">
 import {
   defineComponent,
+  watch,
   reactive,
   toRefs,
   ref,
@@ -38,31 +39,33 @@ import {
   computed,
 } from 'vue'
 import { getGoodsList } from '@/request/api'
-import { InitData } from '@/type/goodsList'
+import { InitData, ListInt } from '@/type/goodsList'
 
 export default defineComponent({
   setup() {
     let goodsData = reactive(new InitData())
     console.log(new InitData())
     // TODO 怎么把这两个值拆分出来？？？
-    let selectData = ref(new InitData().selectData)
-    let tableList = ref(new InitData().tableList)
+    // let selectData = ref(new InitData().selectData)
+    // let tableList = ref(new InitData().tableList)
     console.log({ goodsData })
     console.log(goodsData.selectData)
-    console.log({ selectData, tableList })
+    // console.log({ selectData, tableList })
 
     onMounted(() => {
+      getPageData()
+    })
+
+    // TODO 函数外定义的变量， 在函数内部访问不到？？
+    // let backData = []
+    const getPageData = () => {
       getGoodsList({ title: '123', desc: 'aaa' }).then((res) => {
         console.log(res)
         goodsData.tableList = res.data.data
+        // backData = res.data.data
         goodsData.selectData.count = goodsData.tableList.length
       })
-    })
-
-    const onSubmit = () => {
-      console.log('submit!')
     }
-
     const handleSizeChange = (size: number) => {
       // console.log(`${size} items per page`)
       goodsData.selectData.pagesize = size
@@ -86,6 +89,29 @@ export default defineComponent({
         )
       }),
     })
+
+    const onSubmit = () => {
+      console.log(
+        'submit!',
+        goodsData.selectData.title,
+        goodsData.selectData.desc
+      )
+      let arr: ListInt[] = []
+      arr = goodsData.tableList
+        .filter((item) => item.title.includes(goodsData.selectData.title))
+        .filter((item2) => item2.introduce.includes(goodsData.selectData.desc))
+      console.log({ arr })
+      goodsData.tableList = arr
+      goodsData.selectData.count = arr.length
+    }
+    watch(
+      [() => goodsData.selectData.title, () => goodsData.selectData.desc],
+      () => {
+        if (!goodsData.selectData.title && !goodsData.selectData.desc) {
+          getPageData()
+        }
+      }
+    )
 
     return {
       // Data:

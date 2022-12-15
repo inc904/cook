@@ -24,12 +24,19 @@ interface loginData {
   // checkPass: String
 }
 
-import service from "./index"
+import service from './index'
 
 export function login(data: loginData) {
   return service({
-    url: "/login",
-    method: "post",
+    url: '/login',
+    method: 'post',
+    data,
+  })
+}
+export function getGoodsList(data: any) {
+  return service({
+    url: '/getGoodsList',
+    method: 'post',
     data,
   })
 }

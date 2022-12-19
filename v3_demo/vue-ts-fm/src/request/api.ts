@@ -33,10 +33,23 @@ export function login(data: loginData) {
     data,
   })
 }
-export function getGoodsList(data: any) {
+export function getGoodsList() {
   return service({
     url: '/getGoodsList',
-    method: 'post',
-    data,
+    method: 'get',
+  })
+}
+
+export function getUserList() {
+  return service({
+    url: '/getUserList',
+    method: 'get',
+  })
+}
+
+export function getRoleList() {
+  return service({
+    url: '/getRoleList',
+    method: 'get',
   })
 }

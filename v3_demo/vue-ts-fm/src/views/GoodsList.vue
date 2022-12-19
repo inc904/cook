@@ -58,10 +58,11 @@ export default defineComponent({
 
     // TODO 函数外定义的变量， 在函数内部访问不到？？
     // let backData = []
+    // TODO 封装后，可以改装成 async await 形式
     const getPageData = () => {
-      getGoodsList({ title: '123', desc: 'aaa' }).then((res) => {
+      getGoodsList().then((res) => {
         console.log(res)
-        goodsData.tableList = res.data.data
+        goodsData.tableList = res.data
         // backData = res.data.data
         goodsData.selectData.count = goodsData.tableList.length
       })

@@ -24,7 +24,34 @@
           :key="item.roleId" disable-transitions>{{ item.roleName }}</el-tag>
       </template>
     </el-table-column>
+    <el-table-column label="操作">
+      <template #default="scope">
+        <el-button @click="handleEdit(scope)">编辑</el-button>
+      </template>
+    </el-table-column>
   </el-table>
+
+  <el-dialog v-model="dialogVisible" title="Shipping address">
+    <el-form :model="form">
+      <el-form-item label="Promotion name" :label-width="formLabelWidth">
+        <el-input v-model="form.name" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Zones" :label-width="formLabelWidth">
+        <el-select v-model="form.region" placeholder="Please select a zone">
+          <el-option label="Zone No.1" value="shanghai" />
+          <el-option label="Zone No.2" value="beijing" />
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <script lang="ts">
 // TODO vue 模块自动导入
@@ -87,6 +114,10 @@ export default defineComponent({
       userData.userList = search_res
     }
 
+    const handleEdit = () => {
+      console.log('edit!')
+    }
+
     watch(
       [() => userData.selectData.nickName, () => userData.selectData.role],
       () => {
@@ -99,6 +130,7 @@ export default defineComponent({
       ...toRefs(userData),
       // filterData,
       onSubmit,
+      handleEdit,
     }
   },
 })

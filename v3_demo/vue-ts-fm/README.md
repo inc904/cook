@@ -34,3 +34,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - name: 【vue3+typescript】一行行代码带你敲，Vue3+TS 电商后台系统项目实战（2022 最新版）
 - ID: BV1nr4y1G73d
+  https://www.bilibili.com/video/BV1nr4y1G73d/?p=19&vd_source=a9f832c9bbe6eefe5292e2ea9a07dcc9

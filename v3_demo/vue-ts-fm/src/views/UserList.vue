@@ -64,16 +64,23 @@ export default defineComponent({
       })
     }
     const onSubmit = () => {
+      console.log(userData.selectData)
       let search_res: IUserInit[] = []
 
       if (userData.selectData.role === 0) {
-        search_res = userData.userList
-        return search_res
+        console.log('00000')
+        search_res = userData.userList.filter((item) =>
+          item.nickName.includes(userData.selectData.nickName)
+        )
+        userData.userList = search_res
+        return
       }
 
       search_res = userData.userList
         .filter((item) => item.nickName.includes(userData.selectData.nickName))
         .filter((item2) =>
+          // TODO filter || find 详解释
+          // item2.roles.find((item3) => item3.role === userData.selectData.role)
           item2.roles.find((item3) => item3.role === userData.selectData.role)
         )
 

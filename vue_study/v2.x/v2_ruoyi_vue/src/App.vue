@@ -1,21 +1,10 @@
 <template>
   <div id="app">
-    <el-container>
-      <Aside />
-      <el-container>
-        <el-header><Aheader /> </el-header>
-        <el-main>
-          <router-view />
-        </el-main>
-      </el-container>
-    </el-container>
+   <router-view></router-view>
   </div>
 </template>
 <script>
-  import Aheader from '@/components/layout/Aheader'
-  import Aside from '@/components/layout/Aside'
-  export default {
-    components: { Aside, Aheader }
+ export default {
   }
 </script>
 <style lang="scss">

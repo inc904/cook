@@ -25,7 +25,7 @@
 import { getCodeImg } from '@/api/login.js'
 export default {
   beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'normal_login' })
+    // this.form = this.$form.createForm(this, { name: 'normal_login' })
   },
   data() {
     return {
@@ -65,9 +65,9 @@ export default {
       console.log(formName)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          // alert('submit!')
           this.$store.dispatch('login', this.loginForm).then(res => {
-            console.log(res)
+            console.log('res:',res)
           })
         } else {
           console.log('error submit!!')

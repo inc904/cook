@@ -8,9 +8,9 @@
         <el-form-item prop="password">
           <el-input v-model="loginForm.password" placeholder="Password"></el-input>
         </el-form-item>
-        <el-form-item class="codeWrapper" prop="code">
+        <el-form-item class="codeWrapper" prop="code" v-if="captchaEnabled">
           <el-input class="codeInput" v-model="loginForm.code" placeholder="Code"></el-input>
-          <img class="codeImg" :src="codeUrl" alt="" />
+          <img @click="getCode()" class="codeImg" :src="codeUrl" alt="" />
         </el-form-item>
         <el-form-item>
           <el-button style="width:100%;" type="primary" @click="submitForm('loginForm')">提交</el-button>
@@ -24,7 +24,7 @@
 
 import { getCodeImg } from '@/api/login.js'
 export default {
-  beforeCreate() {},
+  beforeCreate() { },
   data() {
     return {
       loginForm: {
@@ -33,7 +33,6 @@ export default {
         code: '',
         uuid: ''
       },
-      codeUrl: '',
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -45,7 +44,10 @@ export default {
         code: [
           { required: true, message: '请输入验证码', trigger: 'change' },
         ],
-      }
+      },
+      codeUrl: '',
+      captchaEnabled: true
+
     }
   },
   created() {
@@ -53,10 +55,15 @@ export default {
   },
   methods: {
     getCode() {
+
       getCodeImg().then(res => {
+        this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
         console.log(res)
+        if (this.captchaEnabled) {
+
         this.codeUrl = 'data:image/gif;base64,' + res.img
         this.loginForm.uuid = res.uuid
+        }
       })
     },
     submitForm(formName) {
@@ -64,6 +71,12 @@ export default {
         if (valid) {
           this.$store.dispatch('login', this.loginForm).then(res => {
             console.log('res:', res)
+            this.$router.push('/')
+          })
+          .catch(()=>{
+            if (this.captchaEnabled) {
+              this.getCode();
+            }
           })
           // // 对于简单抛出错误消息的catch，可以统一在request中处理
           // .catch((error) => {

@@ -7,9 +7,14 @@ const service = axios.create({
 service.interceptors.response.use((res) => {
   let code = res.data.code
   let msg = res.data.msg
-  if (code !== 200) {
+  if (code == 500) {
     Notification.error({ title: msg })
-    return Promise.reject()
+    // return Promise.reject(msg)
+    // Error 对象有两个属性 message 和 stack
+    return Promise.reject(new Error(msg))
+  } else if (code != 200) {
+    Notification.error({ title: msg })
+    return Promise.reject(new Error(msg))
   } else {
     return res.data
   }

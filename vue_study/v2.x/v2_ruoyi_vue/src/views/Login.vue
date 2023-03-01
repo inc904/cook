@@ -24,9 +24,7 @@
 
 import { getCodeImg } from '@/api/login.js'
 export default {
-  beforeCreate() {
-    // this.form = this.$form.createForm(this, { name: 'normal_login' })
-  },
+  beforeCreate() {},
   data() {
     return {
       loginForm: {
@@ -62,18 +60,33 @@ export default {
       })
     },
     submitForm(formName) {
-      console.log(formName)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // alert('submit!')
           this.$store.dispatch('login', this.loginForm).then(res => {
-            console.log('res:',res)
+            console.log('res:', res)
           })
+          // // 对于简单抛出错误消息的catch，可以统一在request中处理
+          // .catch((error) => {
+          //   console.log({error})
+          //   const h = this.$createElement
+          //   this.$notify({
+          //     title: '错误',
+          //     message: h('i', { style: 'color: teal' }, error.message)
+          //   })
+          // })
         } else {
-          console.log('error submit!!')
+          // // 对于没有通过验证的错误信息，还没有搞明白 怎么手动抛出来，
+          // const h = this.$createElement
+          // console.log('error submit!!')
+          // this.$notify({
+          //   title: '标题名称',
+          //   message: h('i', { style: 'color: teal' }, valid)
+          // })
+
           return false
         }
       })
+
     }
   },
 }

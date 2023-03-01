@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="aheader">
+  <div class="a-header">
     <el-radio-group v-model="isCollapse" @change="collapseMenuBar">
       <el-radio-button v-show="isCollapse" :label="false"><i class="el-icon-s-unfold"></i></el-radio-button>
       <el-radio-button v-show="!isCollapse" :label="true"><i class="el-icon-s-fold"></i></el-radio-button>
@@ -25,7 +25,7 @@
   }
 </script>
 <style lang="scss">
-  .aheader {
+  .a-header {
     display: flex;
     justify-content: space-between;
     align-items: center;

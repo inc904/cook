@@ -4,7 +4,7 @@
       <Aside />
       <el-container>
         <el-header>
-          <Aheader />
+          <AHeader />
         </el-header>
         <el-main>
           <router-view />
@@ -14,12 +14,15 @@
   </div>
 </template>
 <script>
-import Aheader from '@/components/layout/Aheader'
+import AHeader from '@/components/layout/AHeader'
 import Aside from '@/components/layout/Aside'
 
 export default {
   name: 'Layout',
-  components: { Aside, Aheader }
+  components: { Aside, AHeader },
+  mounted(){
+    console.log(this.$store.state.user.token)
+  }
 
 }
 </script>

@@ -17,6 +17,8 @@
         </el-form-item>
       </el-form>
     </a-card>
+    <el-button @click="test">click</el-button>
+
   </div>
 </template>
 
@@ -52,32 +54,45 @@ export default {
   },
   created() {
     this.getCode()
+    let toPath = this.$route.query.redirect || '/'
+    console.log('this.$route', this.$route)
+
+    console.log({ toPath })
   },
   methods: {
-    getCode() {
+    test() {
+      const h = this.$createElement
 
+      this.$notify({
+        title: '标题名称',
+        message: h('i', { style: 'color: teal' }, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
+      })
+    },
+    getCode() {
       getCodeImg().then(res => {
-        this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
+        this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled
         console.log(res)
         if (this.captchaEnabled) {
 
-        this.codeUrl = 'data:image/gif;base64,' + res.img
-        this.loginForm.uuid = res.uuid
+          this.codeUrl = 'data:image/gif;base64,' + res.img
+          this.loginForm.uuid = res.uuid
         }
       })
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$store.dispatch('login', this.loginForm).then(res => {
+          this.$store.dispatch('Login', this.loginForm).then(res => {
             console.log('res:', res)
-            this.$router.push('/')
+            let toPath = this.$route.query.redirect || '/'
+            console.log({ toPath })
+            this.$router.push(toPath)
           })
-          .catch(()=>{
-            if (this.captchaEnabled) {
-              this.getCode();
-            }
-          })
+            .catch(() => {
+              if (this.captchaEnabled) {
+                this.getCode()
+              }
+            })
           // // 对于简单抛出错误消息的catch，可以统一在request中处理
           // .catch((error) => {
           //   console.log({error})

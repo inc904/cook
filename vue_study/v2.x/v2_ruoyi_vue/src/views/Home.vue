@@ -9,27 +9,31 @@
 </template>
 
 <script>
-  // @ is an alias to /src
-  import HelloWorld from '@/components/HelloWorld.vue'
+// @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
 
-  export default {
-    name: 'Home',
-    data(){
-      return {
-        list: [
-          {name: 'Jack', score: 87},
-          {name: 'Jack2', score: 67},
-          {name: 'Jack3', score: 37},
-        ]
-      }
-    },
-    components: {
-      HelloWorld
-    },
-    methods:{
-      parentChange(){
-        this.list.splice(1,0)
-      }
+export default {
+  name: 'Home',
+  data() {
+    return {
+      list: [
+        { name: 'Jack', score: 87 },
+        { name: 'Jack2', score: 67 },
+        { name: 'Jack3', score: 37 },
+      ]
+    }
+  },
+  components: {
+    HelloWorld
+  },
+  created() {
+    console.log('123', this)
+
+  },
+  methods: {
+    parentChange() {
+      this.list.splice(1, 0)
     }
   }
+}
 </script>

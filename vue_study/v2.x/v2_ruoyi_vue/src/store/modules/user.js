@@ -1,8 +1,9 @@
-import { login } from '@/api/login.js'
 import { getToken, setToken, removeToken } from '@/utils/auth.js'
+import { login, getUserInfo } from '../../api/login'
 const user = {
   state: {
-    token: getToken()
+    token: getToken(),
+    roles: [],
   },
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -10,7 +11,7 @@ const user = {
     },
   },
   actions: {
-    login({ commit }, userinfo) {
+    Login({ commit }, userinfo) {
       let { username, password, code, uuid } = userinfo
       return new Promise((resolve, reject) => {
         login(username, password, code, uuid)
@@ -24,10 +25,20 @@ const user = {
           })
       })
     },
-    getInfo() {
+    GetInfo({ commit }) {
+      // commit
       getToken()
+      return new Promise((resolve, reject) => {
+        getUserInfo()
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
     },
-    logOut() {
+    LogOut() {
       removeToken()
     },
   },

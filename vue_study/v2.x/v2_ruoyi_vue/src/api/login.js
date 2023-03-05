@@ -6,7 +6,7 @@ export function getCodeImg() {
     url: '/captchaImage',
     method: 'get',
     headers: {
-      isToken: false,
+      notToken: true,
     },
     timeout: 2000,
   })
@@ -18,7 +18,7 @@ export function login(username, password, code, uuid) {
     method: 'post',
     data,
     headers: {
-      isToken: false,
+      notToken: true,
     },
   })
 }

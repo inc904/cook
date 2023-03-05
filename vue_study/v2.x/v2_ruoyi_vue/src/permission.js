@@ -12,11 +12,9 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
     } else {
       if (!store.getters.roles.length) {
-        //
         store
           .dispatch('GetInfo')
           .then((res) => {
-            console.log('roles-1')
             next()
           })
           .catch((error) => {

@@ -8,6 +8,7 @@ import 'ant-design-vue/dist/antd.css';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import './permission'
 
 Vue.config.productionTip = true;
 Vue.use(Antd);

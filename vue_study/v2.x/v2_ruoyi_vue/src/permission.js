@@ -6,7 +6,7 @@ import { Message, MessageBox, Notification } from 'element-ui'
 const whiteList = ['login']
 
 router.beforeEach((to, from, next) => {
-  console.log({ to })
+
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })

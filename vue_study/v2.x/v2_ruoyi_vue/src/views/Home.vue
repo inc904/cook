@@ -27,8 +27,6 @@ export default {
     HelloWorld
   },
   created() {
-    console.log('123', this)
-
   },
   methods: {
     parentChange() {

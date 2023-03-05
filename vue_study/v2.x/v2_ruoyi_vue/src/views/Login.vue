@@ -83,9 +83,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.dispatch('Login', this.loginForm).then(res => {
-            console.log('res:', res)
             let toPath = this.$route.query.redirect || '/'
-            console.log({ toPath })
             this.$router.push(toPath)
           })
             .catch(() => {

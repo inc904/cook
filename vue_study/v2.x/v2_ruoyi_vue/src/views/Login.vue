@@ -17,8 +17,6 @@
         </el-form-item>
       </el-form>
     </a-card>
-    <el-button @click="test">click</el-button>
-
   </div>
 </template>
 

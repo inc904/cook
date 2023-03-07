@@ -14,23 +14,39 @@ service.interceptors.request.use((config) => {
   return config
 })
 
-service.interceptors.response.use((res) => {
-  let code = res.data.code
-  let msg = res.data.msg
-  if (code === 401) {
-    let errorMsg = '无效的会话，或者会话已过期，请重新登录。'
-    // Notification.error({ title: errorMsg })
-    return Promise.reject(new Error(errorMsg))
-  } else if (code == 500) {
-    Notification.error({ title: msg })
-    // return Promise.reject(msg)
-    // Error 对象有两个属性 message 和 stack
-    return Promise.reject(new Error(msg))
-  } else if (code != 200) {
-    Notification.error({ title: msg })
-    return Promise.reject(new Error(msg))
-  } else {
-    return res.data
+service.interceptors.response.use(
+  (res) => {
+    let code = res.data.code
+    let msg = res.data.msg
+    if (code === 401) {
+      let errorMsg = '无效的会话，或者会话已过期，请重新登录。'
+      // Notification.error({ title: errorMsg })
+      return Promise.reject(new Error(errorMsg))
+    } else if (code == 500) {
+      Notification.error({ title: msg })
+      // return Promise.reject(msg)
+      // Error 对象有两个属性 message 和 stack
+      return Promise.reject(new Error(msg))
+    } else if (code != 200) {
+      Notification.error({ title: msg })
+      return Promise.reject(new Error(msg))
+    } else {
+      return res.data
+    }
+  },
+  (error) => {
+    let { message } = error
+    if (message.includes('timeout')) {
+      message = '系统接口请求超时'
+    } else if (message.includes('Request failed with status code')) {
+      message = '系统接口' + message.substr(message.length - 3) + '异常'
+    }
+    Notification({
+      title: message,
+      type: 'error',
+      duration: 5 * 1000,
+    })
+    return Promise.reject(error)
   }
-})
+)
 export default service

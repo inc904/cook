@@ -1,25 +1,24 @@
-<template lang="">
+<template>
   <div class="app-wrapper">
-   <el-container>
-      <Aside />
-      <el-container>
-        <el-header>
-          <AHeader />
-        </el-header>
-        <el-main>
-          <router-view />
-        </el-main>
-      </el-container>
-    </el-container>
+    <a-side />
+    <div class="main-container">
+      <div>
+        <a-header />
+        <TagsView />
+      </div>
+      <a-main />
+    </div>
   </div>
 </template>
 <script>
-import AHeader from '@/components/layout/AHeader'
-import Aside from '@/components/layout/Aside'
+import AHeader from './components/AHeader'
+import ASide from './components/ASide'
+import AMain from './components/AMain'
+import TagsView from './components/TagsView'
 
 export default {
   name: 'Layout',
-  components: { Aside, AHeader },
+  components: { ASide, AHeader, AMain, TagsView },
   mounted() {
   }
 
@@ -27,6 +26,7 @@ export default {
 </script>
 <style lang="scss">
 .app-wrapper {
+  display: flex;
   position: relative;
   width: 100%;
   height: 100%;
@@ -36,7 +36,7 @@ export default {
     top: 0;
   }
 
-  .el-container {
+  .main-container {
     width: 100%;
     height: 100%;
   }

@@ -1,12 +1,12 @@
 import { getToken, setToken, removeToken } from '@/utils/auth.js'
-import { login, getUserInfo } from '../../api/login'
+import { login, getUserInfo, logout } from '../../api/login'
 const user = {
   state: {
     token: getToken(),
     roles: [],
-    permissions:[],
-    name:'',
-    avatar:''
+    permissions: [],
+    name: '',
+    avatar: '',
   },
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -64,8 +64,19 @@ const user = {
           })
       })
     },
-    LogOut() {
-      removeToken()
+    LogOut({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        logout()
+          .then(() => {
+            commit('SET_TOKEN', '')
+            commit('SET_ROLES', [])
+            commit('SET_PERMISSIONS', [])
+            removeToken()
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     },
   },
 }

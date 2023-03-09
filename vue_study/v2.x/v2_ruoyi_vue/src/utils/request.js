@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getToken } from './auth'
+import store from '../store'
 
 import { Notification } from 'element-ui'
 const service = axios.create({
@@ -21,6 +22,9 @@ service.interceptors.response.use(
     if (code === 401) {
       let errorMsg = '无效的会话，或者会话已过期，请重新登录。'
       // Notification.error({ title: errorMsg })
+      store.dispatch('LogOut').then(() => {
+        location.href('/')
+      })
       return Promise.reject(new Error(errorMsg))
     } else if (code == 500) {
       Notification.error({ title: msg })

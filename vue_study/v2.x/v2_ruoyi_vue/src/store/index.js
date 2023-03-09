@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
+import app from './modules/app'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -8,16 +9,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   namespaced: false,
   state: {
-    isCollapse: false,
+    isActive: false,
   },
   mutations: {
-    set_iscollapse_status: (state, p) => {
-      state.isCollapse = p
+    SET_COLLAPSE_STATUS: (state, status) => {
+      state.isActive = status
     },
   },
   actions: {},
   modules: {
     user,
+    app
   },
   getters,
 })

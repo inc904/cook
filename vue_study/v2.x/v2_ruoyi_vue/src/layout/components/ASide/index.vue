@@ -3,10 +3,18 @@
     <!-- <router-link to="/">
       <div class="logo">
         <img alt="Vue logo" src="@/assets/logo.png" />
-        <span v-show="!isCollapse">HelloWorld</span>
+        <span v-show="!isCollapse">若依管理系统</span>
       </div>
     </router-link> -->
-    <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+    <logo :collapse="isCollapse" />
+    <el-menu
+      background-color="#304156"
+      text-color="#fff"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      :collapse="isCollapse"
+    >
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -41,57 +49,78 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {}
+import { mapGetters } from 'vuex'
+import logo from './logo'
+
+export default {
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapGetters(['sidebar']),
+    isCollapse() {
+      return !this.sidebar.opened
     },
-    computed: {
-      isCollapse() {
-        return this.$store.state.isCollapse
-      }
+  },
+  components: { logo },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath)
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath)
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath)
-      }
-    }
-  }
+    handleClose(key, keyPath) {
+      console.log(key, keyPath)
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
-  $logoWidth: 20px;
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-    text-align: left;
+$logoWidth: 20px;
+
+
+.el-menu-vertical-demo {
+  height: calc(100% - 60px);
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+  text-align: left;
+}
+
+.aside {
+  background-color: #304156;
+
+  span {
+    display: inline-block;
   }
-  .aside {
+
+  &.closed {
+
+    // width: 64px;
     span {
-      display: inline-block;
-    }
-    &.closed {
-      // width: 64px;
-      span {
-        display: none;
-      }
-    }
-    transition: width 1s ease;
-    a {
-      cursor: pointer;
-      color: inherit;
-      text-decoration: none;
-    }
-    .logo {
-      height: 60px;
-      line-height: 60px;
-      img {
-        width: $logoWidth;
-        height: $logoWidth;
-        vertical-align: middle;
-      }
-      background-color: #fff;
+      display: none;
     }
   }
+
+  transition: width 1s ease;
+
+  a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .logo {
+    height: 60px;
+    line-height: 60px;
+
+    img {
+      width: $logoWidth;
+      height: $logoWidth;
+      vertical-align: middle;
+    }
+
+    background-color: #fff;
+  }
+}
 </style>

@@ -26,8 +26,14 @@ export function getUserInfo() {
   return request({
     url: '/getInfo',
     method: 'get',
-    data:{
-      token: getToken()
-    }
+    data: {
+      token: getToken(),
+    },
+  })
+}
+export function logout() {
+  return request({
+    url: 'logout',
+    method: 'post',
   })
 }

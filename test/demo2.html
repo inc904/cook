@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="detail">click</button>
+    <button id="detail2">click2</button>
+    <script>
+      document.querySelector('#detail').onclick = function () {
+        console.log(123)
+        window.open('https://cardcasino.sk/en/news/spanish-vpt-tunes-up-for-wpt-worlds-in-april-with-eur-350000/')
+      }
+      document.querySelector('#detail2').onclick = function () {
+        console.log(123)
+        window.location.href = ('https://cardcasino.sk/en/news/spanish-vpt-tunes-up-for-wpt-worlds-in-april-with-eur-350000/')
+      }
+    </script>
+  </body>
+</html>
